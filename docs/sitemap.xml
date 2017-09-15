@@ -5,8 +5,17 @@
     
     <url>
     
-      <loc>/post/2017-09-14-assorted-shiny-apps/</loc>
-      <lastmod>2017-09-14T00:00:00+00:00</lastmod>
+      <loc>/post/2017-04-26-assorted-shiny-apps/</loc>
+      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/post/custom-images-for-shiny-dashboard-valuebox-icons/</loc>
+      <lastmod>2017-01-11T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -23,7 +32,93 @@
     
     <url>
     
+      <loc>/post/mapmate-0-2-0/</loc>
+      <lastmod>2016-11-15T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/post/r-animation-global-climate-change/</loc>
+      <lastmod>2016-09-29T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/post/r-animation-global-snap-shiny-app-users/</loc>
+      <lastmod>2016-03-25T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/post/r-animation-great-circles-3/</loc>
+      <lastmod>2015-09-04T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/animation/</loc>
+      <lastmod>2016-11-15T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/categories/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/climate-change/</loc>
+      <lastmod>2016-09-29T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/code/</loc>
+      <lastmod>2016-11-15T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/great-circles/</loc>
+      <lastmod>2015-09-04T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/mapmate/</loc>
+      <lastmod>2016-09-29T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -43,7 +138,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2017-09-14T00:00:00+00:00</lastmod>
+      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -62,7 +157,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2017-09-14T00:00:00+00:00</lastmod>
+      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -72,7 +167,7 @@
     <url>
     
       <loc>/tags/shiny/</loc>
-      <lastmod>2017-09-14T00:00:00+00:00</lastmod>
+      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -82,7 +177,17 @@
     <url>
     
       <loc>/tags/source-code/</loc>
-      <lastmod>2017-09-14T00:00:00+00:00</lastmod>
+      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/statistics/</loc>
+      <lastmod>2016-11-15T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -93,6 +198,16 @@
     
       <loc>/tags/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/visualization/</loc>
+      <lastmod>2017-01-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

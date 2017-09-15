@@ -21,9 +21,54 @@
     </item>
     
     <item>
+      <title>Animation</title>
+      <link>/tags/animation/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/animation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Climate Change</title>
+      <link>/tags/climate-change/</link>
+      <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/climate-change/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Code</title>
+      <link>/tags/code/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Great Circles</title>
+      <link>/tags/great-circles/</link>
+      <pubDate>Fri, 04 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/great-circles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mapmate</title>
+      <link>/tags/mapmate/</link>
+      <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/mapmate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Shiny</title>
       <link>/tags/shiny/</link>
-      <pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/shiny/</guid>
       <description></description>
@@ -32,9 +77,27 @@
     <item>
       <title>Source Code</title>
       <link>/tags/source-code/</link>
-      <pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/source-code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Statistics</title>
+      <link>/tags/statistics/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Visualization</title>
+      <link>/tags/visualization/</link>
+      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/visualization/</guid>
       <description></description>
     </item>
     
