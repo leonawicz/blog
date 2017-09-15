@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Matthew Leonawicz</title>
+    <link>/categories/r/</link>
+    <description>Recent content in R on Matthew Leonawicz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <lastBuildDate>Thu, 14 Sep 2017 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/categories/r/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Assorted Shiny apps collection, full code and data</title>
+      <link>/post/2017-09-14-assorted-shiny-apps/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017-09-14-assorted-shiny-apps/</guid>
+      <description>&lt;p&gt;Here is an &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34;&gt;assortment of R Shiny apps&lt;/a&gt; that you may find useful for exploration if you are in the process of learning Shiny and looking for something different. Some of these apps are very small and simple whereas others are large and complex. This repository provides full code and any necessary accompanying data sets. The repo also links to the apps hosted online at shinyapps.io so that you can run apps in your browser without having to download the entire collection repo to run apps locally. That and other details can be found at the repo linked above. This isn’t a tutorial or other form of support, but it’s plenty of R code to peruse if that is what you are looking for.&lt;/p&gt;
+&lt;p&gt;A bit of backstory. If I recall correctly, I began exploring RStudio’s Shiny package when I first heard of it in late 2012. Needless to say, a lot has changed since then, including not only all the alpha-release code-breaking changes I had to adjust to when making my first apps and what features and capabilities Shiny has grown to offer, but also simply how I go about coding apps has changed over time symbiotically with the package’s continued development. None of the apps in this repository are quite that old, though a few are close. Even so, they have been maintained and updated and tweaked since then to keep with the times as necessary.&lt;/p&gt;
+&lt;p&gt;Most of the apps are newer. But one nice thing about this collection is that it shows a diversity of approaches to coding different features and behavior into apps depending on their purposes and how for me that has changed over time. For example, some apps are heavy on maps. Prior to the robust availability of Leaflet in Shiny, I would tend to have a Shiny app display maps using static (but reactive) plots made with Lattice or ggplot2. There are many ways to do the same thing, and the way that is best in one case is not always the best way.&lt;/p&gt;
+&lt;p&gt;Across these apps there are many other examples of different ways to implement the same general task, depending on how I want that to be presented to the user in a specific app. In other cases, some approaches have proven more powerful and outright superior to others and have won out and it is equally useful to see these examples of what once was considered to be “good enough” is no longer.&lt;/p&gt;
+&lt;p&gt;Lastly, if you do happen to stumble upon something that is actually broken, I am unaware of it, so please let me know.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

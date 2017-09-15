@@ -1,0 +1,25 @@
+html {
+  font-family: 'Arial', serif;
+  font-size: 12px;
+  color: rgba(0,0,0,0.8);
+  line-height: 1.65;
+}
+@media screen and (min-width: 58em) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: inherit;
+  color: inherit;
+  margin-top: 71px; /* Offset body content by navbar height. */
+  padding-top: 0;
+  counter-reset: captions;
+}
+
+p {
+  text-align: justify;
+}
