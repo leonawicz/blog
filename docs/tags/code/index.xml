@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code on Matthew Leonawicz</title>
+    <link>/tags/code/</link>
+    <description>Recent content in Code on Matthew Leonawicz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <lastBuildDate>Tue, 15 Nov 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/code/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>mapmate 0.2.0</title>
+      <link>/post/mapmate-0-2-0/</link>
+      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mapmate-0-2-0/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;&lt;code&gt;mapmate&lt;/code&gt; is under development and blog posts can become outdated quickly. Up to date &lt;code&gt;mapmate&lt;/code&gt; documentation and tutorial examples can be found at the &lt;a href=&#34;https://leonawicz.github.io/mapmate/&#34;&gt;official mapmate Github pages&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/leonawicz/mapmate&#34;&gt;mapmate&lt;/a&gt; has now been updating from version 0.1.0 to 0.2.0 on Github. The key change is the incorporation of new functions, help docs and code examples focused on network maps, which is a more complex map type not previously covered. The new tutorial content below provides a a couple basic code examples for making network maps with &lt;code&gt;mapmate&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;While &lt;code&gt;mapmate&lt;/code&gt; is aimed at still image sequence generation, allowing the user to exert full control over how still image sequences are used to produce animations subsequently (GUI video editor, ffmpeg, ImageMagick, etc) and not directly at animating from R, the examples here include the use of the &lt;code&gt;animation&lt;/code&gt; package to help you quickly reproduce some basic animated gifs (as long as you have ImageMagick installed on your system). But the takeaway message is that &lt;code&gt;mapmate&lt;/code&gt; now has better support for still image map sequence generation when using the network map type based on great circle arc path traversal.&lt;/p&gt;
+
+&lt;p&gt;If you are new to &lt;code&gt;mapmate&lt;/code&gt; there is also the &lt;a href=&#34;https://leonawicz.github.io/mapmate/mapmate.html&#34;&gt;introductory vignette&lt;/a&gt;. The &lt;a href=&#34;https://leonawicz.github.io/mapmate/networks.html&#34;&gt;content of this post&lt;/a&gt; is available on the &lt;a href=&#34;https://leonawicz.github.io/mapmate/&#34;&gt;mapmate Github pages&lt;/a&gt; as well.&lt;/p&gt;
+
+&lt;p&gt;To install the package:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;devtools::install_github(&amp;quot;leonawicz/mapmate&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;networks&#34;&gt;Networks&lt;/h1&gt;
+
+&lt;p&gt;The &lt;code&gt;save_map&lt;/code&gt; function in the &lt;code&gt;mapmate&lt;/code&gt; package offers the &lt;code&gt;type=&amp;quot;network&amp;quot;&lt;/code&gt; map type. This type of map displays networks or pathways defined by overlapping segments traversing along great circle arcs. This map type can be used to display arbitrary line segments as well if such data is provided, but the provided helper functions used here are aimed specifically at drawing great circles.&lt;/p&gt;
+
+&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
+
+&lt;h2 id=&#34;obtain-great-circle-arc-endpoints&#34;&gt;Obtain great circle arc endpoints&lt;/h2&gt;
+
+&lt;p&gt;The first example uses a flat map. Therefore it is important to break lines at the international dateline when preparing the data. In the second example, lines cross the dateline are not split because the segments will be plotted on the globe.&lt;/p&gt;
+
+&lt;p&gt;First, begin with the &lt;code&gt;network&lt;/code&gt; data set provided in &lt;code&gt;mapmate&lt;/code&gt; is a simple data frame of lon/lat locations of various cities and corresponding weights related to population sizes. It must be expanded to a larger, more complex data frame that contains location pairs and, optionally, distances between locations in each pair. &lt;code&gt;gc_endpoints&lt;/code&gt; assists with this by simulating some pairs. The resulting data frame contains endpoints of lines that are defined subsequently.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(mapmate)
+library(dplyr)
+
+set.seed(192)
+data(network)
+network
+
+distFun &amp;lt;- function(x) 1 - x/max(x)  # simple inverse distance weighting
+endpoints &amp;lt;- gc_endpoints(network, &amp;quot;lon&amp;quot;, &amp;quot;lat&amp;quot;)
+endpoints
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;obtain-great-circle-arcs&#34;&gt;Obtain great circle arcs&lt;/h2&gt;
+
+&lt;p&gt;Next, we sample based on a combination of weights. This is an arbitrary and optional step. The example is given primarily to make the data set used in these examples smaller in size. More importantly, the &lt;code&gt;gc_arcs&lt;/code&gt; helper function is used to further expand the &lt;code&gt;endpoints&lt;/code&gt; data frame to one containing sequences of points describing great circle arcs instead of only their endpoints.&lt;/p&gt;
+
+&lt;p&gt;The default number of points added between the endpoints of each great circle arc is &lt;code&gt;n=50&lt;/code&gt;, but this can be changed and can also differ for each arc (e.g., based on distance between points). As noted, arcs are filled out planning for use with both flat maps and a globes. A &lt;code&gt;group&lt;/code&gt; column is used to identify distinct arcs for plotting.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# take a weighted sample, e.g., favoring larger averaged populations and
+# shorter distances
+endpoints &amp;lt;- mutate(endpoints, Dist_wts = distFun(Dist))
+endpoints &amp;lt;- sample_n(endpoints, 500, replace = TRUE, weight = (Pop_wts0 + Pop_wts1)/2 + 
+    Dist_wts)
+
+# expand data frame from endpoints to arcs, each composed of a sequence of
+# points
+arcs_flat &amp;lt;- gc_arcs(endpoints, &amp;quot;lon0&amp;quot;, &amp;quot;lat0&amp;quot;, &amp;quot;lon1&amp;quot;, &amp;quot;lat1&amp;quot;, breakAtDateLine = TRUE)
+arcs_globe &amp;lt;- gc_arcs(endpoints, &amp;quot;lon0&amp;quot;, &amp;quot;lat0&amp;quot;, &amp;quot;lon1&amp;quot;, &amp;quot;lat1&amp;quot;)
+arcs_globe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;obtain-great-circle-arc-path-sequences&#34;&gt;Obtain great circle arc path sequences&lt;/h2&gt;
+
+&lt;p&gt;Finally, &lt;code&gt;gc_paths&lt;/code&gt; is used to further expand the great circle arcs data frame into one that contains sequences of ordered segments along each arc. The segments can vary in length between distinct arcs and can overlap one another within an arc. The &lt;code&gt;group&lt;/code&gt; argument is required to identify distinct arcs in the input data frame. &lt;code&gt;size&lt;/code&gt; is required to set an upper limit on the number of points constituting an arc segment; the actual length of the segments is chosen randomly and uniformly between 2 and &lt;code&gt;size&lt;/code&gt;. Other arguments are optional.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;paths_flat &amp;lt;- gc_paths(arcs_flat, &amp;quot;group&amp;quot;, size = 5)
+paths_globe &amp;lt;- gc_paths(arcs_globe, &amp;quot;group&amp;quot;, size = 5)
+paths_globe
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;flat-map-network-animation&#34;&gt;Flat map network animation&lt;/h1&gt;
+
+&lt;p&gt;The direction of arc traversal can also be controlled by the &lt;code&gt;direction&lt;/code&gt; argument if desired. This is useful for simulations if the input data are not yet randomized or if the directions simply need to be reversed. First some setup:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;n &amp;lt;- max(paths_flat$id)
+png.args &amp;lt;- list(width = 600, height = 300, bg = &amp;quot;black&amp;quot;)
+clrs &amp;lt;- c(&amp;quot;#1E90FF50&amp;quot;, &amp;quot;#FFFFFF50&amp;quot;, &amp;quot;#FFFFFF&amp;quot;, &amp;quot;#1E90FF75&amp;quot;)
+ylm &amp;lt;- range(paths_flat$lat)  # trimming empty southern map region
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Typically, I would leave the default arguments &lt;code&gt;save.plot=TRUE&lt;/code&gt; and &lt;code&gt;return.plot=FALSE&lt;/code&gt;, but here they are reversed for the purposes of the example. This returns a list of &lt;code&gt;ggplot&lt;/code&gt; objects rather than saving png files. Note that I still included the &lt;code&gt;png.args&lt;/code&gt; argument even though &lt;code&gt;width&lt;/code&gt; and &lt;code&gt;height&lt;/code&gt; will be discarded because &lt;code&gt;save_map&lt;/code&gt; will take the background color specified by &lt;code&gt;bg&lt;/code&gt; intended for png files and use it in the &lt;code&gt;ggplot2&lt;/code&gt; theme applied to the returned plots.&lt;/p&gt;
+
+&lt;p&gt;The default background is transparent so I need to include this here since I have changed it to black. I have changed it to black in this example because I am making a reproducible gif for simplicity rather than doing any layering of separate image sequences in a video editor. Below, &lt;code&gt;saveGIF&lt;/code&gt; from the &lt;code&gt;animation&lt;/code&gt; package is used to make a simple gif from the plot sequence produced by &lt;code&gt;save_map&lt;/code&gt; by looping over the list of returned plots.&lt;/p&gt;
+
+&lt;p&gt;In summary, this is all a somewhat convoluted scenario to show you a short animated gif representing plots made by &lt;code&gt;save_map&lt;/code&gt;. The intended use case for &lt;code&gt;save_map&lt;/code&gt; is to simply export the sequence of png files and the user can do whatever they wish with those files subsequently. If literally all you want to do is make a short, simple animated gif of custom plots using a small amount of data, &lt;em&gt;just use the animation package&lt;/em&gt;. You do not need &lt;code&gt;mapmate&lt;/code&gt; for that. Also, if you are using &lt;code&gt;animation&lt;/code&gt; in general, as with the code below, it is dependent on &lt;code&gt;ImageMagick&lt;/code&gt;, which you will also have to install.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gglist &amp;lt;- save_seq(paths_flat, id = &amp;quot;id&amp;quot;, n.frames = n, ortho = FALSE, type = &amp;quot;network&amp;quot;, 
+    ylim = ylm, suffix = &amp;quot;2D&amp;quot;, png.args = png.args, save.plot = FALSE, return.plot = TRUE)
+
+library(animation)
+# you may need to specify a different path on your Windows machine you may
+# also need to ensure convert.exe is part of your particular installation
+ani.options(convert = &amp;quot;C:/Program Files/ImageMagick-7.0.3-Q16/convert.exe&amp;quot;)
+saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network2D.gif&amp;quot;, interval = 1/20, 
+    ani.width = 600, ani.height = 300)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;../../img/post/network2d.gif&#34;&gt;&lt;img src=&#34;../../img/post/network2d.gif?w=774&#34; alt=&#34;network2d&#34; width=&#34;774&#34; height=&#34;387&#34; class=&#34;aligncenter size-large&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This &lt;code&gt;animation&lt;/code&gt;-dependent example and the animated gif are not meant to be distractions from the purpose of this package. Despite the example gif, any code here related to &lt;code&gt;animation&lt;/code&gt; is beyond the scope of this tutorial. If you have trouble running it, see the &lt;code&gt;animation&lt;/code&gt; documentation and just do the following example instead, which is the way &lt;code&gt;mapmate&lt;/code&gt; is meant to be used:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;save_seq(paths_flat, id = &amp;quot;id&amp;quot;, n.frames = n, ortho = FALSE, type = &amp;quot;network&amp;quot;, 
+    suffix = &amp;quot;2D&amp;quot;, png.args = png.args)
+# Next, do whatever you want with the files, such as import them to a video
+# editing program
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;globe-network-animation&#34;&gt;Globe network animation&lt;/h1&gt;
+
+&lt;p&gt;Here is an example plotting network paths along great circle arcs on the globe. Remember that we use the other data set, which was generated with the default &lt;code&gt;breakAtDateline=FALSE&lt;/code&gt; in &lt;code&gt;gc_arcs&lt;/code&gt;. As a side note, if you redo the above example for flat maps using the unbroken data, &lt;code&gt;paths_globe&lt;/code&gt;, you will see why the arc segments are handled differently when preparing data for flat maps vs. for globes.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;n &amp;lt;- max(paths_flat$id)
+png.args &amp;lt;- list(width = 600, height = 600, bg = &amp;quot;black&amp;quot;)
+clrs &amp;lt;- c(&amp;quot;#FFFFFF&amp;quot;, &amp;quot;#FF450050&amp;quot;, &amp;quot;#FF4500&amp;quot;, &amp;quot;#FFFFFF50&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gglist &amp;lt;- save_seq(paths_globe, id = &amp;quot;id&amp;quot;, n.frames = n, col = clrs, type = &amp;quot;network&amp;quot;, 
+    pt.size = c(1, 1, 3, 2), suffix = &amp;quot;3D&amp;quot;, png.args = png.args, save.plot = FALSE, 
+    return.plot = TRUE)
+
+library(animation)
+ani.options(convert = &amp;quot;C:/Program Files/ImageMagick-7.0.3-Q16/convert.exe&amp;quot;)
+saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network3D.gif&amp;quot;, interval = 1/20, 
+    ani.width = 600, ani.height = 600)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;../../img/post/network3d.gif&#34;&gt;&lt;img src=&#34;../../img/post/network3d.gif&#34; alt=&#34;network3d&#34; width=&#34;600&#34; height=&#34;600&#34; class=&#34;aligncenter size-full&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, normal usage is to just do the following and then use the saved still image sequence with full user control for whatever you like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;save_seq(paths_globe, id = &amp;quot;id&amp;quot;, n.frames = n, col = clrs, type = &amp;quot;network&amp;quot;, 
+    pt.size = c(1, 1, 3, 2), suffix = &amp;quot;3D&amp;quot;, png.args = png.args)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here are a few more advanced animations based on still image sequences of great circle arc network maps produced using &lt;code&gt;mapmate&lt;/code&gt; code:&lt;/p&gt;
+
+&lt;h3 id=&#34;historical-and-projected-global-temperature-anomalies&#34;&gt;Historical and projected global temperature anomalies&lt;/h3&gt;
+
+&lt;div style=&#34;text-align:center;&#34;&gt;
+&lt;iframe src=&#34;https://www.youtube.com/embed/xhqEkyJDBho?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;global-uaf-snap-shiny-apps-web-traffic&#34;&gt;Global UAF/SNAP Shiny Apps web traffic&lt;/h3&gt;
+
+&lt;div style=&#34;text-align:center;&#34;&gt;
+&lt;iframe src=&#34;https://www.youtube.com/embed/uQYR91qixgo?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&#34;flat-map-great-circle-animation-example&#34;&gt;Flat map great circle animation example&lt;/h3&gt;
+
+&lt;div style=&#34;text-align:center;&#34;&gt;
+&lt;iframe src=&#34;https://www.youtube.com/embed/yoyIUMvIP3Q?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;h1 id=&#34;mapmate-0-2-0-release-date-2016-11-15&#34;&gt;mapmate 0.2.0 (Release date: 2016-11-15)&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Added functions to assist with network maps: &lt;code&gt;gc_endpoints&lt;/code&gt;, &lt;code&gt;gc_arcs&lt;/code&gt;, and &lt;code&gt;gc_paths&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Added help documentation and runnable examples of the network-related functions.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;network&lt;/code&gt; data set to package.&lt;/li&gt;
+&lt;li&gt;Added unit tests for network-related functions.&lt;/li&gt;
+&lt;li&gt;Added tutorial/examples for network maps to the package Github pages.&lt;/li&gt;
+&lt;li&gt;Included simple animated gif examples in above page, piggybacked on &lt;code&gt;animation&lt;/code&gt; package.&lt;/li&gt;
+&lt;li&gt;Bug fixes.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Climate Change on Matthew Leonawicz</title>
+    <link>/tags/climate-change/</link>
+    <description>Recent content in Climate Change on Matthew Leonawicz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <lastBuildDate>Thu, 29 Sep 2016 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/climate-change/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>R animation: global climate change</title>
+      <link>/post/r-animation-global-climate-change/</link>
+      <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-animation-global-climate-change/</guid>
+      <description>&lt;p&gt;I have posted a new R data animation video. It&amp;rsquo;s an example animation of modeled historical and projected global temperature change from 1850 - 2100. The data prep, analysis, full processing and generation of all sets of still frames for each layer in the video are done using R.&lt;/p&gt;
+
+&lt;div style=&#34;text-align:center;&#34;&gt;
+&lt;iframe src=&#34;https://www.youtube.com/embed/xhqEkyJDBho?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Typically an ensemble of models would be used but this video is just to demonstrate a basic animation using one climate model, both with a monthly time series and a monthly 10-year moving average time series. If wondering about the y-axis range, the animation shows anomalies, or delta change, from the climate model&amp;rsquo;s historical baseline monthly average temperatures using a given climatology window.&lt;/p&gt;
+
+&lt;p&gt;In a later video I will use annual and seasonal averages, which will display a smoother signal than monthly series.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Great Circles on Matthew Leonawicz</title>
+    <link>/tags/great-circles/</link>
+    <description>Recent content in Great Circles on Matthew Leonawicz</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <lastBuildDate>Fri, 04 Sep 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/great-circles/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>R animation: great circles 3, final draft</title>
+      <link>/post/r-animation-great-circles-3/</link>
+      <pubDate>Fri, 04 Sep 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r-animation-great-circles-3/</guid>
+      <description>&lt;p&gt;Here is the final draft of my great circle arcs R animation. I made this back in January shortly after my first two drafts, but am only now getting around to sharing it, which is a typical representation of how seldom I can make time for blogging. But given the recent spike in interest (thanks to &lt;a href=&#34;http://urbandemographics.blogspot.co.uk/2015/08/data-visualization-with-r-geographic.html&#34; target=&#34;_blank&#34;&gt;Urban Demographics&lt;/a&gt; for sharing my work) in the first, and roughest, draft, I am motivated to finally share something better.&lt;/p&gt;
+
+&lt;p&gt;As with &lt;a href=&#34;http://blog.snap.uaf.edu/2015/03/04/animated-great-circles-1-flat-map-to-3d-earth/&#34; title=&#34;Animated great circles 1: flat map to 3D Earth&#34;&gt;DRAFT 1&lt;/a&gt; and &lt;a href=&#34;http://blog.snap.uaf.edu/2015/04/16/animated-great-circles-2-smoother-lines/&#34; title=&#34;Animated great circles 2: smoother lines&#34;&gt;DRAFT 2&lt;/a&gt;, the YouTube video upload is of significantly reduced quality compared to the original render. As I&amp;rsquo;ve said in the previous posts, it&amp;rsquo;s really not even worth watching on YouTube.&lt;/p&gt;
+
+&lt;p&gt;A much higher quality &lt;a href=&#34;https://www.snap.uaf.edu/webshared/leonawicz/video/geonet_seq3.zip&#34;&gt;source video is available here&lt;/a&gt;. It can be downloaded (~365 MB) and viewed locally using a standard video player such as VLC. Here is a screenshot taken from source as an example:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;../../img/post/datavis_r_geonet3.jpg&#34;&gt;&lt;img src=&#34;../../img/post/datavis_r_geonet3.jpg?w=774&#34; alt=&#34;datavis_R_geonet3&#34; width=&#34;774&#34; height=&#34;424&#34; class=&#34;aligncenter size-large&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The previous posts describe the issues with video streaming sites compressing videos for steaming and how this will not noticeably degrade most videos, but my great circle animations (particularly this one) have many tiny rapidly moving lines and subtle color and transparency changes; i.e., the perfect candidate videos for being severely degraded by re-encoding, with too much information being tossed out from frame to frame for streaming purposes. In fact, despite being my final draft, this video may ironically display more poorly on YouTube since it contains so many more elements in motion and frame-to-frame pixel changes than my first two drafts, while being far superior in quality when viewing the source video.&lt;/p&gt;
+
+&lt;p&gt;I am quite pleasantly surprised at the video quality on YouTube (1080p, full screen mode) at the beginning of the video. Perhaps this is because there are only 1,000 lines at first and they do not move quite as fast as in my previous videos. Furthermore, being shorter in length, their movement on the screen involves fewer pixel changes from frame to frame. There may be occasional stutter or moments of blurriness during streaming but overall not too bad with a good connection. As I expected, however, later in the video as I increment the number of great circle pathways simultaneously on the screen to over 10,000, the quality degrades significantly.&lt;/p&gt;
+
+&lt;p&gt;Here is the YouTube version if you must:&lt;/p&gt;
+
+&lt;div style=&#34;text-align:center;&#34;&gt;
+&lt;iframe src=&#34;https://www.youtube.com/embed/yoyIUMvIP3Q?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In addition to my great circle path traversal animation, this video also incorporates a layer of my gridded path traversal in places. See &lt;a href=&#34;http://blog.snap.uaf.edu/2015/02/06/animated-gridded-paths-in-r/&#34;&gt;Animated gridded paths in R&lt;/a&gt; for a description and video example of this process.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://blog.snap.uaf.edu/2015/04/14/animated-paths-in-r-toy-example/&#34; title=&#34;Animated paths in R: toy example&#34;&gt;This post&lt;/a&gt; explains one way to animate basic path traversal in R using a toy code example. Please read this before inquiring about source code. It explains how the basic concept is easy to implement for your data and provides template code, but the resources and computing environment I used to produce the frames for these videos makes the specific code I used not reproducible.&lt;/p&gt;
+
+&lt;p&gt;There is nothing special about the code that will make it magically perfectly scalable. That&amp;rsquo;s where you have to provide your own ingenuity to deal with your data. For example, few people are going to want to use or have access to the &lt;code&gt;Rmpi&lt;/code&gt; package on a multi-node Linux cluster to speed up the process. Depending on your data, you would have to find your own ways of dealing with the sheer resource overhead you may create. Believe it or not, the gridded paths can be much more resource intensive (RAM, CPUs, and/or time, pick your poison) to produce quality animations than great circles. This is because sometimes displaying movement of line segments along gridded paths requires segments which are defined by longer vectors of more closely spaced points in order to &amp;ldquo;turn corners&amp;rdquo; nicely.&lt;/p&gt;
+
+&lt;p&gt;Also, recall from previous posts that I am using R to make still frames and I then dump the image sequence onto a timeline in a movie editing program to render the video. There are R packages like &lt;code&gt;animation&lt;/code&gt; which can abstract the entire process for you, but it isn&amp;rsquo;t meant for something as large as this video. Besides, it just makes sense to use R for statistically and mathematically defined data plotting and animation sequences and use a video rendering program for finishing touches and rendering to mp4 format. Do what makes the most sense with each piece of software.&lt;/p&gt;
+
+&lt;p&gt;Lastly, credit obviously to John Tukey for the &amp;ldquo;Tukey tally&amp;rdquo; 30-point countdown visual I made for the beginning of the video. While perhaps not the most interesting, that code is short, simple, and shareable so I will just dump it here:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Tukey tally plot sequence
+tukeyTally &amp;lt;- function(i, ...){
+  stopifnot(as.numeric(i) &amp;amp;&amp;amp; i %in% 1:10)
+  par(mai=c(0,0,0,0))
+  plot(0, 0, type=&amp;quot;n&amp;quot;, axes=F, xlab=&amp;quot;&amp;quot;, ylab=&amp;quot;&amp;quot;, xlim=c(0, 1), ylim=c(0, 1))
+  m &amp;lt;- matrix(c(0,1,1,0,1,1,0,0), nrow=4)
+
+  if(i&amp;gt;=5) segments(m[1,1], m[1,2], m[2,1], m[2,2], ...)
+  if(i&amp;gt;=6) segments(m[2,1], m[2,2], m[3,1], m[3,2], ...)
+  if(i&amp;gt;=7) segments(m[4,1], m[4,2], m[3,1], m[3,2], ...)
+  if(i&amp;gt;=8) segments(m[1,1], m[1,2], m[4,1], m[4,2], ...)
+  if(i&amp;gt;=9) segments(m[1,1], m[1,2], m[3,1], m[3,2], ...)
+  if(i==10) segments(m[4,1], m[4,2], m[2,1], m[2,2], ...)
+
+  points(m[1,1], m[1,2], ...)
+  if(i&amp;gt;=2) points(m[2,1], m[2,2], ...)
+  if(i&amp;gt;=3) points(m[3,1], m[3,2], ...)
+  if(i&amp;gt;=4) points(m[4,1], m[4,2], ...)
+}
+
+dir.create(outDir &amp;lt;- &amp;quot;C:/leonawicz/GlobalNetworks/plots/frames/tukey_ticker_10to1&amp;quot;, showWarnings=FALSE)
+for(i in 1:10){
+  png(paste0(outDir, &amp;quot;/tukey_ticker_10to1_frame&amp;quot;, 10-i, &amp;quot;.png&amp;quot;), bg=&amp;quot;transparent&amp;quot;)
+  tukeyTally(i, lwd=10,  pch=19, cex=4, col=&amp;quot;greenyellow&amp;quot;)
+  dev.off()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may be wondering how this can be a &amp;ldquo;final&amp;rdquo; draft. The obvious next step is to reproduce this video projected onto a 3D rotating earth, right!? Believe me, I have thought about it. That would take a good deal more work. As I explained in the post for the first draft, the only one to feature great circle lines on a spinning globe, resource issues makes it orders of magnitude more challenging, and this 2D flat map video is already far more complex than the original draft. Perhaps later I will take this on. In the meantime enjoy the video.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
