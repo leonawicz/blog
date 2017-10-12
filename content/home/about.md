@@ -49,7 +49,7 @@ weight = 1
 
 +++
 
-# Biography
+# Bio
 
 I am the lead statistical analyst for Scenarios Network for Alaska & Arctic Planning at the University of Alaska Fairbanks.
 I love programming in R. Much of my work revolves around high performance statistical computing, web application development, data visualization, and dynamic reporting.
