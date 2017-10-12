@@ -20,6 +20,8 @@
 This is a cleaned up modern revision of my original 2013 app series involving random variable probability distributions.
 The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base graphics. I have added this app to my &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34; target=&#34;_blank&#34;&gt;shiny-apps&lt;/a&gt; GitHub repository so the source code is available, including a script containing all those pesky &lt;code&gt;plotmath&lt;/code&gt; expressions.&lt;/p&gt;
 
+&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/rvdist.png&#34;/&gt;&lt;/p&gt;
+
 &lt;p&gt;The app draws and plots samples from various well known discrete and continuous probability distributions, all of which are available in base R with the single exception of the Pareto distribution. To include this distribution, I used the &lt;code&gt;VGAM&lt;/code&gt; package. The plots include an overlay of the formula for the selected probability mass or density function.&lt;/p&gt;
 
 &lt;p&gt;Available discrete distributions:&lt;/p&gt;
