@@ -176,7 +176,7 @@ defaultContentLanguageInSubdir = false
 
 [[menu.main]]
   name = "Home"
-  url = "http://leonawicz.github.io"
+  url = "https://leonawicz.github.io/"
   weight = 1
   
 [[menu.main]]
