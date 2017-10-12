@@ -7,8 +7,53 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
-    <lastBuildDate>Wed, 26 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 12 Oct 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/source-code/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Shiny app: Distributions of random variables</title>
+      <link>/post/shiny-app-distributions-of-random-variables/</link>
+      <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/shiny-app-distributions-of-random-variables/</guid>
+      <description>&lt;p&gt;There is a new version of my &lt;a href=&#34;https://uasnap.shinyapps.io/rvdist/&#34; target=&#34;_blank&#34;&gt;Distributions of Random Variables&lt;/a&gt; Shiny app available.
+This is a cleaned up modern revision of my original 2013 app series involving random variable probability distributions.
+The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base graphics. I have added this app to my &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34; target=&#34;_blank&#34;&gt;shiny-apps&lt;/a&gt; GitHub repository so the source code is available, including a script containing all those pesky &lt;code&gt;plotmath&lt;/code&gt; expressions.&lt;/p&gt;
+
+&lt;p&gt;The app draws and plots samples from various well known discrete and continuous probability distributions, all of which are available in base R with the single exception of the Pareto distribution. To include this distribution, I used the &lt;code&gt;VGAM&lt;/code&gt; package. The plots include an overlay of the formula for the selected probability mass or density function.&lt;/p&gt;
+
+&lt;p&gt;Available discrete distributions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Bernoulli&lt;/li&gt;
+&lt;li&gt;Binomial&lt;/li&gt;
+&lt;li&gt;Uniform&lt;/li&gt;
+&lt;li&gt;Geometric&lt;/li&gt;
+&lt;li&gt;Hypergeometric&lt;/li&gt;
+&lt;li&gt;Negative Binomial&lt;/li&gt;
+&lt;li&gt;Poisson&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Available continuous distributions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Beta&lt;/li&gt;
+&lt;li&gt;Cauchy&lt;/li&gt;
+&lt;li&gt;Chi-squared&lt;/li&gt;
+&lt;li&gt;Exponential&lt;/li&gt;
+&lt;li&gt;F&lt;/li&gt;
+&lt;li&gt;Gamma&lt;/li&gt;
+&lt;li&gt;Laplace (Double Exponential)&lt;/li&gt;
+&lt;li&gt;Logistic&lt;/li&gt;
+&lt;li&gt;Log-Normal&lt;/li&gt;
+&lt;li&gt;Normal&lt;/li&gt;
+&lt;li&gt;Pareto&lt;/li&gt;
+&lt;li&gt;t&lt;/li&gt;
+&lt;li&gt;Uniform&lt;/li&gt;
+&lt;li&gt;Weibull&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Assorted Shiny apps collection, full code and data</title>

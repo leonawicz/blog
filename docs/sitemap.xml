@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>/post/shiny-app-distributions-of-random-variables/</loc>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/post/2017-04-26-assorted-shiny-apps/</loc>
       <lastmod>2017-04-26T00:00:00+00:00</lastmod>
     </url>
@@ -107,6 +116,16 @@
     
     <url>
     
+      <loc>/tags/distributions/</loc>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/tags/great-circles/</loc>
       <lastmod>2015-09-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -137,8 +156,28 @@
     
     <url>
     
+      <loc>/tags/plotmath/</loc>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/post/</loc>
-      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/probability/</loc>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -157,7 +196,17 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/random-variables/</loc>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -167,7 +216,7 @@
     <url>
     
       <loc>/tags/shiny/</loc>
-      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -177,7 +226,7 @@
     <url>
     
       <loc>/tags/source-code/</loc>
-      <lastmod>2017-04-26T00:00:00+00:00</lastmod>
+      <lastmod>2017-10-12T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
