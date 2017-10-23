@@ -30,11 +30,29 @@
     </item>
     
     <item>
+      <title>Anomalies</title>
+      <link>/tags/anomalies/</link>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/anomalies/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Climate Change</title>
       <link>/tags/climate-change/</link>
-      <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/climate-change/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Climate Science</title>
+      <link>/tags/climate-science/</link>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/climate-science/</guid>
       <description></description>
     </item>
     
@@ -50,7 +68,7 @@
     <item>
       <title>Distributions</title>
       <link>/tags/distributions/</link>
-      <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/distributions/</guid>
       <description></description>
@@ -93,6 +111,15 @@
     </item>
     
     <item>
+      <title>Projections</title>
+      <link>/tags/projections/</link>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/projections/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Random Variables</title>
       <link>/tags/random-variables/</link>
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
@@ -104,7 +131,7 @@
     <item>
       <title>Shiny</title>
       <link>/tags/shiny/</link>
-      <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/shiny/</guid>
       <description></description>
@@ -116,24 +143,6 @@
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/source-code/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Statistics</title>
-      <link>/tags/statistics/</link>
-      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/statistics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Visualization</title>
-      <link>/tags/visualization/</link>
-      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/visualization/</guid>
       <description></description>
     </item>
     
