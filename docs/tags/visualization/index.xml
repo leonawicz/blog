@@ -57,7 +57,7 @@ Available icons are grouped into three categories.&lt;/p&gt;
 &lt;li&gt;integration with &lt;code&gt;rintrojs&lt;/code&gt; and &lt;code&gt;shinytoastr&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;These utilities involve relatively canned styles of presentation so they are not universally suitable for all users and use cases, but they offer convenience when applicable.&lt;/p&gt;
+&lt;p&gt;These utilities involve relatively canned styles of presentation so they are not universally suitable for all users and use cases, but they offer convenience when applicable. An example app that uses several utilities from &lt;code&gt;apputils&lt;/code&gt; is my recent work in progress, the SNAP &lt;a href=&#34;https://uasnap.shinyapps.io/climdist/&#34; target=&#34;_blank&#34;&gt;Climate Analytics&lt;/a&gt; app.&lt;/p&gt;
 </description>
     </item>
     
