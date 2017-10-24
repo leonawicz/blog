@@ -21,9 +21,11 @@ header:
 
 The SNAP [Climate Analytics](https://uasnap.shinyapps.io/climdist/) Shiny app has been updated.
 Previously, the app included seasonally and annually aggregated data.
-With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The `Seasonal` dropdown menu now offers annual average, 3-month seasonals, and individual months.
+With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The `Season` dropdown menu now offers annual average, 3-month seasonals, and individual months.
 
-This other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
+These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app. This count does not include the marginal distributions users can estimate on the fly while using the app. For example, you can look at annual probability distributions for five different climate models, but while this may be of interest in some cases, in others it may be more interesting to to investigate the spatial distribution of temperature for a multi-model composite over some aggregate time period. This is where the app really shines; not in the large number of available conditional distributions, but rather in providing real-time estimation of marginal distributions of interest to users. 
+
+The other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
 The new option can be found in the `Additional settings` modal.
 
 <p align="center"><img src="/img/post/climdist_climatology.png"/></p>
