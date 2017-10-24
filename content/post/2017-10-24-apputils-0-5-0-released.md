@@ -16,7 +16,8 @@ header:
   image: '../img/post/apputils.png'
 ---
 
-Version 0.5.0 of the [apputils](https://leonawicz.github.io/apputils) R package has been released on GitHub.
+Version 0.5.0 of the [apputils](https://github.com/leonawicz/apputils) R package has been released on GitHub.
+Complete documentation is available at the [apputils website](https://leonawicz.github.io/apputils).
 
 The key updates are:
 
