@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Apps</title>
+      <link>/tags/apps/</link>
+      <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/apps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Climate Change</title>
       <link>/tags/climate-change/</link>
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
@@ -93,6 +102,15 @@
     </item>
     
     <item>
+      <title>Package</title>
+      <link>/tags/package/</link>
+      <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Plotmath</title>
       <link>/tags/plotmath/</link>
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
@@ -125,24 +143,6 @@
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/random-variables/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Shiny</title>
-      <link>/tags/shiny/</link>
-      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/shiny/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Source Code</title>
-      <link>/tags/source-code/</link>
-      <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/source-code/</guid>
       <description></description>
     </item>
     

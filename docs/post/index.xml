@@ -7,8 +7,59 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
-    <lastBuildDate>Mon, 23 Oct 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 24 Oct 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="/post/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>apputils 0.5.0 released</title>
+      <link>/post/apputils-0-5-0-released/</link>
+      <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/apputils-0-5-0-released/</guid>
+      <description>
+
+&lt;p&gt;Version 0.5.0 of the &lt;a href=&#34;https://github.com/leonawicz/apputils&#34; target=&#34;_blank&#34;&gt;apputils&lt;/a&gt; R package has been released on GitHub.
+Complete documentation is available at the &lt;a href=&#34;https://leonawicz.github.io/apputils&#34; target=&#34;_blank&#34;&gt;apputils website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The key updates are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Added &lt;code&gt;exApp&lt;/code&gt; for running Shiny app package examples.&lt;/li&gt;
+&lt;li&gt;Ported custom icons demo app to &lt;code&gt;apputils&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Included all current custom icons in example app, adding the newer linear model themed icons.&lt;/li&gt;
+&lt;li&gt;Added package css for &lt;code&gt;infoBox&lt;/code&gt; override.&lt;/li&gt;
+&lt;li&gt;Added introduction vignette content for stat boxes with package icons.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can now call &lt;code&gt;exApp(&amp;quot;icons&amp;quot;)&lt;/code&gt; to view the stat box icons examples locally.
+Available icons are grouped into three categories.&lt;/p&gt;
+
+&lt;h3 id=&#34;icons-representing-common-statistics&#34;&gt;Icons representing common statistics&lt;/h3&gt;
+
+&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../img/post/apputils_vbox1.png&#34;/&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;icons-representing-delta-change-or-trends&#34;&gt;Icons representing delta change or trends&lt;/h3&gt;
+
+&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../img/post/apputils_vbox2.png&#34;/&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;icons-related-to-fitting-statistical-models&#34;&gt;Icons related to fitting statistical models&lt;/h3&gt;
+
+&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../img/post/apputils_vbox3.png&#34;/&gt;&lt;/p&gt;
+
+&lt;p&gt;These are the recent updates to &lt;code&gt;apputils&lt;/code&gt;. However, the package offers other helpful utilities such as convenient functions for:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;app citation&lt;/li&gt;
+&lt;li&gt;a showcase widget for displaying and linking to other related apps&lt;/li&gt;
+&lt;li&gt;an author/contact info widget&lt;/li&gt;
+&lt;li&gt;dashboard sidebar footer logo&lt;/li&gt;
+&lt;li&gt;collapsible FAQ widget&lt;/li&gt;
+&lt;li&gt;integration with &lt;code&gt;rintrojs&lt;/code&gt; and &lt;code&gt;shinytoastr&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These utilities involve relatively canned styles of presentation so they are not universally suitable for all users and use cases, but they offer convenience when applicable.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Climate explorer update: monthly data and delta change</title>
@@ -18,9 +69,11 @@
       <guid>/post/climate-explorer-update-monthly-data-and-delta-change/</guid>
       <description>&lt;p&gt;The SNAP &lt;a href=&#34;https://uasnap.shinyapps.io/climdist/&#34; target=&#34;_blank&#34;&gt;Climate Analytics&lt;/a&gt; Shiny app has been updated.
 Previously, the app included seasonally and annually aggregated data.
-With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The &lt;code&gt;Seasonal&lt;/code&gt; dropdown menu now offers annual average, 3-month seasonals, and individual months.&lt;/p&gt;
+With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The &lt;code&gt;Season&lt;/code&gt; dropdown menu now offers annual average, 3-month seasonals, and individual months.&lt;/p&gt;
 
-&lt;p&gt;This other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
+&lt;p&gt;These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app. This count does not include the marginal distributions users can estimate on the fly while using the app. For example, you can look at annual probability distributions for five different climate models, but while this may be of interest in some cases, in others it may be more interesting to to investigate the spatial distribution of temperature for a multi-model composite over some aggregate time period. This is where the app really shines; not in the large number of available conditional distributions, but rather in providing real-time estimation of marginal distributions of interest to users.&lt;/p&gt;
+
+&lt;p&gt;The other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
 The new option can be found in the &lt;code&gt;Additional settings&lt;/code&gt; modal.&lt;/p&gt;
 
 &lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../img/post/climdist_climatology.png&#34;/&gt;&lt;/p&gt;
