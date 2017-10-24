@@ -51,4 +51,4 @@ These are the recent updates to `apputils`. However, the package offers other he
 * collapsible FAQ widget
 * integration with `rintrojs` and `shinytoastr`.
 
-These utilities involve relatively canned styles of presentation so they are not universally suitable for all users and use cases, but they offer convenience when applicable.
+These utilities involve relatively canned styles of presentation so they are not universally suitable for all users and use cases, but they offer convenience when applicable. An example app that uses several utilities from `apputils` is my recent work in progress, the SNAP [Climate Analytics](https://uasnap.shinyapps.io/climdist/) app.
