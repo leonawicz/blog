@@ -21,6 +21,8 @@ Make memorable plots with memery.
 
 The latest development version, a README, and a package vignette can also be conveniently found on [GitHub](https://github.com/leonawicz/memery).
 
+Here is an example interleaving a semi-transparent ggplot2 graph between a meme iamge backdrop and overlying meme text labels. See the package vignette for example code.
+
 <p align="center"><img src="/img/post/meme4d.jpg"/></p>
 
 Enjoy!
