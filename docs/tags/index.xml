@@ -102,6 +102,15 @@
     </item>
     
     <item>
+      <title>Memes</title>
+      <link>/tags/memes/</link>
+      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/memes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Package</title>
       <link>/tags/package/</link>
       <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
@@ -120,29 +129,20 @@
     </item>
     
     <item>
+      <title>Plots</title>
+      <link>/tags/plots/</link>
+      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/plots/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Probability</title>
       <link>/tags/probability/</link>
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/probability/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Projections</title>
-      <link>/tags/projections/</link>
-      <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/projections/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Random Variables</title>
-      <link>/tags/random-variables/</link>
-      <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/random-variables/</guid>
       <description></description>
     </item>
     
