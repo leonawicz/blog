@@ -1,0 +1,29 @@
+---
+title: memery 0.3.0 on CRAN
+author: Matthew Leonawicz
+date: '2017-11-09'
+slug: memery-0-3-0-on-cran
+categories:
+  - R
+tags:
+  - visualization
+  - R package
+  - plots
+  - memes
+header:
+  caption: ''
+  image: '../img/post/meme4d.jpg'
+---
+
+Make memorable plots with memery.
+
+`memery` is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. [Version 0.3.0](https://cran.r-project.org/web/packages/memery/) of `memery` is now on CRAN.
+
+The latest development version, a README, and a package vignette can also be conveniently found on [GitHub](https://github.com/leonawicz/memery).
+
+The other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
+The new option can be found in the `Additional settings` modal.
+
+<p align="center"><img src="/img/post/meme4d.jpg"/></p>
+
+Enjoy!
