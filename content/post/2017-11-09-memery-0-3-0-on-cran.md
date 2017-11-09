@@ -21,9 +21,6 @@ Make memorable plots with memery.
 
 The latest development version, a README, and a package vignette can also be conveniently found on [GitHub](https://github.com/leonawicz/memery).
 
-The other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
-The new option can be found in the `Additional settings` modal.
-
 <p align="center"><img src="/img/post/meme4d.jpg"/></p>
 
 Enjoy!
