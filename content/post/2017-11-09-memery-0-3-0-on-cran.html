@@ -1,0 +1,48 @@
+---
+title: Make memorable plots with memery. v0.3.0 now on CRAN.
+author: Matthew Leonawicz
+date: '2017-11-09'
+categories:
+  - R
+tags:
+  - memes
+  - plots
+  - R package
+  - visualization
+header:
+  caption: ''
+  image: ../img/post/meme.jpg
+---
+
+
+
+<p>Make memorable plots with memery. <code>memery</code> is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. <a href="https://cran.r-project.org/web/packages/memery/">Version 0.3.0</a> of <code>memery</code> is now on CRAN. The latest development version, a README, and a package vignette are available on <a href="https://github.com/leonawicz/memery">GitHub</a>.</p>
+<p>Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels. The <code>meme</code> function will produce basic memes without needing to specify a number of additional arguments, but this is not the main purpose of the package. Adding a plot is then as simple as passing the ggplot2 object to <code>inset</code> and <code>memery</code> offers sensible defaults as well as a variety of basic templates for controlling how the meme and graph are spliced together. The example here shows how additional arguments can be specified to further control the content and layout. See the package vignette for a more complete set of examples and description of available features and graph templates.</p>
+<p>Please do share your data analyst meme creations. Enjoy!</p>
+<pre class="r"><code>library(memery)
+
+# Make a graph of some data
+library(ggplot2)
+x = seq(0, 2 * pi, length.out = 50)
+panels &lt;- rep(c(&quot;Plot A&quot;, &quot;Plot B&quot;), each = 50)
+d &lt;- data.frame(x = x, y = sin(x), grp = panels)
+txt &lt;- c(&quot;Philosoraptor&#39;s plots&quot;, &quot;I like to make plots&quot;, &quot;Figure 1. (A) shows a plot and (B) shows another plot.&quot;)
+p &lt;- ggplot(d, aes(x, y)) + geom_line(colour = &quot;cornflowerblue&quot;, size = 2) + 
+    geom_point(colour = &quot;orange&quot;, size = 4) + facet_wrap(~grp) + labs(title = txt[1], 
+    subtitle = txt[2], caption = txt[3])
+
+# Meme settings
+img &lt;- system.file(&quot;philosoraptor.jpg&quot;, package = &quot;memery&quot;)  # image
+lab &lt;- c(&quot;What to call my R package?&quot;, &quot;Hmm... What? raptr is taken!?&quot;, &quot;Noooooo!!!!&quot;)  # text
+pos &lt;- list(w = rep(0.9, 3), h = rep(0.3, 3), x = c(0.45, 0.6, 0.5), y = c(0.95, 
+    0.85, 0.3))  # text position
+fam &lt;- c(&quot;Impact&quot;, &quot;serif&quot;, &quot;Impact&quot;)
+col &lt;- list(c(&quot;black&quot;, &quot;orange&quot;, &quot;white&quot;), c(&quot;white&quot;, &quot;black&quot;, &quot;black&quot;))
+size &lt;- c(1.8, 1.5, 2.2)  # label sizes
+gbg &lt;- list(fill = &quot;#FF00FF50&quot;, col = &quot;#FFFFFF75&quot;)  # graph background
+
+meme(img, lab, &quot;meme.jpg&quot;, size = size, family = fam, col = col[[1]], shadow = col[[2]], 
+    label_pos = pos, inset = p, inset_bg = gbg, mult = 2)</code></pre>
+<p align="center">
+<img src="/img/post/meme.jpg"/>
+</p>
