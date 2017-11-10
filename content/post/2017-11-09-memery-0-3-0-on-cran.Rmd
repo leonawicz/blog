@@ -22,7 +22,9 @@ knitr::opts_chunk$set(
 
 Make memorable plots with memery. `memery` is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. [Version 0.3.0](https://cran.r-project.org/web/packages/memery/) of `memery` is now on CRAN. The latest development version, a README, and a package vignette are available on [GitHub](https://github.com/leonawicz/memery).
 
-Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels. The `meme` function will produce basic memes without needing to specify a number of additional arguments, but this is not the main purpose of the package. Adding a plot is then as simple as passing the ggplot2 object to `inset` and `memery` offers sensible defaults as well as a variety of basic templates for controlling how the meme and graph are spliced together. The example here shows how additional arguments can be specified to further control the content and layout. See the package vignette for a more complete set of examples and description of available features and graph templates.
+Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels. The `meme` function will produce basic memes without needing to specify a number of additional arguments, but this is not the main purpose of the package. Adding a plot is then as simple as passing the ggplot object to `inset`.
+
+`memery` offers sensible defaults as well as a variety of basic templates for controlling how the meme and graph are spliced together. The example here shows how additional arguments can be specified to further control the content and layout. See the package vignette for a more complete set of examples and description of available features and graph templates.
 
 Please do share your data analyst meme creations. Enjoy!
 
