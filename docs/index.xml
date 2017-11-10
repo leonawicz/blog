@@ -42,6 +42,7 @@ col &amp;lt;- list(c(&amp;quot;black&amp;quot;, &amp;quot;orange&amp;quot;, &amp
 size &amp;lt;- c(1.8, 1.5, 2.2)  # label sizes
 gbg &amp;lt;- list(fill = &amp;quot;#FF00FF50&amp;quot;, col = &amp;quot;#FFFFFF75&amp;quot;)  # graph background
 
+# Save meme
 meme(img, lab, &amp;quot;meme.jpg&amp;quot;, size = size, family = fam, col = col[[1]], shadow = col[[2]], 
     label_pos = pos, inset = p, inset_bg = gbg, mult = 2)&lt;/code&gt;&lt;/pre&gt;
 &lt;p align=&#34;center&#34;&gt;
