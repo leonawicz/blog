@@ -11,22 +11,41 @@
     <atom:link href="/tags/visualization/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>memery 0.3.0 on CRAN</title>
-      <link>/post/memery-0-3-0-on-cran/</link>
+      <title>Make memorable plots with memery. v0.3.0 now on CRAN.</title>
+      <link>/post/2017-11-09-memery-0-3-0-on-cran/</link>
       <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/memery-0-3-0-on-cran/</guid>
-      <description>&lt;p&gt;Make memorable plots with memery.&lt;/p&gt;
+      <guid>/post/2017-11-09-memery-0-3-0-on-cran/</guid>
+      <description>&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.3.0&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version, a README, and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels. The &lt;code&gt;meme&lt;/code&gt; function will produce basic memes without needing to specify a number of additional arguments, but this is not the main purpose of the package. Adding a plot is then as simple as passing the ggplot2 object to &lt;code&gt;inset&lt;/code&gt; and &lt;code&gt;memery&lt;/code&gt; offers sensible defaults as well as a variety of basic templates for controlling how the meme and graph are spliced together. The example here shows how additional arguments can be specified to further control the content and layout. See the package vignette for a more complete set of examples and description of available features and graph templates.&lt;/p&gt;
+&lt;p&gt;Please do share your data analyst meme creations. Enjoy!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(memery)
 
-&lt;p&gt;&lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34; target=&#34;_blank&#34;&gt;Version 0.3.0&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN.&lt;/p&gt;
+# Make a graph of some data
+library(ggplot2)
+x = seq(0, 2 * pi, length.out = 50)
+panels &amp;lt;- rep(c(&amp;quot;Plot A&amp;quot;, &amp;quot;Plot B&amp;quot;), each = 50)
+d &amp;lt;- data.frame(x = x, y = sin(x), grp = panels)
+txt &amp;lt;- c(&amp;quot;Philosoraptor&amp;#39;s plots&amp;quot;, &amp;quot;I like to make plots&amp;quot;, &amp;quot;Figure 1. (A) shows a plot and (B) shows another plot.&amp;quot;)
+p &amp;lt;- ggplot(d, aes(x, y)) + geom_line(colour = &amp;quot;cornflowerblue&amp;quot;, size = 2) + 
+    geom_point(colour = &amp;quot;orange&amp;quot;, size = 4) + facet_wrap(~grp) + labs(title = txt[1], 
+    subtitle = txt[2], caption = txt[3])
 
-&lt;p&gt;The latest development version, a README, and a package vignette can also be conveniently found on &lt;a href=&#34;https://github.com/leonawicz/memery&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+# Meme settings
+img &amp;lt;- system.file(&amp;quot;philosoraptor.jpg&amp;quot;, package = &amp;quot;memery&amp;quot;)  # image
+lab &amp;lt;- c(&amp;quot;What to call my R package?&amp;quot;, &amp;quot;Hmm... What? raptr is taken!?&amp;quot;, &amp;quot;Noooooo!!!!&amp;quot;)  # text
+pos &amp;lt;- list(w = rep(0.9, 3), h = rep(0.3, 3), x = c(0.45, 0.6, 0.5), y = c(0.95, 
+    0.85, 0.3))  # text position
+fam &amp;lt;- c(&amp;quot;Impact&amp;quot;, &amp;quot;serif&amp;quot;, &amp;quot;Impact&amp;quot;)
+col &amp;lt;- list(c(&amp;quot;black&amp;quot;, &amp;quot;orange&amp;quot;, &amp;quot;white&amp;quot;), c(&amp;quot;white&amp;quot;, &amp;quot;black&amp;quot;, &amp;quot;black&amp;quot;))
+size &amp;lt;- c(1.8, 1.5, 2.2)  # label sizes
+gbg &amp;lt;- list(fill = &amp;quot;#FF00FF50&amp;quot;, col = &amp;quot;#FFFFFF75&amp;quot;)  # graph background
 
-&lt;p&gt;Here is an example interleaving a semi-transparent ggplot2 graph between a meme iamge backdrop and overlying meme text labels. See the package vignette for example code.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/meme4d.jpg&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;Enjoy!&lt;/p&gt;
+meme(img, lab, &amp;quot;meme.jpg&amp;quot;, size = size, family = fam, col = col[[1]], shadow = col[[2]], 
+    label_pos = pos, inset = p, inset_bg = gbg, mult = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p align=&#34;center&#34;&gt;
+&lt;img src=&#34;../../img/post/meme.jpg&#34;/&gt;
+&lt;/p&gt;
 </description>
     </item>
     
