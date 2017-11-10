@@ -24,7 +24,7 @@
 
 # Make a graph of some data
 library(ggplot2)
-x = seq(0, 2 * pi, length.out = 50)
+x &amp;lt;- seq(0, 2 * pi, length.out = 50)
 panels &amp;lt;- rep(c(&amp;quot;Plot A&amp;quot;, &amp;quot;Plot B&amp;quot;), each = 50)
 d &amp;lt;- data.frame(x = x, y = sin(x), grp = panels)
 txt &amp;lt;- c(&amp;quot;Philosoraptor&amp;#39;s plots&amp;quot;, &amp;quot;I like to make plots&amp;quot;, &amp;quot;Figure 1. (A) shows a plot and (B) shows another plot.&amp;quot;)
