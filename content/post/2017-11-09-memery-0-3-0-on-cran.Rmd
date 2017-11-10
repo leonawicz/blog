@@ -53,6 +53,7 @@ col <- list(c("black", "orange", "white"), c("white", "black", "black"))
 size <- c(1.8, 1.5, 2.2) # label sizes
 gbg <- list(fill = "#FF00FF50", col = "#FFFFFF75") # graph background
 
+# Save meme
 meme(img, lab, "meme.jpg", size = size, family = fam, col = col[[1]],
      shadow = col[[2]], label_pos = pos, inset = p, inset_bg = gbg, mult = 2)
 ```
