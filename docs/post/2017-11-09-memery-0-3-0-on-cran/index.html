@@ -255,13 +255,13 @@ p &lt;- ggplot(d, aes(x, y)) + geom_line(colour = &quot;cornflowerblue&quot;, si
     subtitle = txt[2], caption = txt[3])
 
 # Meme settings
-img &lt;- system.file(&quot;philosoraptor.jpg&quot;, package = &quot;memery&quot;)  # image
-lab &lt;- c(&quot;What to call my R package?&quot;, &quot;Hmm... What? raptr is taken!?&quot;, &quot;Noooooo!!!!&quot;)  # text
+img &lt;- system.file(&quot;philosoraptor.jpg&quot;, package = &quot;memery&quot;)
+lab &lt;- c(&quot;What to call my R package?&quot;, &quot;Hmm... What? raptr is taken!?&quot;, &quot;Noooooo!!!!&quot;)
+size &lt;- c(1.8, 1.5, 2.2)  # label sizes
 pos &lt;- list(w = rep(0.9, 3), h = rep(0.3, 3), x = c(0.45, 0.6, 0.5), y = c(0.95, 
-    0.85, 0.3))  # text position
+    0.85, 0.3))
 fam &lt;- c(&quot;Impact&quot;, &quot;serif&quot;, &quot;Impact&quot;)
 col &lt;- list(c(&quot;black&quot;, &quot;orange&quot;, &quot;white&quot;), c(&quot;white&quot;, &quot;black&quot;, &quot;black&quot;))
-size &lt;- c(1.8, 1.5, 2.2)  # label sizes
 gbg &lt;- list(fill = &quot;#FF00FF50&quot;, col = &quot;#FFFFFF75&quot;)  # graph background
 
 # Save meme
