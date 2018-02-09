@@ -1,0 +1,76 @@
+---
+title: Mix ggplot2 graphs with your favorite memes. memery 0.4.0 released.
+author: Matthew Leonawicz
+date: '2018-02-09'
+categories:
+  - R
+tags:
+  - memes
+  - plots
+  - R package
+  - visualization
+header:
+  caption: ''
+  image: ../img/post/meme.jpg
+---
+
+
+
+<p>Make memorable plots with memery. <code>memery</code> is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. <a href="https://cran.r-project.org/web/packages/memery/">Version 0.4.0</a> of <code>memery</code> is now on CRAN. The latest development version and a package vignette are available on <a href="https://github.com/leonawicz/memery">GitHub</a>.</p>
+<div id="changes-in-v0.4.0" class="section level2">
+<h2>Changes in v0.4.0</h2>
+<p>This latest version of <code>memery</code> includes a demo Shiny app.</p>
+<pre class="r"><code>library(memery)
+memeApp()</code></pre>
+<p>Animated gif support is now also included (example below). This relies on the <code>magick</code> package and ImageMagick software, but this is optional and these libraries are not required for you to use <code>memery</code> if you have no interest in animated gifs. For example, when launching the demo Shiny app, if you do not have these libraries installed on your system, the app launches in your browser in a simplified form. It will only accept png and jpg files as inputs and a default static image will be shown at startup. Alternatively, the app launches in full mode, will also accept gif inputs, and the default image shown is an animated gif. The only function in <code>memery</code> that pertains to gifs is <code>meme_gif</code>, which is distinct from the main package function, <code>meme</code>. If you call <code>meme_gif</code> without the supporting libraries, it simply prints a notification about this to the console.</p>
+</div>
+<div id="example-usage" class="section level2">
+<h2>Example usage</h2>
+<p>Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels. The <code>meme</code> function will produce basic memes without needing to specify a number of additional arguments, but this is not the main purpose of the package. Adding a plot is then as simple as passing the plot to <code>inset</code>.</p>
+<p><code>memery</code> offers sensible defaults as well as a variety of basic templates for controlling how the meme and graph are spliced together. The example here shows how additional arguments can be specified to further control the content and layout. See the package <a href="https://leonawicz.github.io/memery/articles/memery.html">vignette</a> for a more complete set of examples and description of available features and graph templates.</p>
+<p>Please do share your data analyst meme creations. Enjoy!</p>
+<pre class="r"><code>library(memery)
+
+# Make a graph of some data
+library(ggplot2)
+x &lt;- seq(0, 2 * pi, length.out = 50)
+panels &lt;- rep(c(&quot;Plot A&quot;, &quot;Plot B&quot;), each = 50)
+d &lt;- data.frame(x = x, y = sin(x), grp = panels)
+txt &lt;- c(&quot;Philosoraptor&#39;s plots&quot;, &quot;I like to make plots&quot;, &quot;Figure 1. (A) shows a plot and (B) shows another plot.&quot;)
+p &lt;- ggplot(d, aes(x, y)) + geom_line(colour = &quot;cornflowerblue&quot;, size = 2) + 
+    geom_point(colour = &quot;orange&quot;, size = 4) + facet_wrap(~grp) + labs(title = txt[1], 
+    subtitle = txt[2], caption = txt[3])
+
+# Meme settings
+img &lt;- system.file(&quot;philosoraptor.jpg&quot;, package = &quot;memery&quot;)
+lab &lt;- c(&quot;What to call my R package?&quot;, &quot;Hmm... What? raptr is taken!?&quot;, &quot;Noooooo!!!!&quot;)
+size &lt;- c(1.8, 1.5, 2.2)  # label sizes
+pos &lt;- list(w = rep(0.9, 3), h = rep(0.3, 3), x = c(0.45, 0.6, 0.5), y = c(0.95, 
+    0.85, 0.3))
+fam &lt;- c(&quot;Impact&quot;, &quot;serif&quot;, &quot;Impact&quot;)
+col &lt;- list(c(&quot;black&quot;, &quot;orange&quot;, &quot;white&quot;), c(&quot;white&quot;, &quot;black&quot;, &quot;black&quot;))
+gbg &lt;- list(fill = &quot;#FF00FF50&quot;, col = &quot;#FFFFFF75&quot;)  # graph background
+
+# Save meme
+meme(img, lab, &quot;meme.jpg&quot;, size = size, family = fam, col = col[[1]], shadow = col[[2]], 
+    label_pos = pos, inset = p, inset_bg = gbg, mult = 2)</code></pre>
+<p align="center">
+<img src="/img/post/meme.jpg"/>
+</p>
+</div>
+<div id="animated-gif-example" class="section level2">
+<h2>Animated gif example</h2>
+<pre class="r"><code>d$grp &lt;- gsub(&quot;Plot&quot;, &quot;Cat&#39;s Plot&quot;, d$grp)
+p &lt;- ggplot(d, aes(x, y)) + geom_line(colour = &quot;white&quot;, size = 2) + geom_point(colour = &quot;orange&quot;, 
+    size = 1) + facet_wrap(~grp) + labs(title = &quot;The wiggles&quot;, subtitle = &quot;Plots for cats&quot;, 
+    caption = &quot;Figure 1. Gimme sine waves.&quot;)
+lab &lt;- c(&quot;R plots for cats&quot;, &quot;Sine wave sine wave...&quot;)
+pos &lt;- list(w = rep(0.9, 2), h = rep(0.3, 2), x = rep(0.5, 2), y = c(0.9, 0.75))
+img &lt;- &quot;http://forgifs.com/gallery/d/228621-4/Cat-wiggles.gif&quot;
+meme_gif(img, lab, &quot;sine.gif&quot;, size = c(1.5, 0.75), label_pos = pos, inset = p, 
+    inset_bg = list(fill = &quot;#00BFFF80&quot;), fps = 20)</code></pre>
+<p align="center">
+<img src="https://github.com/leonawicz/DataVisExamples/blob/master/packages/memery.gif?raw=true">
+</p>
+<p><br /></p>
+</div>
