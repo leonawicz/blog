@@ -7,18 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
-    <lastBuildDate>Fri, 09 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Feb 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/r-package/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Mix ggplot2 graphs with your favorite memes. memery 0.4.0 released.</title>
-      <link>/post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-0-on-cran/</link>
-      <pubDate>Fri, 09 Feb 2018 00:00:00 +0000</pubDate>
+      <title>Mix ggplot2 graphs with your favorite memes. memery 0.4.2 released.</title>
+      <link>/post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/</link>
+      <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-0-on-cran/</guid>
-      <description>&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.4.0&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;div id=&#34;changes-in-v0.4.0&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Changes in v0.4.0&lt;/h2&gt;
+      <guid>/post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/</guid>
+      <description>&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.4.2&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;changes-in-v0.4.2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Changes in v0.4.2&lt;/h2&gt;
 &lt;p&gt;This latest version of &lt;code&gt;memery&lt;/code&gt; includes a demo Shiny app.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(memery)
 memeApp()&lt;/code&gt;&lt;/pre&gt;
