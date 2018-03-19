@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.27.1" />
+  <meta name="author" content="Matthew Leonawicz">
+  <meta name="description" content="Statistician | R Developer">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="../../css/highlight.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
+  <link rel="stylesheet" href="../../css/hugo-academic.css">
+  
+  <link rel="stylesheet" href="../../css/styles.css">
+  
+
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-46129458-3', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+
+  <link rel="alternate" href="../../index.xml" type="application/rss+xml" title="Matthew Leonawicz">
+  <link rel="feed" href="../../index.xml" type="application/rss+xml" title="Matthew Leonawicz">
+
+  <link rel="icon" type="image/png" href="../../img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="../../img/apple-touch-icon.png">
+
+  <link rel="canonical" href="../../post/introducing-tabr-guitar-tabs-with-r/">
+
+  
+
+  <title>Introducing tabr: guitar tabs with R | Matthew Leonawicz</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../">Matthew Leonawicz</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="https://leonawicz.github.io/">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#about">
+            
+            <span>About</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  <div class="article-container">
+    <h1 itemprop="name">Introducing tabr: guitar tabs with R</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2018-03-19 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Mar 19, 2018
+    </time>
+  </span>
+
+  
+  
+  
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="../../categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="../../tags/r-package">R package</a
+    >, 
+    
+    <a href="../../tags/tabr">tabr</a
+    >, 
+    
+    <a href="../../tags/sheet-music">sheet music</a
+    >, 
+    
+    <a href="../../tags/guitar">guitar</a
+    >, 
+    
+    <a href="../../tags/tablature">tablature</a
+    >, 
+    
+    <a href="../../tags/tabs">tabs</a
+    >, 
+    
+    <a href="../../tags/music-notation">music notation</a
+    >, 
+    
+    <a href="../../tags/music-transcription">music transcription</a
+    >, 
+    
+    <a href="../../tags/lilypond">LilyPond</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Introducing%20tabr%3a%20guitar%20tabs%20with%20R&amp;url=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f&amp;title=Introducing%20tabr%3a%20guitar%20tabs%20with%20R"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f&amp;title=Introducing%20tabr%3a%20guitar%20tabs%20with%20R"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Introducing%20tabr%3a%20guitar%20tabs%20with%20R&amp;body=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p style="text-align:center;">
+<img src="https://github.com/leonawicz/tabr/blob/master/data-raw/tabr_logo.png?raw=true" width="100%">
+</p>
+
+<p>This post introduces a new R package I am working on called <code>tabr</code> for creating guitar tablature (&ldquo;tabs&rdquo;) from R code. The <code>tabr</code> package provides programmatic music notation and a wrapper around <a href="http://lilypond.org/" target="_blank">LilyPond</a> for creating quality guitar tablature.</p>
+
+<p><code>tabr</code> offers functions for describing and organizing musical structures and wraps around the LilyPond backend. LilyPond is an open source music engraving program for generating high quality sheet music based on markup syntax. <code>tabr</code> generates files following the LilyPond markup syntax to be subsequently processed by LilyPond into sheet music.</p>
+
+<p>A standalone LilyPond (.ly) file can be created or the package can make a system call to LilyPond directly to render the guitar tablature output (pdf or png). While LilyPond caters to sheet music in general, <code>tabr</code> is focused on leveraging it specifically for creating quality guitar tablature.</p>
+
+<p>While music can be quite complex and a full score will be much longer, something as simple as the following code snippet produces the music notation in the accompanying image.</p>
+
+<pre><code class="language-r">p(&quot;r a2 c f d a f c4&quot;, &quot;4 8*6 1&quot;) %&gt;% track %&gt;% score %&gt;% tab(&quot;out.pdf&quot;)
+</code></pre>
+
+<p style="text-align:center;">
+<img src="https://github.com/leonawicz/tabr/blob/master/data-raw/staff_with_code.png?raw=true" width="100%">
+</p>
+
+<h2 id="installation">Installation</h2>
+
+<p>You can install tabr from GitHub with:</p>
+
+<pre><code class="language-r"># install.packages('devtools')
+devtools::install_github(&quot;leonawicz/tabr&quot;)
+</code></pre>
+
+<h2 id="basic-example">Basic example</h2>
+
+<p>As a brief example, recreate the tablature shown in the <code>tabr</code> logo, which is almost the same as the first measure in the code example above. It has a tiny bit more in the form of metadata and doesn&rsquo;t take as many shortcuts, but it&rsquo;s still short. Here are the steps.</p>
+
+<ul>
+<li>Define a musical phrase with <code>phrase</code> or the shorthand alias <code>p</code>.</li>
+<li>Add the phrase to a <code>track</code>.</li>
+<li>Add the track to a <code>score</code>.</li>
+<li>Render the score to pdf with <code>tab</code>.</li>
+</ul>
+
+<h2 id="constructing-a-musical-phrase">Constructing a musical phrase</h2>
+
+<p>A phrase here does not require a strict definition. Think of it as the smallest piece of musical structure you intend to string together. The first argument to <code>phrase</code> is a string describing notes of a specific pitch (or rests: &ldquo;r&rdquo;), separated in time by spaces. For chords, just remove spaces to indicate simultaneous notes. Integers are appended to indicate the octave number so that the pitch is unique. For example, a rest followed by a sequence of notes might be given by <code>notes = &quot;r a2 c3 f3 d3 a3 f3&quot;</code>.</p>
+
+<p>The second argument is a similar string giving note metadata. In this example there is nothing to add but the time durations. Whole notes taking up an entire measure of music are given by 1, half notes by 2, quarter notes 4, eighth notes 8, and so on. To specify a quarter note rest followed by a sequence of eighth notes, use <code>info = &quot;4 8 8 8 8 8 8&quot;</code>. This basic example does not require specifying additional note information such as dotted notes for different fractions of time, staccato notes, ties/slurs, slides, bends, hammer ons and pull offs, etc. These specifications are currently available in <code>tabr</code> to varying degrees of development and are covered in the vignette tutorials.</p>
+
+<p>The third argument, <code>string</code>, is optional but generally important for guitar tablature. In similar format, it specifies the strings of the guitar on which notes are played. Providing this information fixes the fret-string combinations so that LilyPond does not have to guess what position on the neck of the guitar to play a specific note. An inability to specify this in various tablature notation software (or laziness by the user), is a common cause of inaccurate tabs scouring the internet, where even when the notes are correct they are written in the tab suggesting they be played in positions no one would sensibly use. Note that the <code>x</code> shown below is just a placeholder indicating no need to specify a string for the quarter note rest.</p>
+
+<h2 id="score-metadata-and-accessing-lilypond">Score metadata and accessing LilyPond</h2>
+
+<p>Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo. If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), <code>tab</code> should call it successfully. Alternatively, on Windows, it can be added explicitly by calling <code>tabr_options</code>. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below.</p>
+
+<h2 id="r-code">R code</h2>
+
+<pre><code class="language-r">library(tabr)
+# path &lt;- 'C:/Program Files (x86)/LilyPond/usr/bin/lilypond.exe'
+# tabr_options(lilypond = path)
+
+p1 &lt;- p(&quot;r a2 c3 f3 d3 a3 f3&quot;, &quot;4 8 8 8 8 8 8&quot;, &quot;x 5 5 4 4 3 4&quot;)
+track1 &lt;- track(p1)
+song &lt;- score(track1)
+tab(song, &quot;phrase.pdf&quot;, key = &quot;dm&quot;, time = &quot;4/4&quot;, tempo = &quot;4 = 120&quot;)
+</code></pre>
+
+<pre><code>#&gt; #### Engraving score to phrase.pdf ####
+#&gt; GNU LilyPond 2.18.2
+#&gt; Processing `./phrase.ly'
+#&gt; Parsing...
+#&gt; Interpreting music...
+#&gt; Preprocessing graphical objects...
+#&gt; Interpreting music...
+#&gt; MIDI output to `./phrase.mid'...
+#&gt; Finding the ideal number of pages...
+#&gt; Fitting music on 1 page...
+#&gt; Drawing systems...
+#&gt; Layout output to `./phrase.ps'...
+#&gt; Converting to `./phrase.pdf'...
+#&gt; Success: compilation successfully completed
+</code></pre>
+
+<p>See the pdf result embedded at the <a href="https://leonawicz.github.io/tabr/" target="_blank">tabr website</a>.</p>
+
+<h2 id="development-status-context-and-caveats">Development status, context and caveats</h2>
+
+<p>First, why LilyPond? LilyPond is an exceptional sheet music engraving program. It produces professional, high quality output. It is open source. It offers an access point for a programmatic approach to music notation. It is developed and utilized by a large community. Most GUI-based applications are WYSIWYG and force a greater limitation on what you can do and what it will look like after you do it. On the other hand, I have zero interest in writing LilyPond files. <code>tabr</code> has made it more enjoyable, a bit less ugly, and enables me to stick with LilyPond for its quality as I try to shield myself from its native input structures. I&rsquo;m sure there are far more LilyPond users who don&rsquo;t mind it at all and have never heard of R; to each their own.</p>
+
+<p>The <code>tabr</code> package is in early development. Breaking changes could occur in a later version. Many capabilities are missing. Others are incompletely implemented. Others in the R developer community who are probably much better musicians than myself are welcome to contribute. This is the type of package that will only develop in response to specific needs of its contributor(s). There are many things that <code>tabr</code> does not address at this stage of development. For example, <code>tabr</code> assumes standard guitar tuning. It has no ability to recognize or handle non-standard tunings or instruments like bass with a different number of strings. There are essentially countless other aspects of music notation available in LilyPond that <code>tabr</code> does not wrap around. The aim is not to do it all, but certainly to do much more than is currently in place.</p>
+
+<p>I am not an expert in music theory, or in music notation and transcription, or in LilyPond. In fact, my skill in music notation is ironically low enough that I do not find it any more challenging or an impediment to describe a song in R code rather than to just tab it out by hand. The main intent with <code>tabr</code>, however, is simply to be able to generate markup files that LilyPond accepts and understands, without having to write that markup directly.</p>
+
+<p>Finally, there are nonetheless limitations to LilyPond itself. It has been developed for sheet music in general and guitar tablature features were added as a relative afterthought. There are plenty of features I have not yet developed R wrappers around. Then there are other features like string bending that are technically available, but not fully developed yet on the LilyPond side either. Case in point, LilyPond&rsquo;s bend engraver is still under development; specifying something as common as a bend-release-pull-off is, to put it mildly, challenging.</p>
+
+<h2 id="reference">Reference</h2>
+
+<p><a href="https://leonawicz.github.io/tabr/" target="_blank">Complete package reference and function documentation</a></p>
+
+    </div>
+  </div>
+
+</article>
+
+
+
+<div class="article-container">
+  <h3>Related</h3>
+  <ul>
+    
+    <li><a href="../../post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/">Mix ggplot2 graphs with your favorite memes. memery 0.4.2 released.</a></li>
+    
+    <li><a href="../../post/2017-11-09-memery-0-3-0-on-cran/">Make memorable plots with memery. v0.3.0 now on CRAN.</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="../../post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/"><span
+      aria-hidden="true">&larr;</span> Mix ggplot2 graphs with your favorite memes. memery 0.4.2 released.</a></li>
+    
+
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 Matthew Leonawicz &middot; 
+
+      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
+      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    
+    <script src="../../js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

@@ -111,6 +111,24 @@
     </item>
     
     <item>
+      <title>Guitar</title>
+      <link>/tags/guitar/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/guitar/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lilypond</title>
+      <link>/tags/lilypond/</link>
+      <pubDate>Mon, 19 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lilypond/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Mapmate</title>
       <link>/tags/mapmate/</link>
       <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
@@ -125,24 +143,6 @@
       <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/meme-generator/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Memery</title>
-      <link>/tags/memery/</link>
-      <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/memery/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Memes</title>
-      <link>/tags/memes/</link>
-      <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/memes/</guid>
       <description></description>
     </item>
     
