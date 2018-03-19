@@ -19,10 +19,10 @@
       <description>
 
 &lt;p style=&#34;text-align:center;&#34;&gt;
-&lt;img src=&#34;https://github.com/leonawicz/tabr/blob/master/data-raw/tabr_logo.png?raw=true&#34; width=&#34;100%&#34;&gt;
+&lt;a href=&#34;https://github.com/leonawicz/tabr&#34;&gt;&lt;img src=&#34;https://github.com/leonawicz/tabr/blob/master/data-raw/tabr_logo.png?raw=true&#34; width=&#34;100%&#34;&gt;&lt;/a&gt;
 &lt;/p&gt;
 
-&lt;p&gt;This post introduces a new R package I am working on called &lt;code&gt;tabr&lt;/code&gt; for creating guitar tablature (&amp;ldquo;tabs&amp;rdquo;) from R code. The &lt;code&gt;tabr&lt;/code&gt; package provides programmatic music notation and a wrapper around &lt;a href=&#34;http://lilypond.org/&#34; target=&#34;_blank&#34;&gt;LilyPond&lt;/a&gt; for creating quality guitar tablature.&lt;/p&gt;
+&lt;p&gt;This post introduces a new R package I am working on called &lt;a href=&#34;https://github.com/leonawicz/tabr&#34; target=&#34;_blank&#34;&gt;tabr&lt;/a&gt; for creating guitar tablature (&amp;ldquo;tabs&amp;rdquo;) from R code. The &lt;code&gt;tabr&lt;/code&gt; package provides programmatic music notation and a wrapper around &lt;a href=&#34;http://lilypond.org/&#34; target=&#34;_blank&#34;&gt;LilyPond&lt;/a&gt; for creating quality guitar tablature.&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;tabr&lt;/code&gt; offers functions for describing and organizing musical structures and wraps around the LilyPond backend. LilyPond is an open source music engraving program for generating high quality sheet music based on markup syntax. &lt;code&gt;tabr&lt;/code&gt; generates files following the LilyPond markup syntax to be subsequently processed by LilyPond into sheet music.&lt;/p&gt;
 
