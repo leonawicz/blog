@@ -7,8 +7,131 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
-    <lastBuildDate>Mon, 19 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Apr 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/tags/music-transcription/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>tabr package for guitar tablature now on CRAN</title>
+      <link>/post/tabr-package-for-guitar-tablature-now-on-cran/</link>
+      <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tabr-package-for-guitar-tablature-now-on-cran/</guid>
+      <description>
+
+&lt;p style=&#34;text-align:center;&#34;&gt;
+&lt;a href=&#34;https://github.com/leonawicz/tabr&#34;&gt;&lt;img src=&#34;https://github.com/leonawicz/tabr/blob/master/data-raw/tabr.png?raw=true&#34; width=&#34;40%&#34;&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/leonawicz/tabr&#34; target=&#34;_blank&#34;&gt;tabr&lt;/a&gt; package for creating guitar tablature (&amp;ldquo;tabs&amp;rdquo;) from R code is now available on CRAN. &lt;code&gt;tabr&lt;/code&gt; provides programmatic music notation and a wrapper around &lt;a href=&#34;http://lilypond.org/&#34; target=&#34;_blank&#34;&gt;LilyPond&lt;/a&gt; for creating quality guitar tablature.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;tabr&lt;/code&gt; offers functions for describing and organizing musical structures and wraps around the LilyPond backend. LilyPond is an open source music engraving program for generating high quality sheet music based on markup syntax. &lt;code&gt;tabr&lt;/code&gt; generates files following the LilyPond markup syntax to be subsequently processed by LilyPond into sheet music.&lt;/p&gt;
+
+&lt;p&gt;A standalone LilyPond (.ly) file can be created or the package can make a system call to LilyPond directly to render the guitar tablature output (pdf or png). While LilyPond caters to sheet music in general, &lt;code&gt;tabr&lt;/code&gt; is focused on leveraging it specifically for creating quality guitar tablature.&lt;/p&gt;
+
+&lt;p&gt;While music can be quite complex and a full score will be much longer, something as simple as the following code snippet produces the music notation in the accompanying image.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p(&amp;quot;r a2 c f d a f c4&amp;quot;, &amp;quot;4 8*6 1&amp;quot;) %&amp;gt;% track %&amp;gt;% score %&amp;gt;% tab(&amp;quot;out.pdf&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p style=&#34;text-align:center;&#34;&gt;
+&lt;img src=&#34;https://github.com/leonawicz/tabr/blob/master/data-raw/staff_with_code.png?raw=true&#34; width=&#34;100%&#34;&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;functionality-and-support&#34;&gt;Functionality and support&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;tabr&lt;/code&gt; package offers the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Render guitar tablature and sheet music to pdf or png.&lt;/li&gt;
+&lt;li&gt;Write accompanying MIDI files that can respect repeat notation and transposition in the sheet music (under reasonable conditions).&lt;/li&gt;
+&lt;li&gt;Support tablature for other string instruments besides guitar such as bass or banjo.&lt;/li&gt;
+&lt;li&gt;Support for instruments with different numbers of strings.&lt;/li&gt;
+&lt;li&gt;Support for arbitrary instrument tuning.&lt;/li&gt;
+&lt;li&gt;Offers inclusion (or exclusion) of formal music staves above tab staves, such as treble and bass clef staves for complete rhythm and timing information.&lt;/li&gt;
+&lt;li&gt;Track-specific setup for features like instrument type, tuning and supplemental music staves.&lt;/li&gt;
+&lt;li&gt;Provide common notation such as slide, bend, hammer on, pull off, slur, tie, staccato, dotted notes, visible and silent rests.&lt;/li&gt;
+&lt;li&gt;Allows arbitrary tuplet structure.&lt;/li&gt;
+&lt;li&gt;Above-staff text annotation.&lt;/li&gt;
+&lt;li&gt;Percent and volta repeat section notation.&lt;/li&gt;
+&lt;li&gt;Note transposition.&lt;/li&gt;
+&lt;li&gt;Staff transposition.&lt;/li&gt;
+&lt;li&gt;Multiple voices per track and multiple tracks per score.&lt;/li&gt;
+&lt;li&gt;Chord symbols above staff&lt;/li&gt;
+&lt;li&gt;Chord fretboard diagrams and chord chart at top of score.&lt;/li&gt;
+&lt;li&gt;Rich set of layout control options covering settings from score attributions to font size.&lt;/li&gt;
+&lt;li&gt;Optional alternative input format allowing the user to provide string/fret combinations (along with key signature and instrument tuning) to map to pitch.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that MIDI support and string/fret alternative input format support are not prioritized in ongoing &lt;code&gt;tabr&lt;/code&gt; development. These are considered tangential extra features in &lt;code&gt;tabr&lt;/code&gt; that fall outside the general scope and intent of the package.&lt;/p&gt;
+
+&lt;h2 id=&#34;basic-example&#34;&gt;Basic example&lt;/h2&gt;
+
+&lt;p&gt;A brief example below highlights the general workflow.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Define a musical phrase with &lt;code&gt;phrase&lt;/code&gt; or the shorthand alias &lt;code&gt;p&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Add the phrase to a &lt;code&gt;track&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Add the track to a &lt;code&gt;score&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Render the score to pdf with &lt;code&gt;tab&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;constructing-a-musical-phrase&#34;&gt;Constructing a musical phrase&lt;/h2&gt;
+
+&lt;p&gt;A phrase here does not require a strict definition. Think of it as the smallest piece of musical structure you intend to string together. The first argument to &lt;code&gt;phrase&lt;/code&gt; is a string describing notes of a specific pitch (or rests: &amp;ldquo;r&amp;rdquo;), separated in time by spaces. For chords, just remove spaces to indicate simultaneous notes. Integers are appended to indicate the octave number so that the pitch is unique. For example, a rest followed by a sequence of notes might be given by &lt;code&gt;notes = &amp;quot;r a2 c3 f3 d3 a3 f3&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The second argument is a similar string giving note metadata. In this example there is nothing to add but the time durations. Whole notes taking up an entire measure of music are given by 1, half notes by 2, quarter notes 4, eighth notes 8, and so on. To specify a quarter note rest followed by a sequence of eighth notes, use &lt;code&gt;info = &amp;quot;4 8 8 8 8 8 8&amp;quot;&lt;/code&gt;. This basic example does not require specifying additional note information such as dotted notes for different fractions of time, staccato notes, ties/slurs, slides, bends, hammer ons and pull offs, etc. These specifications are currently available in &lt;code&gt;tabr&lt;/code&gt; to varying degrees of development and are covered in the vignette tutorials.&lt;/p&gt;
+
+&lt;p&gt;The third argument, &lt;code&gt;string&lt;/code&gt;, is optional but generally important for guitar tablature. In similar format, it specifies the strings of the guitar on which notes are played. Providing this information fixes the fret-string combinations so that LilyPond does not have to guess what position on the neck of the guitar to play a specific note. An inability to specify this in various tablature notation software (or laziness by the user), is a common cause of inaccurate tabs scouring the internet, where even when the notes are correct they are written in the tab suggesting they be played in positions no one would sensibly use. Note that the &lt;code&gt;x&lt;/code&gt; shown below is just a placeholder indicating no need to specify a string for the quarter note rest.&lt;/p&gt;
+
+&lt;p&gt;The example below employs a couple shortcuts to further reduce typing, using the &lt;code&gt;*&lt;/code&gt; in-string expansion operator to avoid typing a long series of eighth notes. It also drops explicit reference to octave number three since this central octave is the default octave in LilyPond. While explicit string numbers are not needed for this example, they are provided anyway for full context.&lt;/p&gt;
+
+&lt;h2 id=&#34;score-metadata-and-accessing-lilypond&#34;&gt;Score metadata and accessing LilyPond&lt;/h2&gt;
+
+&lt;p&gt;Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo. If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), &lt;code&gt;tab&lt;/code&gt; should call it successfully. Alternatively, on Windows, it can be added explicitly by calling &lt;code&gt;tabr_options&lt;/code&gt;. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below.&lt;/p&gt;
+
+&lt;h2 id=&#34;r-code&#34;&gt;R code&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(tabr)
+# path &amp;lt;- &#39;C:/Program Files (x86)/LilyPond/usr/bin/lilypond.exe&#39;
+# tabr_options(lilypond = path)
+
+song &amp;lt;- p(&amp;quot;r a2 c f d a f&amp;quot;, &amp;quot;4 8*6&amp;quot;, &amp;quot;x 5 5 4 4 3 4&amp;quot;) %&amp;gt;% track %&amp;gt;% score
+tab(song, &amp;quot;out.pdf&amp;quot;, key = &amp;quot;dm&amp;quot;, time = &amp;quot;4/4&amp;quot;, tempo = &amp;quot;4 = 120&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;#&amp;gt; #### Engraving score to phrase.pdf ####
+#&amp;gt; GNU LilyPond 2.18.2
+#&amp;gt; Processing `./phrase.ly&#39;
+#&amp;gt; Parsing...
+#&amp;gt; Interpreting music...
+#&amp;gt; Preprocessing graphical objects...
+#&amp;gt; Interpreting music...
+#&amp;gt; MIDI output to `./phrase.mid&#39;...
+#&amp;gt; Finding the ideal number of pages...
+#&amp;gt; Fitting music on 1 page...
+#&amp;gt; Drawing systems...
+#&amp;gt; Layout output to `./phrase.ps&#39;...
+#&amp;gt; Converting to `./phrase.pdf&#39;...
+#&amp;gt; Success: compilation successfully completed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;See the pdf result embedded at the &lt;a href=&#34;https://leonawicz.github.io/tabr/&#34; target=&#34;_blank&#34;&gt;tabr website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;additional-context&#34;&gt;Additional context&lt;/h2&gt;
+
+&lt;p&gt;Why LilyPond? LilyPond is an exceptional sheet music engraving program. It produces professional, high quality output. It is open source. It offers an access point for a programmatic approach to music notation. It is developed and utilized by a large community. Most GUI-based applications are WYSIWYG and force a greater limitation on what you can do and what it will look like after you do it. On the other hand, I have zero interest in writing LilyPond files. &lt;code&gt;tabr&lt;/code&gt; has made it more enjoyable, a bit less ugly, and enables me to stick with LilyPond for its quality as I try to shield myself from its native input structures. I&amp;rsquo;m sure there are far more LilyPond users who don&amp;rsquo;t mind it at all and have never heard of R; to each their own.&lt;/p&gt;
+
+&lt;h2 id=&#34;limitations&#34;&gt;Limitations&lt;/h2&gt;
+
+&lt;p&gt;There is far more that LilyPond can do that &lt;code&gt;tabr&lt;/code&gt; does not tap into. Instead of listing a million things, this is just to highlight an example of a critical feature that still has limited functionality in both &lt;code&gt;tabr&lt;/code&gt; and in LilyPond itself: LilyPond&amp;rsquo;s bend engraver. Rendering sheet music with quality string bend notation is quite difficult. This is an area that will benefit greatly from further development.&lt;/p&gt;
+
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+
+&lt;p&gt;There is a rich collection of vignette tutorials available at the tabr website.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://leonawicz.github.io/tabr/&#34; target=&#34;_blank&#34;&gt;Complete package reference and function documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Introducing tabr: guitar tabs with R</title>

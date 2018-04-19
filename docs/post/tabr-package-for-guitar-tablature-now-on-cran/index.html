@@ -54,11 +54,11 @@
   <link rel="icon" type="image/png" href="../../img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="../../img/apple-touch-icon.png">
 
-  <link rel="canonical" href="../../post/introducing-tabr-guitar-tabs-with-r/">
+  <link rel="canonical" href="../../post/tabr-package-for-guitar-tablature-now-on-cran/">
 
   
 
-  <title>Introducing tabr: guitar tabs with R | Matthew Leonawicz</title>
+  <title>tabr package for guitar tablature now on CRAN | Matthew Leonawicz</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
@@ -144,15 +144,15 @@
 <article class="article" itemscope itemtype="http://schema.org/Article">
 
   <div class="article-container">
-    <h1 itemprop="name">Introducing tabr: guitar tabs with R</h1>
+    <h1 itemprop="name">tabr package for guitar tablature now on CRAN</h1>
     
 
 <div class="article-metadata">
 
   <span class="article-date">
     
-    <time datetime="2018-03-19 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Mar 19, 2018
+    <time datetime="2018-04-19 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Apr 19, 2018
     </time>
   </span>
 
@@ -212,35 +212,35 @@
   <ul class="share">
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2ftabr-package-for-guitar-tablature-now-on-cran%2f"
          target="_blank">
         <i class="fa fa-facebook"></i>
       </a>
     </li>
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Introducing%20tabr%3a%20guitar%20tabs%20with%20R&amp;url=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f"
+         href="https://twitter.com/intent/tweet?text=tabr%20package%20for%20guitar%20tablature%20now%20on%20CRAN&amp;url=%2fpost%2ftabr-package-for-guitar-tablature-now-on-cran%2f"
          target="_blank">
         <i class="fa fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f&amp;title=Introducing%20tabr%3a%20guitar%20tabs%20with%20R"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2ftabr-package-for-guitar-tablature-now-on-cran%2f&amp;title=tabr%20package%20for%20guitar%20tablature%20now%20on%20CRAN"
          target="_blank">
         <i class="fa fa-linkedin"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f&amp;title=Introducing%20tabr%3a%20guitar%20tabs%20with%20R"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2ftabr-package-for-guitar-tablature-now-on-cran%2f&amp;title=tabr%20package%20for%20guitar%20tablature%20now%20on%20CRAN"
          target="_blank">
         <i class="fa fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Introducing%20tabr%3a%20guitar%20tabs%20with%20R&amp;body=%2fpost%2fintroducing-tabr-guitar-tabs-with-r%2f">
+         href="mailto:?subject=tabr%20package%20for%20guitar%20tablature%20now%20on%20CRAN&amp;body=%2fpost%2ftabr-package-for-guitar-tablature-now-on-cran%2f">
         <i class="fa fa-envelope"></i>
       </a>
     </li>
@@ -256,10 +256,10 @@
       
 
 <p style="text-align:center;">
-<a href="https://github.com/leonawicz/tabr"><img src="https://github.com/leonawicz/tabr/blob/master/data-raw/tabr_logo.png?raw=true" width="100%"></a>
+<a href="https://github.com/leonawicz/tabr"><img src="https://github.com/leonawicz/tabr/blob/master/data-raw/tabr.png?raw=true" width="40%"></a>
 </p>
 
-<p>This post introduces a new R package I am working on called <a href="https://github.com/leonawicz/tabr" target="_blank">tabr</a> for creating guitar tablature (&ldquo;tabs&rdquo;) from R code. The <code>tabr</code> package provides programmatic music notation and a wrapper around <a href="http://lilypond.org/" target="_blank">LilyPond</a> for creating quality guitar tablature.</p>
+<p>The <a href="https://github.com/leonawicz/tabr" target="_blank">tabr</a> package for creating guitar tablature (&ldquo;tabs&rdquo;) from R code is now available on CRAN. <code>tabr</code> provides programmatic music notation and a wrapper around <a href="http://lilypond.org/" target="_blank">LilyPond</a> for creating quality guitar tablature.</p>
 
 <p><code>tabr</code> offers functions for describing and organizing musical structures and wraps around the LilyPond backend. LilyPond is an open source music engraving program for generating high quality sheet music based on markup syntax. <code>tabr</code> generates files following the LilyPond markup syntax to be subsequently processed by LilyPond into sheet music.</p>
 
@@ -274,17 +274,36 @@
 <img src="https://github.com/leonawicz/tabr/blob/master/data-raw/staff_with_code.png?raw=true" width="100%">
 </p>
 
-<h2 id="installation">Installation</h2>
+<h2 id="functionality-and-support">Functionality and support</h2>
 
-<p>You can install tabr from GitHub with:</p>
+<p>The <code>tabr</code> package offers the following:</p>
 
-<pre><code class="language-r"># install.packages('devtools')
-devtools::install_github(&quot;leonawicz/tabr&quot;)
-</code></pre>
+<ul>
+<li>Render guitar tablature and sheet music to pdf or png.</li>
+<li>Write accompanying MIDI files that can respect repeat notation and transposition in the sheet music (under reasonable conditions).</li>
+<li>Support tablature for other string instruments besides guitar such as bass or banjo.</li>
+<li>Support for instruments with different numbers of strings.</li>
+<li>Support for arbitrary instrument tuning.</li>
+<li>Offers inclusion (or exclusion) of formal music staves above tab staves, such as treble and bass clef staves for complete rhythm and timing information.</li>
+<li>Track-specific setup for features like instrument type, tuning and supplemental music staves.</li>
+<li>Provide common notation such as slide, bend, hammer on, pull off, slur, tie, staccato, dotted notes, visible and silent rests.</li>
+<li>Allows arbitrary tuplet structure.</li>
+<li>Above-staff text annotation.</li>
+<li>Percent and volta repeat section notation.</li>
+<li>Note transposition.</li>
+<li>Staff transposition.</li>
+<li>Multiple voices per track and multiple tracks per score.</li>
+<li>Chord symbols above staff</li>
+<li>Chord fretboard diagrams and chord chart at top of score.</li>
+<li>Rich set of layout control options covering settings from score attributions to font size.</li>
+<li>Optional alternative input format allowing the user to provide string/fret combinations (along with key signature and instrument tuning) to map to pitch.</li>
+</ul>
+
+<p>Note that MIDI support and string/fret alternative input format support are not prioritized in ongoing <code>tabr</code> development. These are considered tangential extra features in <code>tabr</code> that fall outside the general scope and intent of the package.</p>
 
 <h2 id="basic-example">Basic example</h2>
 
-<p>As a brief example, recreate the tablature shown in the <code>tabr</code> logo, which is almost the same as the first measure in the code example above. It has a tiny bit more in the form of metadata and doesn&rsquo;t take as many shortcuts, but it&rsquo;s still short. Here are the steps.</p>
+<p>A brief example below highlights the general workflow.</p>
 
 <ul>
 <li>Define a musical phrase with <code>phrase</code> or the shorthand alias <code>p</code>.</li>
@@ -301,6 +320,8 @@ devtools::install_github(&quot;leonawicz/tabr&quot;)
 
 <p>The third argument, <code>string</code>, is optional but generally important for guitar tablature. In similar format, it specifies the strings of the guitar on which notes are played. Providing this information fixes the fret-string combinations so that LilyPond does not have to guess what position on the neck of the guitar to play a specific note. An inability to specify this in various tablature notation software (or laziness by the user), is a common cause of inaccurate tabs scouring the internet, where even when the notes are correct they are written in the tab suggesting they be played in positions no one would sensibly use. Note that the <code>x</code> shown below is just a placeholder indicating no need to specify a string for the quarter note rest.</p>
 
+<p>The example below employs a couple shortcuts to further reduce typing, using the <code>*</code> in-string expansion operator to avoid typing a long series of eighth notes. It also drops explicit reference to octave number three since this central octave is the default octave in LilyPond. While explicit string numbers are not needed for this example, they are provided anyway for full context.</p>
+
 <h2 id="score-metadata-and-accessing-lilypond">Score metadata and accessing LilyPond</h2>
 
 <p>Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo. If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), <code>tab</code> should call it successfully. Alternatively, on Windows, it can be added explicitly by calling <code>tabr_options</code>. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below.</p>
@@ -311,10 +332,8 @@ devtools::install_github(&quot;leonawicz/tabr&quot;)
 # path &lt;- 'C:/Program Files (x86)/LilyPond/usr/bin/lilypond.exe'
 # tabr_options(lilypond = path)
 
-p1 &lt;- p(&quot;r a2 c3 f3 d3 a3 f3&quot;, &quot;4 8 8 8 8 8 8&quot;, &quot;x 5 5 4 4 3 4&quot;)
-track1 &lt;- track(p1)
-song &lt;- score(track1)
-tab(song, &quot;phrase.pdf&quot;, key = &quot;dm&quot;, time = &quot;4/4&quot;, tempo = &quot;4 = 120&quot;)
+song &lt;- p(&quot;r a2 c f d a f&quot;, &quot;4 8*6&quot;, &quot;x 5 5 4 4 3 4&quot;) %&gt;% track %&gt;% score
+tab(song, &quot;out.pdf&quot;, key = &quot;dm&quot;, time = &quot;4/4&quot;, tempo = &quot;4 = 120&quot;)
 </code></pre>
 
 <pre><code>#&gt; #### Engraving score to phrase.pdf ####
@@ -335,17 +354,17 @@ tab(song, &quot;phrase.pdf&quot;, key = &quot;dm&quot;, time = &quot;4/4&quot;, 
 
 <p>See the pdf result embedded at the <a href="https://leonawicz.github.io/tabr/" target="_blank">tabr website</a>.</p>
 
-<h2 id="development-status-context-and-caveats">Development status, context and caveats</h2>
+<h2 id="additional-context">Additional context</h2>
 
-<p>First, why LilyPond? LilyPond is an exceptional sheet music engraving program. It produces professional, high quality output. It is open source. It offers an access point for a programmatic approach to music notation. It is developed and utilized by a large community. Most GUI-based applications are WYSIWYG and force a greater limitation on what you can do and what it will look like after you do it. On the other hand, I have zero interest in writing LilyPond files. <code>tabr</code> has made it more enjoyable, a bit less ugly, and enables me to stick with LilyPond for its quality as I try to shield myself from its native input structures. I&rsquo;m sure there are far more LilyPond users who don&rsquo;t mind it at all and have never heard of R; to each their own.</p>
+<p>Why LilyPond? LilyPond is an exceptional sheet music engraving program. It produces professional, high quality output. It is open source. It offers an access point for a programmatic approach to music notation. It is developed and utilized by a large community. Most GUI-based applications are WYSIWYG and force a greater limitation on what you can do and what it will look like after you do it. On the other hand, I have zero interest in writing LilyPond files. <code>tabr</code> has made it more enjoyable, a bit less ugly, and enables me to stick with LilyPond for its quality as I try to shield myself from its native input structures. I&rsquo;m sure there are far more LilyPond users who don&rsquo;t mind it at all and have never heard of R; to each their own.</p>
 
-<p>The <code>tabr</code> package is in early development. Breaking changes could occur in a later version. Many capabilities are missing. Others are incompletely implemented. Others in the R developer community who are probably much better musicians than myself are welcome to contribute. This is the type of package that will only develop in response to specific needs of its contributor(s). There are many things that <code>tabr</code> does not address at this stage of development. For example, <code>tabr</code> assumes standard guitar tuning. It has no ability to recognize or handle non-standard tunings or instruments like bass with a different number of strings. There are essentially countless other aspects of music notation available in LilyPond that <code>tabr</code> does not wrap around. The aim is not to do it all, but certainly to do much more than is currently in place.</p>
+<h2 id="limitations">Limitations</h2>
 
-<p>I am not an expert in music theory, or in music notation and transcription, or in LilyPond. In fact, my skill in music notation is ironically low enough that I do not find it any more challenging or an impediment to describe a song in R code rather than to just tab it out by hand. The main intent with <code>tabr</code>, however, is simply to be able to generate markup files that LilyPond accepts and understands, without having to write that markup directly.</p>
-
-<p>Finally, there are nonetheless limitations to LilyPond itself. It has been developed for sheet music in general and guitar tablature features were added as a relative afterthought. There are plenty of features I have not yet developed R wrappers around. Then there are other features like string bending that are technically available, but not fully developed yet on the LilyPond side either. Case in point, LilyPond&rsquo;s bend engraver is still under development; specifying something as common as a bend-release-pull-off is, to put it mildly, challenging.</p>
+<p>There is far more that LilyPond can do that <code>tabr</code> does not tap into. Instead of listing a million things, this is just to highlight an example of a critical feature that still has limited functionality in both <code>tabr</code> and in LilyPond itself: LilyPond&rsquo;s bend engraver. Rendering sheet music with quality string bend notation is quite difficult. This is an area that will benefit greatly from further development.</p>
 
 <h2 id="reference">Reference</h2>
+
+<p>There is a rich collection of vignette tutorials available at the tabr website.</p>
 
 <p><a href="https://leonawicz.github.io/tabr/" target="_blank">Complete package reference and function documentation</a></p>
 
@@ -360,6 +379,8 @@ tab(song, &quot;phrase.pdf&quot;, key = &quot;dm&quot;, time = &quot;4/4&quot;, 
   <h3>Related</h3>
   <ul>
     
+    <li><a href="../../post/introducing-tabr-guitar-tabs-with-r/">Introducing tabr: guitar tabs with R</a></li>
+    
     <li><a href="../../post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/">Mix ggplot2 graphs with your favorite memes. memery 0.4.2 released.</a></li>
     
     <li><a href="../../post/2017-11-09-memery-0-3-0-on-cran/">Make memorable plots with memery. v0.3.0 now on CRAN.</a></li>
@@ -372,13 +393,10 @@ tab(song, &quot;phrase.pdf&quot;, key = &quot;dm&quot;, time = &quot;4/4&quot;, 
   <nav>
   <ul class="pager">
     
-    <li class="previous"><a href="../../post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/"><span
-      aria-hidden="true">&larr;</span> Mix ggplot2 graphs with your favorite memes. memery 0.4.2 released.</a></li>
+    <li class="previous"><a href="../../post/introducing-tabr-guitar-tabs-with-r/"><span
+      aria-hidden="true">&larr;</span> Introducing tabr: guitar tabs with R</a></li>
     
 
-    
-    <li class="next"><a href="../../post/tabr-package-for-guitar-tablature-now-on-cran/">tabr package for guitar tablature now on CRAN <span
-      aria-hidden="true">&rarr;</span></a></li>
     
   </ul>
 </nav>
