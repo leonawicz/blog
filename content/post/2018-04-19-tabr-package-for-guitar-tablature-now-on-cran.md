@@ -90,7 +90,9 @@ The example below employs a couple shortcuts to further reduce typing, using the
 Score metadata and accessing LilyPond
 -------------------------------------
 
-Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo. If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), `tab` should call it successfully. Alternatively, on Windows, it can be added explicitly by calling `tabr_options`. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below.
+Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo.
+
+If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), `tab` should call it successfully. Alternatively, on Windows, it can be added explicitly by calling `tabr_options`. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below. However, `tabr` will do its best on package load to set these paths in `tabr_options` for you if it can successfully detect a LilyPond installation in a standard file system location, so you may not have to do anything.
 
 R code
 ------
@@ -100,8 +102,9 @@ library(tabr)
 # path <- 'C:/Program Files (x86)/LilyPond/usr/bin/lilypond.exe'
 # tabr_options(lilypond = path)
 
-song <- p("r a2 c f d a f", "4 8*6", "x 5 5 4 4 3 4") %>% track %>% score
-tab(song, "out.pdf", key = "dm", time = "4/4", tempo = "4 = 120")
+p1 <- p("r a2 c f d a f", "4 8*6", "x 5 5 4 4 3 4")
+song <- p1 %>% track %>% score
+tab(song, "phrase.pdf", key = "dm", time = "4/4", tempo = "4 = 120")
 ```
 
     #> #### Engraving score to phrase.pdf ####
