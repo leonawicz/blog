@@ -87,7 +87,9 @@
 
 &lt;h2 id=&#34;score-metadata-and-accessing-lilypond&#34;&gt;Score metadata and accessing LilyPond&lt;/h2&gt;
 
-&lt;p&gt;Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo. If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), &lt;code&gt;tab&lt;/code&gt; should call it successfully. Alternatively, on Windows, it can be added explicitly by calling &lt;code&gt;tabr_options&lt;/code&gt;. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below.&lt;/p&gt;
+&lt;p&gt;Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo.&lt;/p&gt;
+
+&lt;p&gt;If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), &lt;code&gt;tab&lt;/code&gt; should call it successfully. Alternatively, on Windows, it can be added explicitly by calling &lt;code&gt;tabr_options&lt;/code&gt;. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below. However, &lt;code&gt;tabr&lt;/code&gt; will do its best on package load to set these paths in &lt;code&gt;tabr_options&lt;/code&gt; for you if it can successfully detect a LilyPond installation in a standard file system location, so you may not have to do anything.&lt;/p&gt;
 
 &lt;h2 id=&#34;r-code&#34;&gt;R code&lt;/h2&gt;
 
@@ -95,8 +97,9 @@
 # path &amp;lt;- &#39;C:/Program Files (x86)/LilyPond/usr/bin/lilypond.exe&#39;
 # tabr_options(lilypond = path)
 
-song &amp;lt;- p(&amp;quot;r a2 c f d a f&amp;quot;, &amp;quot;4 8*6&amp;quot;, &amp;quot;x 5 5 4 4 3 4&amp;quot;) %&amp;gt;% track %&amp;gt;% score
-tab(song, &amp;quot;out.pdf&amp;quot;, key = &amp;quot;dm&amp;quot;, time = &amp;quot;4/4&amp;quot;, tempo = &amp;quot;4 = 120&amp;quot;)
+p1 &amp;lt;- p(&amp;quot;r a2 c f d a f&amp;quot;, &amp;quot;4 8*6&amp;quot;, &amp;quot;x 5 5 4 4 3 4&amp;quot;)
+song &amp;lt;- p1 %&amp;gt;% track %&amp;gt;% score
+tab(song, &amp;quot;phrase.pdf&amp;quot;, key = &amp;quot;dm&amp;quot;, time = &amp;quot;4/4&amp;quot;, tempo = &amp;quot;4 = 120&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code&gt;#&amp;gt; #### Engraving score to phrase.pdf ####

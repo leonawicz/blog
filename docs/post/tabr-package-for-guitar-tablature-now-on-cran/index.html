@@ -324,7 +324,9 @@
 
 <h2 id="score-metadata-and-accessing-lilypond">Score metadata and accessing LilyPond</h2>
 
-<p>Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo. If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), <code>tab</code> should call it successfully. Alternatively, on Windows, it can be added explicitly by calling <code>tabr_options</code>. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below.</p>
+<p>Finally, specify some song metadata to reproduce the original staff: the key of D minor, common time, and the tempo.</p>
+
+<p>If LilyPond is installed on your system (and added to your system PATH variable on Windows systems), <code>tab</code> should call it successfully. Alternatively, on Windows, it can be added explicitly by calling <code>tabr_options</code>. This option to specify the LilyPond path is still available on other systems. An example of this is commented out below. However, <code>tabr</code> will do its best on package load to set these paths in <code>tabr_options</code> for you if it can successfully detect a LilyPond installation in a standard file system location, so you may not have to do anything.</p>
 
 <h2 id="r-code">R code</h2>
 
@@ -332,8 +334,9 @@
 # path &lt;- 'C:/Program Files (x86)/LilyPond/usr/bin/lilypond.exe'
 # tabr_options(lilypond = path)
 
-song &lt;- p(&quot;r a2 c f d a f&quot;, &quot;4 8*6&quot;, &quot;x 5 5 4 4 3 4&quot;) %&gt;% track %&gt;% score
-tab(song, &quot;out.pdf&quot;, key = &quot;dm&quot;, time = &quot;4/4&quot;, tempo = &quot;4 = 120&quot;)
+p1 &lt;- p(&quot;r a2 c f d a f&quot;, &quot;4 8*6&quot;, &quot;x 5 5 4 4 3 4&quot;)
+song &lt;- p1 %&gt;% track %&gt;% score
+tab(song, &quot;phrase.pdf&quot;, key = &quot;dm&quot;, time = &quot;4/4&quot;, tempo = &quot;4 = 120&quot;)
 </code></pre>
 
 <pre><code>#&gt; #### Engraving score to phrase.pdf ####
