@@ -1,6 +1,6 @@
 baseurl = "https://leonawicz.github.io/"  # End your URL with a `/` trailing slash.
 title = "Matthew Leonawicz"
-copyright = "&copy; 2017 Matthew Leonawicz"
+copyright = "&copy; 2018 Matthew Leonawicz"
 theme = "hugo-academic"
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"
@@ -177,6 +177,11 @@ defaultContentLanguageInSubdir = false
 [[menu.main]]
   name = "Home"
   url = "https://leonawicz.github.io/"
+  weight = 1
+
+[[menu.main]]
+  name = "Showcase"
+  url = "https://leonawicz.github.io/showcase/"
   weight = 1
   
 [[menu.main]]
