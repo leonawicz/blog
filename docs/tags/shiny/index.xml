@@ -6,9 +6,11 @@
     <description>Recent content in Shiny on Matthew Leonawicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
     <lastBuildDate>Tue, 24 Oct 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/shiny/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="/tags/shiny/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>apputils 0.5.0 released</title>
@@ -16,49 +18,9 @@
       <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/apputils-0-5-0-released/</guid>
-      <description>
-
-&lt;p&gt;Version 0.5.0 of the &lt;a href=&#34;https://github.com/leonawicz/apputils&#34; target=&#34;_blank&#34;&gt;apputils&lt;/a&gt; R package has been released on GitHub.
-Complete documentation is available at the &lt;a href=&#34;https://leonawicz.github.io/apputils&#34; target=&#34;_blank&#34;&gt;apputils website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The key updates are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Added &lt;code&gt;exApp&lt;/code&gt; for running Shiny app package examples.&lt;/li&gt;
-&lt;li&gt;Ported custom icons demo app to &lt;code&gt;apputils&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Included all current custom icons in example app, adding the newer linear model themed icons.&lt;/li&gt;
-&lt;li&gt;Added package css for &lt;code&gt;infoBox&lt;/code&gt; override.&lt;/li&gt;
-&lt;li&gt;Added introduction vignette content for stat boxes with package icons.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can now call &lt;code&gt;exApp(&amp;quot;icons&amp;quot;)&lt;/code&gt; to view the stat box icons examples locally.
-Available icons are grouped into three categories.&lt;/p&gt;
-
-&lt;h3 id=&#34;icons-representing-common-statistics&#34;&gt;Icons representing common statistics&lt;/h3&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/apputils_vbox1.png&#34;/&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;icons-representing-delta-change-or-trends&#34;&gt;Icons representing delta change or trends&lt;/h3&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/apputils_vbox2.png&#34;/&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;icons-related-to-fitting-statistical-models&#34;&gt;Icons related to fitting statistical models&lt;/h3&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/apputils_vbox3.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;These are the recent updates to &lt;code&gt;apputils&lt;/code&gt;. However, the package offers other helpful utilities such as convenient functions for:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;app citation&lt;/li&gt;
-&lt;li&gt;a showcase widget for displaying and linking to other related apps&lt;/li&gt;
-&lt;li&gt;an author/contact info widget&lt;/li&gt;
-&lt;li&gt;dashboard sidebar footer logo&lt;/li&gt;
-&lt;li&gt;collapsible FAQ widget&lt;/li&gt;
-&lt;li&gt;integration with &lt;code&gt;rintrojs&lt;/code&gt; and &lt;code&gt;shinytoastr&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These utilities involve relatively canned styles of presentation so they are not universally suitable for all users and use cases, but they offer convenience when applicable. An example app that uses several utilities from &lt;code&gt;apputils&lt;/code&gt; is my recent work in progress, the SNAP &lt;a href=&#34;https://uasnap.shinyapps.io/climdist/&#34; target=&#34;_blank&#34;&gt;Climate Analytics&lt;/a&gt; app.&lt;/p&gt;
-</description>
+      <description>Version 0.5.0 of the apputils R package has been released on GitHub. Complete documentation is available at the apputils website.
+The key updates are:
+ Added exApp for running Shiny app package examples. Ported custom icons demo app to apputils. Included all current custom icons in example app, adding the newer linear model themed icons. Added package css for infoBox override. Added introduction vignette content for stat boxes with package icons.</description>
     </item>
     
     <item>
@@ -67,35 +29,8 @@ Available icons are grouped into three categories.&lt;/p&gt;
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/climate-explorer-update-monthly-data-and-delta-change/</guid>
-      <description>&lt;p&gt;The SNAP &lt;a href=&#34;https://uasnap.shinyapps.io/climdist/&#34; target=&#34;_blank&#34;&gt;Climate Analytics&lt;/a&gt; Shiny app has been updated.
-Previously, the app included seasonally and annually aggregated data.
-With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The &lt;code&gt;Season&lt;/code&gt; dropdown menu now offers annual average, 3-month seasonals, and individual months.&lt;/p&gt;
-
-&lt;p&gt;These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app. This count does not include the marginal distributions users can estimate on the fly while using the app. For example, you can look at annual probability distributions for five different climate models, but while this may be of interest in some cases, in others it may be more interesting to to investigate the spatial distribution of temperature for a multi-model composite over some aggregate time period. This is where the app really shines; not in the large number of available conditional distributions, but rather in providing real-time estimation of marginal distributions of interest to users.&lt;/p&gt;
-
-&lt;p&gt;The other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
-The new option can be found in the &lt;code&gt;Additional settings&lt;/code&gt; modal.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_climatology.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;In this example, the data selection is as shown here.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_data.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;By default, raw climate values are shown, e.g., a time series of temperature values.
-This is unchanged from before.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_ts1.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;When the delta change option is checked, plots and statistics update to reflect change vs. historical baseline average.
-Climatologies use CRU 4.0 data. The period can range anywhere from 1950 - 2009, defaulting the the 1980 - 2009 30-year climatology.
-Climatologies are unique to each geographic region and seasonal period.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_ts2.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see above, some comparisons of change over time are easier to glean from the plot when viewing delta change instead of raw values.
-Also note that temperature deltas or anomalies are differential whereas change in precipitation is proportional.&lt;/p&gt;
-</description>
+      <description>The SNAP Climate Analytics Shiny app has been updated. Previously, the app included seasonally and annually aggregated data. With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The Season dropdown menu now offers annual average, 3-month seasonals, and individual months.
+These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app.</description>
     </item>
     
     <item>
@@ -104,45 +39,8 @@ Also note that temperature deltas or anomalies are differential whereas change i
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-app-distributions-of-random-variables/</guid>
-      <description>&lt;p&gt;There is a new version of my &lt;a href=&#34;https://uasnap.shinyapps.io/rvdist/&#34; target=&#34;_blank&#34;&gt;Distributions of Random Variables&lt;/a&gt; Shiny app available.
-This is a cleaned up modern revision of my original 2013 app series involving random variable probability distributions.
-The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base graphics. I have added this app to my &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34; target=&#34;_blank&#34;&gt;shiny-apps&lt;/a&gt; GitHub repository so the source code is available, including a script containing all those pesky &lt;code&gt;plotmath&lt;/code&gt; expressions.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/rvdist.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;The app draws and plots samples from various well known discrete and continuous probability distributions, all of which are available in base R with the single exception of the Pareto distribution. To include this distribution, I used the &lt;code&gt;VGAM&lt;/code&gt; package. The plots include an overlay of the formula for the selected probability mass or density function.&lt;/p&gt;
-
-&lt;p&gt;Available discrete distributions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Bernoulli&lt;/li&gt;
-&lt;li&gt;Binomial&lt;/li&gt;
-&lt;li&gt;Uniform&lt;/li&gt;
-&lt;li&gt;Geometric&lt;/li&gt;
-&lt;li&gt;Hypergeometric&lt;/li&gt;
-&lt;li&gt;Negative Binomial&lt;/li&gt;
-&lt;li&gt;Poisson&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Available continuous distributions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Beta&lt;/li&gt;
-&lt;li&gt;Cauchy&lt;/li&gt;
-&lt;li&gt;Chi-squared&lt;/li&gt;
-&lt;li&gt;Exponential&lt;/li&gt;
-&lt;li&gt;F&lt;/li&gt;
-&lt;li&gt;Gamma&lt;/li&gt;
-&lt;li&gt;Laplace (Double Exponential)&lt;/li&gt;
-&lt;li&gt;Logistic&lt;/li&gt;
-&lt;li&gt;Log-Normal&lt;/li&gt;
-&lt;li&gt;Normal&lt;/li&gt;
-&lt;li&gt;Pareto&lt;/li&gt;
-&lt;li&gt;t&lt;/li&gt;
-&lt;li&gt;Uniform&lt;/li&gt;
-&lt;li&gt;Weibull&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>There is a new version of my Distributions of Random Variables Shiny app available. This is a cleaned up modern revision of my original 2013 app series involving random variable probability distributions. The primary change is a switch to ggplot2 from base graphics. I have added this app to my shiny-apps GitHub repository so the source code is available, including a script containing all those pesky plotmath expressions.
+The app draws and plots samples from various well known discrete and continuous probability distributions, all of which are available in base R with the single exception of the Pareto distribution.</description>
     </item>
     
     <item>
@@ -151,12 +49,7 @@ The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base gra
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-04-26-assorted-shiny-apps/</guid>
-      <description>&lt;p&gt;Here is an &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34;&gt;assortment of R Shiny apps&lt;/a&gt; that you may find useful for exploration if you are in the process of learning Shiny and looking for something different. Some of these apps are very small and simple whereas others are large and complex. This repository provides full code and any necessary accompanying data sets. The repo also links to the apps hosted online at shinyapps.io so that you can run apps in your browser without having to download the entire collection repo to run apps locally. That and other details can be found at the repo linked above. This isn’t a tutorial or other form of support, but it’s plenty of R code to peruse if that is what you are looking for.&lt;/p&gt;
-&lt;p&gt;A bit of backstory. If I recall correctly, I began exploring RStudio’s Shiny package when I first heard of it in late 2012. Needless to say, a lot has changed since then, including not only all the alpha-release code-breaking changes I had to adjust to when making my first apps and what features and capabilities Shiny has grown to offer, but also simply how I go about coding apps has changed over time symbiotically with the package’s continued development. None of the apps in this repository are quite that old, though a few are close. Even so, they have been maintained and updated and tweaked since then to keep with the times as necessary.&lt;/p&gt;
-&lt;p&gt;Most of the apps are newer. But one nice thing about this collection is that it shows a diversity of approaches to coding different features and behavior into apps depending on their purposes and how for me that has changed over time. For example, some apps are heavy on maps. Prior to the robust availability of Leaflet in Shiny, I would tend to have a Shiny app display maps using static (but reactive) plots made with Lattice or ggplot2. There are many ways to do the same thing, and the way that is best in one case is not always the best way.&lt;/p&gt;
-&lt;p&gt;Across these apps there are many other examples of different ways to implement the same general task, depending on how I want that to be presented to the user in a specific app. In other cases, some approaches have proven more powerful and outright superior to others and have won out and it is equally useful to see these examples of what once was considered to be “good enough” is no longer.&lt;/p&gt;
-&lt;p&gt;Lastly, if you do happen to stumble upon something that is actually broken, I am unaware of it, so please let me know.&lt;/p&gt;
-</description>
+      <description>Here is an assortment of R Shiny apps that you may find useful for exploration if you are in the process of learning Shiny and looking for something different. Some of these apps are very small and simple whereas others are large and complex. This repository provides full code and any necessary accompanying data sets. The repo also links to the apps hosted online at shinyapps.io so that you can run apps in your browser without having to download the entire collection repo to run apps locally.</description>
     </item>
     
     <item>
@@ -165,18 +58,8 @@ The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base gra
       <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/custom-images-for-shiny-dashboard-valuebox-icons/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;shinydashboard&lt;/code&gt; package provides functions like &lt;code&gt;valueBox&lt;/code&gt; that conveniently display basic information like summary statistics. In addition to presenting a value and subtitle on a colored background, an icon may be included as well. However, the icon must come from either the Font Awesome or Glyphicon icon libraries and cannot be image files.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve &lt;a href=&#34;https://gist.github.com/leonawicz/0fab3796b02a62b7f3bd0c02a171f0b7&#34;&gt;provided a gist&lt;/a&gt; that shows how to achieve the use of custom icons with local image files stored in an app&amp;rsquo;s &lt;code&gt;www/&lt;/code&gt; directory. It involves overriding a couple functions in &lt;code&gt;shiny&lt;/code&gt; and &lt;code&gt;shinydashboard&lt;/code&gt; and adding a small bit of custom CSS. Ideally, functionality could be included in future versions of these two packages to allow this in a more robust and complete fashion. But for now, here is a way to do it yourself for value boxes.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/post/valueboxes1.png&#34;&gt;&lt;img src=&#34;../../img/post/valueboxes1.png&#34; alt=&#34;valueboxes1&#34; width=&#34;599&#34; height=&#34;351&#34; class=&#34;aligncenter size-full&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The gist above includes the &lt;code&gt;app.R&lt;/code&gt; file to run the &lt;a href=&#34;https://uasnap.shinyapps.io/customiconsdemo/&#34;&gt;Custom Icons Shiny app demo&lt;/a&gt; and the &lt;code&gt;override.R&lt;/code&gt; file which I have it &lt;code&gt;source&lt;/code&gt; separately. The gist also includes an &lt;code&gt;icons.R&lt;/code&gt; script to generate some statistics and probability themed icons from R. This is interesting and fun on its own. This is not needed to run the app, but the icons are of course needed. If you build the app locally you will have to run this script to generate the images and place them in your &lt;code&gt;www/&lt;/code&gt; folder. The live app demo contains them already.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve included both light and dark examples using icons that can be used to generally represent a distribution, mean, standard deviation, minimum, maximum, median or interquartile range. Note that &lt;code&gt;app.R&lt;/code&gt; adds some custom CSS; it is not sufficient to override the definitions of &lt;code&gt;icon&lt;/code&gt; and &lt;code&gt;valueBox&lt;/code&gt; alone. I placed it inline for to reduce the number of required files, but it could alternatively be loaded from a file using &lt;code&gt;includeCSS&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This overriding functionality is only for &lt;code&gt;valueBox&lt;/code&gt; widgets and the way in which a local image file is passed to &lt;code&gt;icon&lt;/code&gt; is with a named list where the available names are &lt;code&gt;src&lt;/code&gt; (required, image file name) and &lt;code&gt;width&lt;/code&gt; (optional, defaults to &lt;code&gt;&#39;100%&#39;&lt;/code&gt;). It is restrictive but demonstrates potential to use image files in place of icon library options without too much code refactoring.&lt;/p&gt;
-</description>
+      <description>The shinydashboard package provides functions like valueBox that conveniently display basic information like summary statistics. In addition to presenting a value and subtitle on a colored background, an icon may be included as well. However, the icon must come from either the Font Awesome or Glyphicon icon libraries and cannot be image files.
+I&amp;rsquo;ve provided a gist that shows how to achieve the use of custom icons with local image files stored in an app&amp;rsquo;s www/ directory.</description>
     </item>
     
     <item>
@@ -185,16 +68,7 @@ The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base gra
       <pubDate>Fri, 25 Mar 2016 00:00:00 +0000</pubDate>
       
       <guid>/post/r-animation-global-snap-shiny-app-users/</guid>
-      <description>&lt;p&gt;For the blog readers, just a quick heads up that I have posted a new R data animation to YouTube. A complete post will follow, but for now here is the video. It displays the social network of SNAP Shiny app users over about the past year and a half using great circle trajectories on a rotating 3D Earth. It&amp;rsquo;s best in 1080p, but still somewhat degraded for streaming. I&amp;rsquo;ll post the raw source video later as well, which is crystal clear.&lt;/p&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/uQYR91qixgo?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I used geolocation data from Google Analytics. I routed all the traffic randomly through either Fairbanks, AK or Denver, CO to complete the network since those two places best describe where my apps come from. It&amp;rsquo;s great to see how many people connect to the apps and from where; too many people to plot as a single static graphic without some of the essence of the data being lost.&lt;/p&gt;
-
-&lt;p&gt;As usual, the still frames of the rotating globe, its surface texture, country boundaries and great circle paths are all made in R. It&amp;rsquo;s basically a series of plots made with ggplot2.&lt;/p&gt;
-</description>
+      <description>For the blog readers, just a quick heads up that I have posted a new R data animation to YouTube. A complete post will follow, but for now here is the video. It displays the social network of SNAP Shiny app users over about the past year and a half using great circle trajectories on a rotating 3D Earth. It&amp;rsquo;s best in 1080p, but still somewhat degraded for streaming. I&amp;rsquo;ll post the raw source video later as well, which is crystal clear.</description>
     </item>
     
   </channel>

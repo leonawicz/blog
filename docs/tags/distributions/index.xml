@@ -6,9 +6,11 @@
     <description>Recent content in Distributions on Matthew Leonawicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
     <lastBuildDate>Mon, 23 Oct 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/distributions/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="/tags/distributions/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Climate explorer update: monthly data and delta change</title>
@@ -16,35 +18,8 @@
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/climate-explorer-update-monthly-data-and-delta-change/</guid>
-      <description>&lt;p&gt;The SNAP &lt;a href=&#34;https://uasnap.shinyapps.io/climdist/&#34; target=&#34;_blank&#34;&gt;Climate Analytics&lt;/a&gt; Shiny app has been updated.
-Previously, the app included seasonally and annually aggregated data.
-With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The &lt;code&gt;Season&lt;/code&gt; dropdown menu now offers annual average, 3-month seasonals, and individual months.&lt;/p&gt;
-
-&lt;p&gt;These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app. This count does not include the marginal distributions users can estimate on the fly while using the app. For example, you can look at annual probability distributions for five different climate models, but while this may be of interest in some cases, in others it may be more interesting to to investigate the spatial distribution of temperature for a multi-model composite over some aggregate time period. This is where the app really shines; not in the large number of available conditional distributions, but rather in providing real-time estimation of marginal distributions of interest to users.&lt;/p&gt;
-
-&lt;p&gt;The other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
-The new option can be found in the &lt;code&gt;Additional settings&lt;/code&gt; modal.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_climatology.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;In this example, the data selection is as shown here.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_data.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;By default, raw climate values are shown, e.g., a time series of temperature values.
-This is unchanged from before.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_ts1.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;When the delta change option is checked, plots and statistics update to reflect change vs. historical baseline average.
-Climatologies use CRU 4.0 data. The period can range anywhere from 1950 - 2009, defaulting the the 1980 - 2009 30-year climatology.
-Climatologies are unique to each geographic region and seasonal period.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_ts2.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see above, some comparisons of change over time are easier to glean from the plot when viewing delta change instead of raw values.
-Also note that temperature deltas or anomalies are differential whereas change in precipitation is proportional.&lt;/p&gt;
-</description>
+      <description>The SNAP Climate Analytics Shiny app has been updated. Previously, the app included seasonally and annually aggregated data. With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The Season dropdown menu now offers annual average, 3-month seasonals, and individual months.
+These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app.</description>
     </item>
     
     <item>
@@ -53,45 +28,8 @@ Also note that temperature deltas or anomalies are differential whereas change i
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-app-distributions-of-random-variables/</guid>
-      <description>&lt;p&gt;There is a new version of my &lt;a href=&#34;https://uasnap.shinyapps.io/rvdist/&#34; target=&#34;_blank&#34;&gt;Distributions of Random Variables&lt;/a&gt; Shiny app available.
-This is a cleaned up modern revision of my original 2013 app series involving random variable probability distributions.
-The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base graphics. I have added this app to my &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34; target=&#34;_blank&#34;&gt;shiny-apps&lt;/a&gt; GitHub repository so the source code is available, including a script containing all those pesky &lt;code&gt;plotmath&lt;/code&gt; expressions.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/rvdist.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;The app draws and plots samples from various well known discrete and continuous probability distributions, all of which are available in base R with the single exception of the Pareto distribution. To include this distribution, I used the &lt;code&gt;VGAM&lt;/code&gt; package. The plots include an overlay of the formula for the selected probability mass or density function.&lt;/p&gt;
-
-&lt;p&gt;Available discrete distributions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Bernoulli&lt;/li&gt;
-&lt;li&gt;Binomial&lt;/li&gt;
-&lt;li&gt;Uniform&lt;/li&gt;
-&lt;li&gt;Geometric&lt;/li&gt;
-&lt;li&gt;Hypergeometric&lt;/li&gt;
-&lt;li&gt;Negative Binomial&lt;/li&gt;
-&lt;li&gt;Poisson&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Available continuous distributions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Beta&lt;/li&gt;
-&lt;li&gt;Cauchy&lt;/li&gt;
-&lt;li&gt;Chi-squared&lt;/li&gt;
-&lt;li&gt;Exponential&lt;/li&gt;
-&lt;li&gt;F&lt;/li&gt;
-&lt;li&gt;Gamma&lt;/li&gt;
-&lt;li&gt;Laplace (Double Exponential)&lt;/li&gt;
-&lt;li&gt;Logistic&lt;/li&gt;
-&lt;li&gt;Log-Normal&lt;/li&gt;
-&lt;li&gt;Normal&lt;/li&gt;
-&lt;li&gt;Pareto&lt;/li&gt;
-&lt;li&gt;t&lt;/li&gt;
-&lt;li&gt;Uniform&lt;/li&gt;
-&lt;li&gt;Weibull&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>There is a new version of my Distributions of Random Variables Shiny app available. This is a cleaned up modern revision of my original 2013 app series involving random variable probability distributions. The primary change is a switch to ggplot2 from base graphics. I have added this app to my shiny-apps GitHub repository so the source code is available, including a script containing all those pesky plotmath expressions.
+The app draws and plots samples from various well known discrete and continuous probability distributions, all of which are available in base R with the single exception of the Pareto distribution.</description>
     </item>
     
   </channel>

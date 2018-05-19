@@ -6,9 +6,38 @@
     <description>Recent content in Homes on Matthew Leonawicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
     <lastBuildDate>Thu, 14 Sep 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/home/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="/home/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/home/about/</link>
+      <pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/home/about/</guid>
+      <description>Bio I am the lead statistical analyst for Scenarios Network for Alaska &amp;amp; Arctic Planning at the University of Alaska Fairbanks. I love programming in R. Much of my work revolves around high performance statistical computing, web application development, data visualization, and dynamic reporting. I develop R Shiny apps for presentation of statistical analyses and scientific information suitable for a range of audiences and I always enjoy opportunities to create informative, beautiful graphics.</description>
+    </item>
+    
+    <item>
+      <title>Recent Posts</title>
+      <link>/home/posts/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/home/posts/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>/home/contact/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/home/contact/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

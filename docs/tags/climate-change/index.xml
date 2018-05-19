@@ -6,9 +6,11 @@
     <description>Recent content in Climate Change on Matthew Leonawicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
     <lastBuildDate>Mon, 23 Oct 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/climate-change/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="/tags/climate-change/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Climate explorer update: monthly data and delta change</title>
@@ -16,35 +18,8 @@
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/climate-explorer-update-monthly-data-and-delta-change/</guid>
-      <description>&lt;p&gt;The SNAP &lt;a href=&#34;https://uasnap.shinyapps.io/climdist/&#34; target=&#34;_blank&#34;&gt;Climate Analytics&lt;/a&gt; Shiny app has been updated.
-Previously, the app included seasonally and annually aggregated data.
-With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The &lt;code&gt;Season&lt;/code&gt; dropdown menu now offers annual average, 3-month seasonals, and individual months.&lt;/p&gt;
-
-&lt;p&gt;These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app. This count does not include the marginal distributions users can estimate on the fly while using the app. For example, you can look at annual probability distributions for five different climate models, but while this may be of interest in some cases, in others it may be more interesting to to investigate the spatial distribution of temperature for a multi-model composite over some aggregate time period. This is where the app really shines; not in the large number of available conditional distributions, but rather in providing real-time estimation of marginal distributions of interest to users.&lt;/p&gt;
-
-&lt;p&gt;The other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
-The new option can be found in the &lt;code&gt;Additional settings&lt;/code&gt; modal.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_climatology.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;In this example, the data selection is as shown here.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_data.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;By default, raw climate values are shown, e.g., a time series of temperature values.
-This is unchanged from before.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_ts1.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;When the delta change option is checked, plots and statistics update to reflect change vs. historical baseline average.
-Climatologies use CRU 4.0 data. The period can range anywhere from 1950 - 2009, defaulting the the 1980 - 2009 30-year climatology.
-Climatologies are unique to each geographic region and seasonal period.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_ts2.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see above, some comparisons of change over time are easier to glean from the plot when viewing delta change instead of raw values.
-Also note that temperature deltas or anomalies are differential whereas change in precipitation is proportional.&lt;/p&gt;
-</description>
+      <description>The SNAP Climate Analytics Shiny app has been updated. Previously, the app included seasonally and annually aggregated data. With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The Season dropdown menu now offers annual average, 3-month seasonals, and individual months.
+These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app.</description>
     </item>
     
     <item>
@@ -53,16 +28,8 @@ Also note that temperature deltas or anomalies are differential whereas change i
       <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>/post/r-animation-global-climate-change/</guid>
-      <description>&lt;p&gt;I have posted a new R data animation video. It&amp;rsquo;s an example animation of modeled historical and projected global temperature change from 1850 - 2100. The data prep, analysis, full processing and generation of all sets of still frames for each layer in the video are done using R.&lt;/p&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/xhqEkyJDBho?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Typically an ensemble of models would be used but this video is just to demonstrate a basic animation using one climate model, both with a monthly time series and a monthly 10-year moving average time series. If wondering about the y-axis range, the animation shows anomalies, or delta change, from the climate model&amp;rsquo;s historical baseline monthly average temperatures using a given climatology window.&lt;/p&gt;
-
-&lt;p&gt;In a later video I will use annual and seasonal averages, which will display a smoother signal than monthly series.&lt;/p&gt;
-</description>
+      <description>I have posted a new R data animation video. It&amp;rsquo;s an example animation of modeled historical and projected global temperature change from 1850 - 2100. The data prep, analysis, full processing and generation of all sets of still frames for each layer in the video are done using R.
+  Typically an ensemble of models would be used but this video is just to demonstrate a basic animation using one climate model, both with a monthly time series and a monthly 10-year moving average time series.</description>
     </item>
     
   </channel>

@@ -6,9 +6,11 @@
     <description>Recent content in Source Code on Matthew Leonawicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
     <lastBuildDate>Thu, 12 Oct 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/source-code/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="/tags/source-code/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Shiny app: Distributions of random variables</title>
@@ -16,45 +18,8 @@
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/shiny-app-distributions-of-random-variables/</guid>
-      <description>&lt;p&gt;There is a new version of my &lt;a href=&#34;https://uasnap.shinyapps.io/rvdist/&#34; target=&#34;_blank&#34;&gt;Distributions of Random Variables&lt;/a&gt; Shiny app available.
-This is a cleaned up modern revision of my original 2013 app series involving random variable probability distributions.
-The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base graphics. I have added this app to my &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34; target=&#34;_blank&#34;&gt;shiny-apps&lt;/a&gt; GitHub repository so the source code is available, including a script containing all those pesky &lt;code&gt;plotmath&lt;/code&gt; expressions.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/rvdist.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;The app draws and plots samples from various well known discrete and continuous probability distributions, all of which are available in base R with the single exception of the Pareto distribution. To include this distribution, I used the &lt;code&gt;VGAM&lt;/code&gt; package. The plots include an overlay of the formula for the selected probability mass or density function.&lt;/p&gt;
-
-&lt;p&gt;Available discrete distributions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Bernoulli&lt;/li&gt;
-&lt;li&gt;Binomial&lt;/li&gt;
-&lt;li&gt;Uniform&lt;/li&gt;
-&lt;li&gt;Geometric&lt;/li&gt;
-&lt;li&gt;Hypergeometric&lt;/li&gt;
-&lt;li&gt;Negative Binomial&lt;/li&gt;
-&lt;li&gt;Poisson&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Available continuous distributions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Beta&lt;/li&gt;
-&lt;li&gt;Cauchy&lt;/li&gt;
-&lt;li&gt;Chi-squared&lt;/li&gt;
-&lt;li&gt;Exponential&lt;/li&gt;
-&lt;li&gt;F&lt;/li&gt;
-&lt;li&gt;Gamma&lt;/li&gt;
-&lt;li&gt;Laplace (Double Exponential)&lt;/li&gt;
-&lt;li&gt;Logistic&lt;/li&gt;
-&lt;li&gt;Log-Normal&lt;/li&gt;
-&lt;li&gt;Normal&lt;/li&gt;
-&lt;li&gt;Pareto&lt;/li&gt;
-&lt;li&gt;t&lt;/li&gt;
-&lt;li&gt;Uniform&lt;/li&gt;
-&lt;li&gt;Weibull&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>There is a new version of my Distributions of Random Variables Shiny app available. This is a cleaned up modern revision of my original 2013 app series involving random variable probability distributions. The primary change is a switch to ggplot2 from base graphics. I have added this app to my shiny-apps GitHub repository so the source code is available, including a script containing all those pesky plotmath expressions.
+The app draws and plots samples from various well known discrete and continuous probability distributions, all of which are available in base R with the single exception of the Pareto distribution.</description>
     </item>
     
     <item>
@@ -63,12 +28,7 @@ The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base gra
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-04-26-assorted-shiny-apps/</guid>
-      <description>&lt;p&gt;Here is an &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34;&gt;assortment of R Shiny apps&lt;/a&gt; that you may find useful for exploration if you are in the process of learning Shiny and looking for something different. Some of these apps are very small and simple whereas others are large and complex. This repository provides full code and any necessary accompanying data sets. The repo also links to the apps hosted online at shinyapps.io so that you can run apps in your browser without having to download the entire collection repo to run apps locally. That and other details can be found at the repo linked above. This isn’t a tutorial or other form of support, but it’s plenty of R code to peruse if that is what you are looking for.&lt;/p&gt;
-&lt;p&gt;A bit of backstory. If I recall correctly, I began exploring RStudio’s Shiny package when I first heard of it in late 2012. Needless to say, a lot has changed since then, including not only all the alpha-release code-breaking changes I had to adjust to when making my first apps and what features and capabilities Shiny has grown to offer, but also simply how I go about coding apps has changed over time symbiotically with the package’s continued development. None of the apps in this repository are quite that old, though a few are close. Even so, they have been maintained and updated and tweaked since then to keep with the times as necessary.&lt;/p&gt;
-&lt;p&gt;Most of the apps are newer. But one nice thing about this collection is that it shows a diversity of approaches to coding different features and behavior into apps depending on their purposes and how for me that has changed over time. For example, some apps are heavy on maps. Prior to the robust availability of Leaflet in Shiny, I would tend to have a Shiny app display maps using static (but reactive) plots made with Lattice or ggplot2. There are many ways to do the same thing, and the way that is best in one case is not always the best way.&lt;/p&gt;
-&lt;p&gt;Across these apps there are many other examples of different ways to implement the same general task, depending on how I want that to be presented to the user in a specific app. In other cases, some approaches have proven more powerful and outright superior to others and have won out and it is equally useful to see these examples of what once was considered to be “good enough” is no longer.&lt;/p&gt;
-&lt;p&gt;Lastly, if you do happen to stumble upon something that is actually broken, I am unaware of it, so please let me know.&lt;/p&gt;
-</description>
+      <description>Here is an assortment of R Shiny apps that you may find useful for exploration if you are in the process of learning Shiny and looking for something different. Some of these apps are very small and simple whereas others are large and complex. This repository provides full code and any necessary accompanying data sets. The repo also links to the apps hosted online at shinyapps.io so that you can run apps in your browser without having to download the entire collection repo to run apps locally.</description>
     </item>
     
     <item>
@@ -77,18 +37,8 @@ The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base gra
       <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/custom-images-for-shiny-dashboard-valuebox-icons/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;shinydashboard&lt;/code&gt; package provides functions like &lt;code&gt;valueBox&lt;/code&gt; that conveniently display basic information like summary statistics. In addition to presenting a value and subtitle on a colored background, an icon may be included as well. However, the icon must come from either the Font Awesome or Glyphicon icon libraries and cannot be image files.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve &lt;a href=&#34;https://gist.github.com/leonawicz/0fab3796b02a62b7f3bd0c02a171f0b7&#34;&gt;provided a gist&lt;/a&gt; that shows how to achieve the use of custom icons with local image files stored in an app&amp;rsquo;s &lt;code&gt;www/&lt;/code&gt; directory. It involves overriding a couple functions in &lt;code&gt;shiny&lt;/code&gt; and &lt;code&gt;shinydashboard&lt;/code&gt; and adding a small bit of custom CSS. Ideally, functionality could be included in future versions of these two packages to allow this in a more robust and complete fashion. But for now, here is a way to do it yourself for value boxes.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/post/valueboxes1.png&#34;&gt;&lt;img src=&#34;../../img/post/valueboxes1.png&#34; alt=&#34;valueboxes1&#34; width=&#34;599&#34; height=&#34;351&#34; class=&#34;aligncenter size-full&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The gist above includes the &lt;code&gt;app.R&lt;/code&gt; file to run the &lt;a href=&#34;https://uasnap.shinyapps.io/customiconsdemo/&#34;&gt;Custom Icons Shiny app demo&lt;/a&gt; and the &lt;code&gt;override.R&lt;/code&gt; file which I have it &lt;code&gt;source&lt;/code&gt; separately. The gist also includes an &lt;code&gt;icons.R&lt;/code&gt; script to generate some statistics and probability themed icons from R. This is interesting and fun on its own. This is not needed to run the app, but the icons are of course needed. If you build the app locally you will have to run this script to generate the images and place them in your &lt;code&gt;www/&lt;/code&gt; folder. The live app demo contains them already.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve included both light and dark examples using icons that can be used to generally represent a distribution, mean, standard deviation, minimum, maximum, median or interquartile range. Note that &lt;code&gt;app.R&lt;/code&gt; adds some custom CSS; it is not sufficient to override the definitions of &lt;code&gt;icon&lt;/code&gt; and &lt;code&gt;valueBox&lt;/code&gt; alone. I placed it inline for to reduce the number of required files, but it could alternatively be loaded from a file using &lt;code&gt;includeCSS&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This overriding functionality is only for &lt;code&gt;valueBox&lt;/code&gt; widgets and the way in which a local image file is passed to &lt;code&gt;icon&lt;/code&gt; is with a named list where the available names are &lt;code&gt;src&lt;/code&gt; (required, image file name) and &lt;code&gt;width&lt;/code&gt; (optional, defaults to &lt;code&gt;&#39;100%&#39;&lt;/code&gt;). It is restrictive but demonstrates potential to use image files in place of icon library options without too much code refactoring.&lt;/p&gt;
-</description>
+      <description>The shinydashboard package provides functions like valueBox that conveniently display basic information like summary statistics. In addition to presenting a value and subtitle on a colored background, an icon may be included as well. However, the icon must come from either the Font Awesome or Glyphicon icon libraries and cannot be image files.
+I&amp;rsquo;ve provided a gist that shows how to achieve the use of custom icons with local image files stored in an app&amp;rsquo;s www/ directory.</description>
     </item>
     
   </channel>

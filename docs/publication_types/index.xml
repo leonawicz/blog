@@ -6,8 +6,10 @@
     <description>Recent content in Publication_types on Matthew Leonawicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
-    <atom:link href="/publication_types/" rel="self" type="application/rss+xml" />
+    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
+    
+	<atom:link href="/publication_types/index.xml" rel="self" type="application/rss+xml" />
+    
     
   </channel>
 </rss>

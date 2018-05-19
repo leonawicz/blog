@@ -6,9 +6,11 @@
     <description>Recent content in Visualization on Matthew Leonawicz</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2017 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
     <lastBuildDate>Tue, 13 Feb 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/visualization/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Mix ggplot2 graphs with your favorite memes. memery 0.4.2 released.</title>
@@ -16,65 +18,9 @@
       <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/</guid>
-      <description>&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.4.2&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;div id=&#34;changes-in-v0.4.2&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Changes in v0.4.2&lt;/h2&gt;
-&lt;p&gt;This latest version of &lt;code&gt;memery&lt;/code&gt; includes a demo Shiny app.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(memery)
-memeApp()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Animated gif support is now also included (example below). This relies on the &lt;code&gt;magick&lt;/code&gt; package and ImageMagick software, but this is optional and these libraries are not required for you to use &lt;code&gt;memery&lt;/code&gt; if you have no interest in animated gifs. For example, when launching the demo Shiny app, if you do not have these libraries installed on your system, the app launches in your browser in a simplified form. It will only accept png and jpg files as inputs and a default static image will be shown at startup. Alternatively, the app launches in full mode, will also accept gif inputs, and the default image shown is an animated gif. The only function in &lt;code&gt;memery&lt;/code&gt; that pertains to gifs is &lt;code&gt;meme_gif&lt;/code&gt;, which is distinct from the main package function, &lt;code&gt;meme&lt;/code&gt;. If you call &lt;code&gt;meme_gif&lt;/code&gt; without the supporting libraries, it simply prints a notification about this to the console.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;example-usage&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Example usage&lt;/h2&gt;
-&lt;p&gt;Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels. The &lt;code&gt;meme&lt;/code&gt; function will produce basic memes without needing to specify a number of additional arguments, but this is not the main purpose of the package. Adding a plot is then as simple as passing the plot to &lt;code&gt;inset&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;memery&lt;/code&gt; offers sensible defaults as well as a variety of basic templates for controlling how the meme and graph are spliced together. The example here shows how additional arguments can be specified to further control the content and layout. See the package &lt;a href=&#34;https://leonawicz.github.io/memery/articles/memery.html&#34;&gt;vignette&lt;/a&gt; for a more complete set of examples and description of available features and graph templates.&lt;/p&gt;
-&lt;p&gt;Please do share your data analyst meme creations. Enjoy!&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(memery)
-
-# Make a graph of some data
-library(ggplot2)
-x &amp;lt;- seq(0, 2 * pi, length.out = 50)
-panels &amp;lt;- rep(c(&amp;quot;Plot A&amp;quot;, &amp;quot;Plot B&amp;quot;), each = 50)
-d &amp;lt;- data.frame(x = x, y = sin(x), grp = panels)
-txt &amp;lt;- c(&amp;quot;Philosoraptor&amp;#39;s plots&amp;quot;, &amp;quot;I like to make plots&amp;quot;, &amp;quot;Figure 1. (A) shows a plot and (B) shows another plot.&amp;quot;)
-p &amp;lt;- ggplot(d, aes(x, y)) + geom_line(colour = &amp;quot;cornflowerblue&amp;quot;, size = 2) + 
-    geom_point(colour = &amp;quot;orange&amp;quot;, size = 4) + facet_wrap(~grp) + labs(title = txt[1], 
-    subtitle = txt[2], caption = txt[3])
-
-# Meme settings
-img &amp;lt;- system.file(&amp;quot;philosoraptor.jpg&amp;quot;, package = &amp;quot;memery&amp;quot;)
-lab &amp;lt;- c(&amp;quot;What to call my R package?&amp;quot;, &amp;quot;Hmm... What? raptr is taken!?&amp;quot;, &amp;quot;Noooooo!!!!&amp;quot;)
-size &amp;lt;- c(1.8, 1.5, 2.2)  # label sizes
-pos &amp;lt;- list(w = rep(0.9, 3), h = rep(0.3, 3), x = c(0.45, 0.6, 0.5), y = c(0.95, 
-    0.85, 0.3))
-fam &amp;lt;- c(&amp;quot;Impact&amp;quot;, &amp;quot;serif&amp;quot;, &amp;quot;Impact&amp;quot;)
-col &amp;lt;- list(c(&amp;quot;black&amp;quot;, &amp;quot;orange&amp;quot;, &amp;quot;white&amp;quot;), c(&amp;quot;white&amp;quot;, &amp;quot;black&amp;quot;, &amp;quot;black&amp;quot;))
-gbg &amp;lt;- list(fill = &amp;quot;#FF00FF50&amp;quot;, col = &amp;quot;#FFFFFF75&amp;quot;)  # graph background
-
-# Save meme
-meme(img, lab, &amp;quot;meme.jpg&amp;quot;, size = size, family = fam, col = col[[1]], shadow = col[[2]], 
-    label_pos = pos, inset = p, inset_bg = gbg, mult = 2)&lt;/code&gt;&lt;/pre&gt;
-&lt;p align=&#34;center&#34;&gt;
-&lt;img src=&#34;../../img/post/meme.jpg&#34;/&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;animated-gif-example&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Animated gif example&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;d$grp &amp;lt;- gsub(&amp;quot;Plot&amp;quot;, &amp;quot;Cat&amp;#39;s Plot&amp;quot;, d$grp)
-p &amp;lt;- ggplot(d, aes(x, y)) + geom_line(colour = &amp;quot;white&amp;quot;, size = 2) + geom_point(colour = &amp;quot;orange&amp;quot;, 
-    size = 1) + facet_wrap(~grp) + labs(title = &amp;quot;The wiggles&amp;quot;, subtitle = &amp;quot;Plots for cats&amp;quot;, 
-    caption = &amp;quot;Figure 1. Gimme sine waves.&amp;quot;)
-lab &amp;lt;- c(&amp;quot;R plots for cats&amp;quot;, &amp;quot;Sine wave sine wave...&amp;quot;)
-pos &amp;lt;- list(w = rep(0.9, 2), h = rep(0.3, 2), x = rep(0.5, 2), y = c(0.9, 0.75))
-img &amp;lt;- &amp;quot;http://forgifs.com/gallery/d/228621-4/Cat-wiggles.gif&amp;quot;
-meme_gif(img, lab, &amp;quot;sine.gif&amp;quot;, size = c(1.5, 0.75), label_pos = pos, inset = p, 
-    inset_bg = list(fill = &amp;quot;#00BFFF80&amp;quot;), fps = 20)&lt;/code&gt;&lt;/pre&gt;
-&lt;p align=&#34;center&#34;&gt;
-&lt;img src=&#34;https://github.com/leonawicz/DataVisExamples/blob/master/packages/memery.gif?raw=true&#34;&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;/div&gt;
-</description>
+      <description>Make memorable plots with memery. memery is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. Version 0.4.2 of memery is now on CRAN. The latest development version and a package vignette are available on GitHub.
+Changes in v0.4.2This latest version of memery includes a demo Shiny app.
+library(memery)memeApp()Animated gif support is now also included (example below).</description>
     </item>
     
     <item>
@@ -83,39 +29,8 @@ meme_gif(img, lab, &amp;quot;sine.gif&amp;quot;, size = c(1.5, 0.75), label_pos 
       <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-11-09-memery-0-3-0-on-cran/</guid>
-      <description>&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.3.0&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels. The &lt;code&gt;meme&lt;/code&gt; function will produce basic memes without needing to specify a number of additional arguments, but this is not the main purpose of the package. Adding a plot is then as simple as passing the plot to &lt;code&gt;inset&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;memery&lt;/code&gt; offers sensible defaults as well as a variety of basic templates for controlling how the meme and graph are spliced together. The example here shows how additional arguments can be specified to further control the content and layout. See the package &lt;a href=&#34;https://leonawicz.github.io/memery/articles/memery.html&#34;&gt;vignette&lt;/a&gt; for a more complete set of examples and description of available features and graph templates.&lt;/p&gt;
-&lt;p&gt;Please do share your data analyst meme creations. Enjoy!&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(memery)
-
-# Make a graph of some data
-library(ggplot2)
-x &amp;lt;- seq(0, 2 * pi, length.out = 50)
-panels &amp;lt;- rep(c(&amp;quot;Plot A&amp;quot;, &amp;quot;Plot B&amp;quot;), each = 50)
-d &amp;lt;- data.frame(x = x, y = sin(x), grp = panels)
-txt &amp;lt;- c(&amp;quot;Philosoraptor&amp;#39;s plots&amp;quot;, &amp;quot;I like to make plots&amp;quot;, &amp;quot;Figure 1. (A) shows a plot and (B) shows another plot.&amp;quot;)
-p &amp;lt;- ggplot(d, aes(x, y)) + geom_line(colour = &amp;quot;cornflowerblue&amp;quot;, size = 2) + 
-    geom_point(colour = &amp;quot;orange&amp;quot;, size = 4) + facet_wrap(~grp) + labs(title = txt[1], 
-    subtitle = txt[2], caption = txt[3])
-
-# Meme settings
-img &amp;lt;- system.file(&amp;quot;philosoraptor.jpg&amp;quot;, package = &amp;quot;memery&amp;quot;)
-lab &amp;lt;- c(&amp;quot;What to call my R package?&amp;quot;, &amp;quot;Hmm... What? raptr is taken!?&amp;quot;, &amp;quot;Noooooo!!!!&amp;quot;)
-size &amp;lt;- c(1.8, 1.5, 2.2)  # label sizes
-pos &amp;lt;- list(w = rep(0.9, 3), h = rep(0.3, 3), x = c(0.45, 0.6, 0.5), y = c(0.95, 
-    0.85, 0.3))
-fam &amp;lt;- c(&amp;quot;Impact&amp;quot;, &amp;quot;serif&amp;quot;, &amp;quot;Impact&amp;quot;)
-col &amp;lt;- list(c(&amp;quot;black&amp;quot;, &amp;quot;orange&amp;quot;, &amp;quot;white&amp;quot;), c(&amp;quot;white&amp;quot;, &amp;quot;black&amp;quot;, &amp;quot;black&amp;quot;))
-gbg &amp;lt;- list(fill = &amp;quot;#FF00FF50&amp;quot;, col = &amp;quot;#FFFFFF75&amp;quot;)  # graph background
-
-# Save meme
-meme(img, lab, &amp;quot;meme.jpg&amp;quot;, size = size, family = fam, col = col[[1]], shadow = col[[2]], 
-    label_pos = pos, inset = p, inset_bg = gbg, mult = 2)&lt;/code&gt;&lt;/pre&gt;
-&lt;p align=&#34;center&#34;&gt;
-&lt;img src=&#34;../../img/post/meme.jpg&#34;/&gt;
-&lt;/p&gt;
-</description>
+      <description>Make memorable plots with memery. memery is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. Version 0.3.0 of memery is now on CRAN. The latest development version and a package vignette are available on GitHub.
+Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels.</description>
     </item>
     
     <item>
@@ -124,49 +39,9 @@ meme(img, lab, &amp;quot;meme.jpg&amp;quot;, size = size, family = fam, col = co
       <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/apputils-0-5-0-released/</guid>
-      <description>
-
-&lt;p&gt;Version 0.5.0 of the &lt;a href=&#34;https://github.com/leonawicz/apputils&#34; target=&#34;_blank&#34;&gt;apputils&lt;/a&gt; R package has been released on GitHub.
-Complete documentation is available at the &lt;a href=&#34;https://leonawicz.github.io/apputils&#34; target=&#34;_blank&#34;&gt;apputils website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The key updates are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Added &lt;code&gt;exApp&lt;/code&gt; for running Shiny app package examples.&lt;/li&gt;
-&lt;li&gt;Ported custom icons demo app to &lt;code&gt;apputils&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Included all current custom icons in example app, adding the newer linear model themed icons.&lt;/li&gt;
-&lt;li&gt;Added package css for &lt;code&gt;infoBox&lt;/code&gt; override.&lt;/li&gt;
-&lt;li&gt;Added introduction vignette content for stat boxes with package icons.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;You can now call &lt;code&gt;exApp(&amp;quot;icons&amp;quot;)&lt;/code&gt; to view the stat box icons examples locally.
-Available icons are grouped into three categories.&lt;/p&gt;
-
-&lt;h3 id=&#34;icons-representing-common-statistics&#34;&gt;Icons representing common statistics&lt;/h3&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/apputils_vbox1.png&#34;/&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;icons-representing-delta-change-or-trends&#34;&gt;Icons representing delta change or trends&lt;/h3&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/apputils_vbox2.png&#34;/&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;icons-related-to-fitting-statistical-models&#34;&gt;Icons related to fitting statistical models&lt;/h3&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/apputils_vbox3.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;These are the recent updates to &lt;code&gt;apputils&lt;/code&gt;. However, the package offers other helpful utilities such as convenient functions for:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;app citation&lt;/li&gt;
-&lt;li&gt;a showcase widget for displaying and linking to other related apps&lt;/li&gt;
-&lt;li&gt;an author/contact info widget&lt;/li&gt;
-&lt;li&gt;dashboard sidebar footer logo&lt;/li&gt;
-&lt;li&gt;collapsible FAQ widget&lt;/li&gt;
-&lt;li&gt;integration with &lt;code&gt;rintrojs&lt;/code&gt; and &lt;code&gt;shinytoastr&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;These utilities involve relatively canned styles of presentation so they are not universally suitable for all users and use cases, but they offer convenience when applicable. An example app that uses several utilities from &lt;code&gt;apputils&lt;/code&gt; is my recent work in progress, the SNAP &lt;a href=&#34;https://uasnap.shinyapps.io/climdist/&#34; target=&#34;_blank&#34;&gt;Climate Analytics&lt;/a&gt; app.&lt;/p&gt;
-</description>
+      <description>Version 0.5.0 of the apputils R package has been released on GitHub. Complete documentation is available at the apputils website.
+The key updates are:
+ Added exApp for running Shiny app package examples. Ported custom icons demo app to apputils. Included all current custom icons in example app, adding the newer linear model themed icons. Added package css for infoBox override. Added introduction vignette content for stat boxes with package icons.</description>
     </item>
     
     <item>
@@ -175,35 +50,8 @@ Available icons are grouped into three categories.&lt;/p&gt;
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/climate-explorer-update-monthly-data-and-delta-change/</guid>
-      <description>&lt;p&gt;The SNAP &lt;a href=&#34;https://uasnap.shinyapps.io/climdist/&#34; target=&#34;_blank&#34;&gt;Climate Analytics&lt;/a&gt; Shiny app has been updated.
-Previously, the app included seasonally and annually aggregated data.
-With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The &lt;code&gt;Season&lt;/code&gt; dropdown menu now offers annual average, 3-month seasonals, and individual months.&lt;/p&gt;
-
-&lt;p&gt;These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app. This count does not include the marginal distributions users can estimate on the fly while using the app. For example, you can look at annual probability distributions for five different climate models, but while this may be of interest in some cases, in others it may be more interesting to to investigate the spatial distribution of temperature for a multi-model composite over some aggregate time period. This is where the app really shines; not in the large number of available conditional distributions, but rather in providing real-time estimation of marginal distributions of interest to users.&lt;/p&gt;
-
-&lt;p&gt;The other major change is the ability to convert figures and statistics to reflect projected delta change (anomalies) in comparison with a historical climatology period.
-The new option can be found in the &lt;code&gt;Additional settings&lt;/code&gt; modal.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_climatology.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;In this example, the data selection is as shown here.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_data.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;By default, raw climate values are shown, e.g., a time series of temperature values.
-This is unchanged from before.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_ts1.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;When the delta change option is checked, plots and statistics update to reflect change vs. historical baseline average.
-Climatologies use CRU 4.0 data. The period can range anywhere from 1950 - 2009, defaulting the the 1980 - 2009 30-year climatology.
-Climatologies are unique to each geographic region and seasonal period.&lt;/p&gt;
-
-&lt;p align=&#34;center&#34;&gt;&lt;img src=&#34;../../img/post/climdist_ts2.png&#34;/&gt;&lt;/p&gt;
-
-&lt;p&gt;As you can see above, some comparisons of change over time are easier to glean from the plot when viewing delta change instead of raw values.
-Also note that temperature deltas or anomalies are differential whereas change in precipitation is proportional.&lt;/p&gt;
-</description>
+      <description>The SNAP Climate Analytics Shiny app has been updated. Previously, the app included seasonally and annually aggregated data. With the recent inclusion of monthly data, the number of conditional spatio-temporal climate probability distributions has now increased from a base set of about 13 million unique distributions to over 46 million. The Season dropdown menu now offers annual average, 3-month seasonals, and individual months.
+These conditional distributions for historical and projected temperature and precipitation over different geographic regions, time periods, climate models and greenhouse gas emissions scenarios represent the source data sets available in the app.</description>
     </item>
     
     <item>
@@ -212,18 +60,8 @@ Also note that temperature deltas or anomalies are differential whereas change i
       <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/custom-images-for-shiny-dashboard-valuebox-icons/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;shinydashboard&lt;/code&gt; package provides functions like &lt;code&gt;valueBox&lt;/code&gt; that conveniently display basic information like summary statistics. In addition to presenting a value and subtitle on a colored background, an icon may be included as well. However, the icon must come from either the Font Awesome or Glyphicon icon libraries and cannot be image files.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve &lt;a href=&#34;https://gist.github.com/leonawicz/0fab3796b02a62b7f3bd0c02a171f0b7&#34;&gt;provided a gist&lt;/a&gt; that shows how to achieve the use of custom icons with local image files stored in an app&amp;rsquo;s &lt;code&gt;www/&lt;/code&gt; directory. It involves overriding a couple functions in &lt;code&gt;shiny&lt;/code&gt; and &lt;code&gt;shinydashboard&lt;/code&gt; and adding a small bit of custom CSS. Ideally, functionality could be included in future versions of these two packages to allow this in a more robust and complete fashion. But for now, here is a way to do it yourself for value boxes.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/post/valueboxes1.png&#34;&gt;&lt;img src=&#34;../../img/post/valueboxes1.png&#34; alt=&#34;valueboxes1&#34; width=&#34;599&#34; height=&#34;351&#34; class=&#34;aligncenter size-full&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The gist above includes the &lt;code&gt;app.R&lt;/code&gt; file to run the &lt;a href=&#34;https://uasnap.shinyapps.io/customiconsdemo/&#34;&gt;Custom Icons Shiny app demo&lt;/a&gt; and the &lt;code&gt;override.R&lt;/code&gt; file which I have it &lt;code&gt;source&lt;/code&gt; separately. The gist also includes an &lt;code&gt;icons.R&lt;/code&gt; script to generate some statistics and probability themed icons from R. This is interesting and fun on its own. This is not needed to run the app, but the icons are of course needed. If you build the app locally you will have to run this script to generate the images and place them in your &lt;code&gt;www/&lt;/code&gt; folder. The live app demo contains them already.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve included both light and dark examples using icons that can be used to generally represent a distribution, mean, standard deviation, minimum, maximum, median or interquartile range. Note that &lt;code&gt;app.R&lt;/code&gt; adds some custom CSS; it is not sufficient to override the definitions of &lt;code&gt;icon&lt;/code&gt; and &lt;code&gt;valueBox&lt;/code&gt; alone. I placed it inline for to reduce the number of required files, but it could alternatively be loaded from a file using &lt;code&gt;includeCSS&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This overriding functionality is only for &lt;code&gt;valueBox&lt;/code&gt; widgets and the way in which a local image file is passed to &lt;code&gt;icon&lt;/code&gt; is with a named list where the available names are &lt;code&gt;src&lt;/code&gt; (required, image file name) and &lt;code&gt;width&lt;/code&gt; (optional, defaults to &lt;code&gt;&#39;100%&#39;&lt;/code&gt;). It is restrictive but demonstrates potential to use image files in place of icon library options without too much code refactoring.&lt;/p&gt;
-</description>
+      <description>The shinydashboard package provides functions like valueBox that conveniently display basic information like summary statistics. In addition to presenting a value and subtitle on a colored background, an icon may be included as well. However, the icon must come from either the Font Awesome or Glyphicon icon libraries and cannot be image files.
+I&amp;rsquo;ve provided a gist that shows how to achieve the use of custom icons with local image files stored in an app&amp;rsquo;s www/ directory.</description>
     </item>
     
     <item>
@@ -232,169 +70,8 @@ Also note that temperature deltas or anomalies are differential whereas change i
       <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
       
       <guid>/post/mapmate-0-2-0/</guid>
-      <description>
-
-&lt;p&gt;&lt;em&gt;&lt;code&gt;mapmate&lt;/code&gt; is under development and blog posts can become outdated quickly. Up to date &lt;code&gt;mapmate&lt;/code&gt; documentation and tutorial examples can be found at the &lt;a href=&#34;https://leonawicz.github.io/mapmate/&#34;&gt;official mapmate Github pages&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/leonawicz/mapmate&#34;&gt;mapmate&lt;/a&gt; has now been updating from version 0.1.0 to 0.2.0 on Github. The key change is the incorporation of new functions, help docs and code examples focused on network maps, which is a more complex map type not previously covered. The new tutorial content below provides a a couple basic code examples for making network maps with &lt;code&gt;mapmate&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;While &lt;code&gt;mapmate&lt;/code&gt; is aimed at still image sequence generation, allowing the user to exert full control over how still image sequences are used to produce animations subsequently (GUI video editor, ffmpeg, ImageMagick, etc) and not directly at animating from R, the examples here include the use of the &lt;code&gt;animation&lt;/code&gt; package to help you quickly reproduce some basic animated gifs (as long as you have ImageMagick installed on your system). But the takeaway message is that &lt;code&gt;mapmate&lt;/code&gt; now has better support for still image map sequence generation when using the network map type based on great circle arc path traversal.&lt;/p&gt;
-
-&lt;p&gt;If you are new to &lt;code&gt;mapmate&lt;/code&gt; there is also the &lt;a href=&#34;https://leonawicz.github.io/mapmate/mapmate.html&#34;&gt;introductory vignette&lt;/a&gt;. The &lt;a href=&#34;https://leonawicz.github.io/mapmate/networks.html&#34;&gt;content of this post&lt;/a&gt; is available on the &lt;a href=&#34;https://leonawicz.github.io/mapmate/&#34;&gt;mapmate Github pages&lt;/a&gt; as well.&lt;/p&gt;
-
-&lt;p&gt;To install the package:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;devtools::install_github(&amp;quot;leonawicz/mapmate&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;networks&#34;&gt;Networks&lt;/h1&gt;
-
-&lt;p&gt;The &lt;code&gt;save_map&lt;/code&gt; function in the &lt;code&gt;mapmate&lt;/code&gt; package offers the &lt;code&gt;type=&amp;quot;network&amp;quot;&lt;/code&gt; map type. This type of map displays networks or pathways defined by overlapping segments traversing along great circle arcs. This map type can be used to display arbitrary line segments as well if such data is provided, but the provided helper functions used here are aimed specifically at drawing great circles.&lt;/p&gt;
-
-&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
-
-&lt;h2 id=&#34;obtain-great-circle-arc-endpoints&#34;&gt;Obtain great circle arc endpoints&lt;/h2&gt;
-
-&lt;p&gt;The first example uses a flat map. Therefore it is important to break lines at the international dateline when preparing the data. In the second example, lines cross the dateline are not split because the segments will be plotted on the globe.&lt;/p&gt;
-
-&lt;p&gt;First, begin with the &lt;code&gt;network&lt;/code&gt; data set provided in &lt;code&gt;mapmate&lt;/code&gt; is a simple data frame of lon/lat locations of various cities and corresponding weights related to population sizes. It must be expanded to a larger, more complex data frame that contains location pairs and, optionally, distances between locations in each pair. &lt;code&gt;gc_endpoints&lt;/code&gt; assists with this by simulating some pairs. The resulting data frame contains endpoints of lines that are defined subsequently.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(mapmate)
-library(dplyr)
-
-set.seed(192)
-data(network)
-network
-
-distFun &amp;lt;- function(x) 1 - x/max(x)  # simple inverse distance weighting
-endpoints &amp;lt;- gc_endpoints(network, &amp;quot;lon&amp;quot;, &amp;quot;lat&amp;quot;)
-endpoints
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;obtain-great-circle-arcs&#34;&gt;Obtain great circle arcs&lt;/h2&gt;
-
-&lt;p&gt;Next, we sample based on a combination of weights. This is an arbitrary and optional step. The example is given primarily to make the data set used in these examples smaller in size. More importantly, the &lt;code&gt;gc_arcs&lt;/code&gt; helper function is used to further expand the &lt;code&gt;endpoints&lt;/code&gt; data frame to one containing sequences of points describing great circle arcs instead of only their endpoints.&lt;/p&gt;
-
-&lt;p&gt;The default number of points added between the endpoints of each great circle arc is &lt;code&gt;n=50&lt;/code&gt;, but this can be changed and can also differ for each arc (e.g., based on distance between points). As noted, arcs are filled out planning for use with both flat maps and a globes. A &lt;code&gt;group&lt;/code&gt; column is used to identify distinct arcs for plotting.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# take a weighted sample, e.g., favoring larger averaged populations and
-# shorter distances
-endpoints &amp;lt;- mutate(endpoints, Dist_wts = distFun(Dist))
-endpoints &amp;lt;- sample_n(endpoints, 500, replace = TRUE, weight = (Pop_wts0 + Pop_wts1)/2 + 
-    Dist_wts)
-
-# expand data frame from endpoints to arcs, each composed of a sequence of
-# points
-arcs_flat &amp;lt;- gc_arcs(endpoints, &amp;quot;lon0&amp;quot;, &amp;quot;lat0&amp;quot;, &amp;quot;lon1&amp;quot;, &amp;quot;lat1&amp;quot;, breakAtDateLine = TRUE)
-arcs_globe &amp;lt;- gc_arcs(endpoints, &amp;quot;lon0&amp;quot;, &amp;quot;lat0&amp;quot;, &amp;quot;lon1&amp;quot;, &amp;quot;lat1&amp;quot;)
-arcs_globe
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;obtain-great-circle-arc-path-sequences&#34;&gt;Obtain great circle arc path sequences&lt;/h2&gt;
-
-&lt;p&gt;Finally, &lt;code&gt;gc_paths&lt;/code&gt; is used to further expand the great circle arcs data frame into one that contains sequences of ordered segments along each arc. The segments can vary in length between distinct arcs and can overlap one another within an arc. The &lt;code&gt;group&lt;/code&gt; argument is required to identify distinct arcs in the input data frame. &lt;code&gt;size&lt;/code&gt; is required to set an upper limit on the number of points constituting an arc segment; the actual length of the segments is chosen randomly and uniformly between 2 and &lt;code&gt;size&lt;/code&gt;. Other arguments are optional.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;paths_flat &amp;lt;- gc_paths(arcs_flat, &amp;quot;group&amp;quot;, size = 5)
-paths_globe &amp;lt;- gc_paths(arcs_globe, &amp;quot;group&amp;quot;, size = 5)
-paths_globe
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;flat-map-network-animation&#34;&gt;Flat map network animation&lt;/h1&gt;
-
-&lt;p&gt;The direction of arc traversal can also be controlled by the &lt;code&gt;direction&lt;/code&gt; argument if desired. This is useful for simulations if the input data are not yet randomized or if the directions simply need to be reversed. First some setup:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;n &amp;lt;- max(paths_flat$id)
-png.args &amp;lt;- list(width = 600, height = 300, bg = &amp;quot;black&amp;quot;)
-clrs &amp;lt;- c(&amp;quot;#1E90FF50&amp;quot;, &amp;quot;#FFFFFF50&amp;quot;, &amp;quot;#FFFFFF&amp;quot;, &amp;quot;#1E90FF75&amp;quot;)
-ylm &amp;lt;- range(paths_flat$lat)  # trimming empty southern map region
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Typically, I would leave the default arguments &lt;code&gt;save.plot=TRUE&lt;/code&gt; and &lt;code&gt;return.plot=FALSE&lt;/code&gt;, but here they are reversed for the purposes of the example. This returns a list of &lt;code&gt;ggplot&lt;/code&gt; objects rather than saving png files. Note that I still included the &lt;code&gt;png.args&lt;/code&gt; argument even though &lt;code&gt;width&lt;/code&gt; and &lt;code&gt;height&lt;/code&gt; will be discarded because &lt;code&gt;save_map&lt;/code&gt; will take the background color specified by &lt;code&gt;bg&lt;/code&gt; intended for png files and use it in the &lt;code&gt;ggplot2&lt;/code&gt; theme applied to the returned plots.&lt;/p&gt;
-
-&lt;p&gt;The default background is transparent so I need to include this here since I have changed it to black. I have changed it to black in this example because I am making a reproducible gif for simplicity rather than doing any layering of separate image sequences in a video editor. Below, &lt;code&gt;saveGIF&lt;/code&gt; from the &lt;code&gt;animation&lt;/code&gt; package is used to make a simple gif from the plot sequence produced by &lt;code&gt;save_map&lt;/code&gt; by looping over the list of returned plots.&lt;/p&gt;
-
-&lt;p&gt;In summary, this is all a somewhat convoluted scenario to show you a short animated gif representing plots made by &lt;code&gt;save_map&lt;/code&gt;. The intended use case for &lt;code&gt;save_map&lt;/code&gt; is to simply export the sequence of png files and the user can do whatever they wish with those files subsequently. If literally all you want to do is make a short, simple animated gif of custom plots using a small amount of data, &lt;em&gt;just use the animation package&lt;/em&gt;. You do not need &lt;code&gt;mapmate&lt;/code&gt; for that. Also, if you are using &lt;code&gt;animation&lt;/code&gt; in general, as with the code below, it is dependent on &lt;code&gt;ImageMagick&lt;/code&gt;, which you will also have to install.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gglist &amp;lt;- save_seq(paths_flat, id = &amp;quot;id&amp;quot;, n.frames = n, ortho = FALSE, type = &amp;quot;network&amp;quot;, 
-    ylim = ylm, suffix = &amp;quot;2D&amp;quot;, png.args = png.args, save.plot = FALSE, return.plot = TRUE)
-
-library(animation)
-# you may need to specify a different path on your Windows machine you may
-# also need to ensure convert.exe is part of your particular installation
-ani.options(convert = &amp;quot;C:/Program Files/ImageMagick-7.0.3-Q16/convert.exe&amp;quot;)
-saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network2D.gif&amp;quot;, interval = 1/20, 
-    ani.width = 600, ani.height = 300)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/post/network2d.gif&#34;&gt;&lt;img src=&#34;../../img/post/network2d.gif?w=774&#34; alt=&#34;network2d&#34; width=&#34;774&#34; height=&#34;387&#34; class=&#34;aligncenter size-large&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This &lt;code&gt;animation&lt;/code&gt;-dependent example and the animated gif are not meant to be distractions from the purpose of this package. Despite the example gif, any code here related to &lt;code&gt;animation&lt;/code&gt; is beyond the scope of this tutorial. If you have trouble running it, see the &lt;code&gt;animation&lt;/code&gt; documentation and just do the following example instead, which is the way &lt;code&gt;mapmate&lt;/code&gt; is meant to be used:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;save_seq(paths_flat, id = &amp;quot;id&amp;quot;, n.frames = n, ortho = FALSE, type = &amp;quot;network&amp;quot;, 
-    suffix = &amp;quot;2D&amp;quot;, png.args = png.args)
-# Next, do whatever you want with the files, such as import them to a video
-# editing program
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;globe-network-animation&#34;&gt;Globe network animation&lt;/h1&gt;
-
-&lt;p&gt;Here is an example plotting network paths along great circle arcs on the globe. Remember that we use the other data set, which was generated with the default &lt;code&gt;breakAtDateline=FALSE&lt;/code&gt; in &lt;code&gt;gc_arcs&lt;/code&gt;. As a side note, if you redo the above example for flat maps using the unbroken data, &lt;code&gt;paths_globe&lt;/code&gt;, you will see why the arc segments are handled differently when preparing data for flat maps vs. for globes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;n &amp;lt;- max(paths_flat$id)
-png.args &amp;lt;- list(width = 600, height = 600, bg = &amp;quot;black&amp;quot;)
-clrs &amp;lt;- c(&amp;quot;#FFFFFF&amp;quot;, &amp;quot;#FF450050&amp;quot;, &amp;quot;#FF4500&amp;quot;, &amp;quot;#FFFFFF50&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gglist &amp;lt;- save_seq(paths_globe, id = &amp;quot;id&amp;quot;, n.frames = n, col = clrs, type = &amp;quot;network&amp;quot;, 
-    pt.size = c(1, 1, 3, 2), suffix = &amp;quot;3D&amp;quot;, png.args = png.args, save.plot = FALSE, 
-    return.plot = TRUE)
-
-library(animation)
-ani.options(convert = &amp;quot;C:/Program Files/ImageMagick-7.0.3-Q16/convert.exe&amp;quot;)
-saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network3D.gif&amp;quot;, interval = 1/20, 
-    ani.width = 600, ani.height = 600)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/post/network3d.gif&#34;&gt;&lt;img src=&#34;../../img/post/network3d.gif&#34; alt=&#34;network3d&#34; width=&#34;600&#34; height=&#34;600&#34; class=&#34;aligncenter size-full&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Again, normal usage is to just do the following and then use the saved still image sequence with full user control for whatever you like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;save_seq(paths_globe, id = &amp;quot;id&amp;quot;, n.frames = n, col = clrs, type = &amp;quot;network&amp;quot;, 
-    pt.size = c(1, 1, 3, 2), suffix = &amp;quot;3D&amp;quot;, png.args = png.args)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here are a few more advanced animations based on still image sequences of great circle arc network maps produced using &lt;code&gt;mapmate&lt;/code&gt; code:&lt;/p&gt;
-
-&lt;h3 id=&#34;historical-and-projected-global-temperature-anomalies&#34;&gt;Historical and projected global temperature anomalies&lt;/h3&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/xhqEkyJDBho?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&#34;global-uaf-snap-shiny-apps-web-traffic&#34;&gt;Global UAF/SNAP Shiny Apps web traffic&lt;/h3&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/uQYR91qixgo?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&#34;flat-map-great-circle-animation-example&#34;&gt;Flat map great circle animation example&lt;/h3&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/yoyIUMvIP3Q?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&#34;mapmate-0-2-0-release-date-2016-11-15&#34;&gt;mapmate 0.2.0 (Release date: 2016-11-15)&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Added functions to assist with network maps: &lt;code&gt;gc_endpoints&lt;/code&gt;, &lt;code&gt;gc_arcs&lt;/code&gt;, and &lt;code&gt;gc_paths&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Added help documentation and runnable examples of the network-related functions.&lt;/li&gt;
-&lt;li&gt;Added &lt;code&gt;network&lt;/code&gt; data set to package.&lt;/li&gt;
-&lt;li&gt;Added unit tests for network-related functions.&lt;/li&gt;
-&lt;li&gt;Added tutorial/examples for network maps to the package Github pages.&lt;/li&gt;
-&lt;li&gt;Included simple animated gif examples in above page, piggybacked on &lt;code&gt;animation&lt;/code&gt; package.&lt;/li&gt;
-&lt;li&gt;Bug fixes.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>mapmate is under development and blog posts can become outdated quickly. Up to date mapmate documentation and tutorial examples can be found at the official mapmate Github pages.
+mapmate has now been updating from version 0.1.0 to 0.2.0 on Github. The key change is the incorporation of new functions, help docs and code examples focused on network maps, which is a more complex map type not previously covered. The new tutorial content below provides a a couple basic code examples for making network maps with mapmate.</description>
     </item>
     
     <item>
@@ -403,16 +80,8 @@ saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network3D.gif
       <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>/post/r-animation-global-climate-change/</guid>
-      <description>&lt;p&gt;I have posted a new R data animation video. It&amp;rsquo;s an example animation of modeled historical and projected global temperature change from 1850 - 2100. The data prep, analysis, full processing and generation of all sets of still frames for each layer in the video are done using R.&lt;/p&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/xhqEkyJDBho?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Typically an ensemble of models would be used but this video is just to demonstrate a basic animation using one climate model, both with a monthly time series and a monthly 10-year moving average time series. If wondering about the y-axis range, the animation shows anomalies, or delta change, from the climate model&amp;rsquo;s historical baseline monthly average temperatures using a given climatology window.&lt;/p&gt;
-
-&lt;p&gt;In a later video I will use annual and seasonal averages, which will display a smoother signal than monthly series.&lt;/p&gt;
-</description>
+      <description>I have posted a new R data animation video. It&amp;rsquo;s an example animation of modeled historical and projected global temperature change from 1850 - 2100. The data prep, analysis, full processing and generation of all sets of still frames for each layer in the video are done using R.
+  Typically an ensemble of models would be used but this video is just to demonstrate a basic animation using one climate model, both with a monthly time series and a monthly 10-year moving average time series.</description>
     </item>
     
     <item>
@@ -421,16 +90,7 @@ saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network3D.gif
       <pubDate>Fri, 25 Mar 2016 00:00:00 +0000</pubDate>
       
       <guid>/post/r-animation-global-snap-shiny-app-users/</guid>
-      <description>&lt;p&gt;For the blog readers, just a quick heads up that I have posted a new R data animation to YouTube. A complete post will follow, but for now here is the video. It displays the social network of SNAP Shiny app users over about the past year and a half using great circle trajectories on a rotating 3D Earth. It&amp;rsquo;s best in 1080p, but still somewhat degraded for streaming. I&amp;rsquo;ll post the raw source video later as well, which is crystal clear.&lt;/p&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/uQYR91qixgo?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I used geolocation data from Google Analytics. I routed all the traffic randomly through either Fairbanks, AK or Denver, CO to complete the network since those two places best describe where my apps come from. It&amp;rsquo;s great to see how many people connect to the apps and from where; too many people to plot as a single static graphic without some of the essence of the data being lost.&lt;/p&gt;
-
-&lt;p&gt;As usual, the still frames of the rotating globe, its surface texture, country boundaries and great circle paths are all made in R. It&amp;rsquo;s basically a series of plots made with ggplot2.&lt;/p&gt;
-</description>
+      <description>For the blog readers, just a quick heads up that I have posted a new R data animation to YouTube. A complete post will follow, but for now here is the video. It displays the social network of SNAP Shiny app users over about the past year and a half using great circle trajectories on a rotating 3D Earth. It&amp;rsquo;s best in 1080p, but still somewhat degraded for streaming. I&amp;rsquo;ll post the raw source video later as well, which is crystal clear.</description>
     </item>
     
     <item>
@@ -439,64 +99,7 @@ saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network3D.gif
       <pubDate>Fri, 04 Sep 2015 00:00:00 +0000</pubDate>
       
       <guid>/post/r-animation-great-circles-3/</guid>
-      <description>&lt;p&gt;Here is the final draft of my great circle arcs R animation. I made this back in January shortly after my first two drafts, but am only now getting around to sharing it, which is a typical representation of how seldom I can make time for blogging. But given the recent spike in interest (thanks to &lt;a href=&#34;http://urbandemographics.blogspot.co.uk/2015/08/data-visualization-with-r-geographic.html&#34; target=&#34;_blank&#34;&gt;Urban Demographics&lt;/a&gt; for sharing my work) in the first, and roughest, draft, I am motivated to finally share something better.&lt;/p&gt;
-
-&lt;p&gt;As with &lt;a href=&#34;http://blog.snap.uaf.edu/2015/03/04/animated-great-circles-1-flat-map-to-3d-earth/&#34; title=&#34;Animated great circles 1: flat map to 3D Earth&#34;&gt;DRAFT 1&lt;/a&gt; and &lt;a href=&#34;http://blog.snap.uaf.edu/2015/04/16/animated-great-circles-2-smoother-lines/&#34; title=&#34;Animated great circles 2: smoother lines&#34;&gt;DRAFT 2&lt;/a&gt;, the YouTube video upload is of significantly reduced quality compared to the original render. As I&amp;rsquo;ve said in the previous posts, it&amp;rsquo;s really not even worth watching on YouTube.&lt;/p&gt;
-
-&lt;p&gt;A much higher quality &lt;a href=&#34;https://www.snap.uaf.edu/webshared/leonawicz/video/geonet_seq3.zip&#34;&gt;source video is available here&lt;/a&gt;. It can be downloaded (~365 MB) and viewed locally using a standard video player such as VLC. Here is a screenshot taken from source as an example:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;../../img/post/datavis_r_geonet3.jpg&#34;&gt;&lt;img src=&#34;../../img/post/datavis_r_geonet3.jpg?w=774&#34; alt=&#34;datavis_R_geonet3&#34; width=&#34;774&#34; height=&#34;424&#34; class=&#34;aligncenter size-large&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The previous posts describe the issues with video streaming sites compressing videos for steaming and how this will not noticeably degrade most videos, but my great circle animations (particularly this one) have many tiny rapidly moving lines and subtle color and transparency changes; i.e., the perfect candidate videos for being severely degraded by re-encoding, with too much information being tossed out from frame to frame for streaming purposes. In fact, despite being my final draft, this video may ironically display more poorly on YouTube since it contains so many more elements in motion and frame-to-frame pixel changes than my first two drafts, while being far superior in quality when viewing the source video.&lt;/p&gt;
-
-&lt;p&gt;I am quite pleasantly surprised at the video quality on YouTube (1080p, full screen mode) at the beginning of the video. Perhaps this is because there are only 1,000 lines at first and they do not move quite as fast as in my previous videos. Furthermore, being shorter in length, their movement on the screen involves fewer pixel changes from frame to frame. There may be occasional stutter or moments of blurriness during streaming but overall not too bad with a good connection. As I expected, however, later in the video as I increment the number of great circle pathways simultaneously on the screen to over 10,000, the quality degrades significantly.&lt;/p&gt;
-
-&lt;p&gt;Here is the YouTube version if you must:&lt;/p&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/yoyIUMvIP3Q?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;In addition to my great circle path traversal animation, this video also incorporates a layer of my gridded path traversal in places. See &lt;a href=&#34;http://blog.snap.uaf.edu/2015/02/06/animated-gridded-paths-in-r/&#34;&gt;Animated gridded paths in R&lt;/a&gt; for a description and video example of this process.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://blog.snap.uaf.edu/2015/04/14/animated-paths-in-r-toy-example/&#34; title=&#34;Animated paths in R: toy example&#34;&gt;This post&lt;/a&gt; explains one way to animate basic path traversal in R using a toy code example. Please read this before inquiring about source code. It explains how the basic concept is easy to implement for your data and provides template code, but the resources and computing environment I used to produce the frames for these videos makes the specific code I used not reproducible.&lt;/p&gt;
-
-&lt;p&gt;There is nothing special about the code that will make it magically perfectly scalable. That&amp;rsquo;s where you have to provide your own ingenuity to deal with your data. For example, few people are going to want to use or have access to the &lt;code&gt;Rmpi&lt;/code&gt; package on a multi-node Linux cluster to speed up the process. Depending on your data, you would have to find your own ways of dealing with the sheer resource overhead you may create. Believe it or not, the gridded paths can be much more resource intensive (RAM, CPUs, and/or time, pick your poison) to produce quality animations than great circles. This is because sometimes displaying movement of line segments along gridded paths requires segments which are defined by longer vectors of more closely spaced points in order to &amp;ldquo;turn corners&amp;rdquo; nicely.&lt;/p&gt;
-
-&lt;p&gt;Also, recall from previous posts that I am using R to make still frames and I then dump the image sequence onto a timeline in a movie editing program to render the video. There are R packages like &lt;code&gt;animation&lt;/code&gt; which can abstract the entire process for you, but it isn&amp;rsquo;t meant for something as large as this video. Besides, it just makes sense to use R for statistically and mathematically defined data plotting and animation sequences and use a video rendering program for finishing touches and rendering to mp4 format. Do what makes the most sense with each piece of software.&lt;/p&gt;
-
-&lt;p&gt;Lastly, credit obviously to John Tukey for the &amp;ldquo;Tukey tally&amp;rdquo; 30-point countdown visual I made for the beginning of the video. While perhaps not the most interesting, that code is short, simple, and shareable so I will just dump it here:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Tukey tally plot sequence
-tukeyTally &amp;lt;- function(i, ...){
-  stopifnot(as.numeric(i) &amp;amp;&amp;amp; i %in% 1:10)
-  par(mai=c(0,0,0,0))
-  plot(0, 0, type=&amp;quot;n&amp;quot;, axes=F, xlab=&amp;quot;&amp;quot;, ylab=&amp;quot;&amp;quot;, xlim=c(0, 1), ylim=c(0, 1))
-  m &amp;lt;- matrix(c(0,1,1,0,1,1,0,0), nrow=4)
-
-  if(i&amp;gt;=5) segments(m[1,1], m[1,2], m[2,1], m[2,2], ...)
-  if(i&amp;gt;=6) segments(m[2,1], m[2,2], m[3,1], m[3,2], ...)
-  if(i&amp;gt;=7) segments(m[4,1], m[4,2], m[3,1], m[3,2], ...)
-  if(i&amp;gt;=8) segments(m[1,1], m[1,2], m[4,1], m[4,2], ...)
-  if(i&amp;gt;=9) segments(m[1,1], m[1,2], m[3,1], m[3,2], ...)
-  if(i==10) segments(m[4,1], m[4,2], m[2,1], m[2,2], ...)
-
-  points(m[1,1], m[1,2], ...)
-  if(i&amp;gt;=2) points(m[2,1], m[2,2], ...)
-  if(i&amp;gt;=3) points(m[3,1], m[3,2], ...)
-  if(i&amp;gt;=4) points(m[4,1], m[4,2], ...)
-}
-
-dir.create(outDir &amp;lt;- &amp;quot;C:/leonawicz/GlobalNetworks/plots/frames/tukey_ticker_10to1&amp;quot;, showWarnings=FALSE)
-for(i in 1:10){
-  png(paste0(outDir, &amp;quot;/tukey_ticker_10to1_frame&amp;quot;, 10-i, &amp;quot;.png&amp;quot;), bg=&amp;quot;transparent&amp;quot;)
-  tukeyTally(i, lwd=10,  pch=19, cex=4, col=&amp;quot;greenyellow&amp;quot;)
-  dev.off()
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You may be wondering how this can be a &amp;ldquo;final&amp;rdquo; draft. The obvious next step is to reproduce this video projected onto a 3D rotating earth, right!? Believe me, I have thought about it. That would take a good deal more work. As I explained in the post for the first draft, the only one to feature great circle lines on a spinning globe, resource issues makes it orders of magnitude more challenging, and this 2D flat map video is already far more complex than the original draft. Perhaps later I will take this on. In the meantime enjoy the video.&lt;/p&gt;
-</description>
+      <description>Here is the final draft of my great circle arcs R animation. I made this back in January shortly after my first two drafts, but am only now getting around to sharing it, which is a typical representation of how seldom I can make time for blogging. But given the recent spike in interest (thanks to Urban Demographics for sharing my work) in the first, and roughest, draft, I am motivated to finally share something better.</description>
     </item>
     
   </channel>
