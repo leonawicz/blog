@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
-    <lastBuildDate>Thu, 19 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 24 May 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>trekfont: Star Trek-themed fonts package</title>
+      <link>/post/trekfont-star-trek-themed-fonts-package/</link>
+      <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/trekfont-star-trek-themed-fonts-package/</guid>
+      <description>trekfont is now available on CRAN. This is a simple data package that exposes 107 Star Trek font families. You might not want to use Star Trek fonts for work, but if you are making plots for fun and like Star Trek then these fonts are for you.
+This post gives a basic example of one how to load these fonts in R for use in plots. Using external font files is handled by the showtext package, which uses the sysfonts package to load the fonts.</description>
+    </item>
     
     <item>
       <title>tabr package for guitar tablature now on CRAN</title>

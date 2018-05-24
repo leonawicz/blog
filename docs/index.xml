@@ -11,6 +11,52 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>trekfont: Star Trek-themed fonts package</title>
+      <link>/post/trekfont-star-trek-themed-fonts-package/</link>
+      <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/trekfont-star-trek-themed-fonts-package/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/trekfont/&#34;&gt;trekfont&lt;/a&gt; is now available on CRAN. This is a simple data package that exposes 107 Star Trek font families. You might not want to use Star Trek fonts for work, but if you are making plots for fun and like Star Trek then these fonts are for you.&lt;/p&gt;
+&lt;p&gt;This post gives a basic example of one how to load these fonts in R for use in plots. Using external font files is handled by the &lt;code&gt;showtext&lt;/code&gt; package, which uses the &lt;code&gt;sysfonts&lt;/code&gt; package to load the fonts. There is no need to load the &lt;code&gt;trekfont&lt;/code&gt; package directly; you only need it installed. To see all available font files, call &lt;code&gt;trekfont::trekfonts&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This example shows eight fonts. &lt;code&gt;font_add&lt;/code&gt; and &lt;code&gt;font_families&lt;/code&gt; below are part of the &lt;code&gt;sysfonts&lt;/code&gt; package loaded by &lt;code&gt;showtext&lt;/code&gt;. Use these to load fonts and then check to see that they are now available, respectively. &lt;code&gt;showtext_auto&lt;/code&gt; handles the rest. If you are not already familiar with &lt;code&gt;showtext&lt;/code&gt; see its documentation for broader examples.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;#39;trekfont&amp;#39;)
+library(showtext)
+font &amp;lt;- c(&amp;quot;Khan&amp;quot;, &amp;quot;StarNext&amp;quot;, &amp;quot;FederationDS9Title&amp;quot;, &amp;quot;Federation&amp;quot;, &amp;quot;Klingon&amp;quot;, 
+    &amp;quot;ModernVulcan&amp;quot;, &amp;quot;TNGcast&amp;quot;, &amp;quot;FederationStarfleet&amp;quot;)
+path &amp;lt;- system.file(paste0(&amp;quot;fonts/&amp;quot;, font, &amp;quot;.ttf&amp;quot;), package = &amp;quot;trekfont&amp;quot;)
+for (i in 1:8) font_add(font[i], path[i])
+font_families()
+#&amp;gt;  [1] &amp;quot;sans&amp;quot;                &amp;quot;serif&amp;quot;               &amp;quot;mono&amp;quot;               
+#&amp;gt;  [4] &amp;quot;wqy-microhei&amp;quot;        &amp;quot;Khan&amp;quot;                &amp;quot;StarNext&amp;quot;           
+#&amp;gt;  [7] &amp;quot;FederationDS9Title&amp;quot;  &amp;quot;Federation&amp;quot;          &amp;quot;Klingon&amp;quot;            
+#&amp;gt; [10] &amp;quot;ModernVulcan&amp;quot;        &amp;quot;TNGcast&amp;quot;             &amp;quot;FederationStarfleet&amp;quot;
+showtext_auto()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;First use base graphics.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y &amp;lt;- seq(0.1, 0.9, length.out = 7)
+txt &amp;lt;- &amp;quot;The Quick Brown Fox Jumps Over The Lazy Dog&amp;quot;
+plot(0, 0, type = &amp;quot;n&amp;quot;, ylim = c(0, 1), main = &amp;quot;trekfont package font sample&amp;quot;, 
+    family = font[8])
+for (i in 1:7) text(0, y[i], txt, family = font[i])&lt;/code&gt;&lt;/pre&gt;
+&lt;p align=&#34;center&#34;&gt;
+&lt;img src=&#34;./img/post/trekfont_plot.png&#34;/&gt;
+&lt;/p&gt;
+&lt;p&gt;Did you ever think you would be annotating your plots in Vulcan and Klingon? Next use ggplot2.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+g &amp;lt;- ggplot() + theme_gray(base_family = font[8]) + ggtitle(&amp;quot;trekfont package font sample&amp;quot;)
+for (i in 1:7) g &amp;lt;- g + annotate(&amp;quot;text&amp;quot;, 0, y[i], label = txt, family = font[i], 
+    size = 12.5)
+g&lt;/code&gt;&lt;/pre&gt;
+&lt;p align=&#34;center&#34;&gt;
+&lt;img src=&#34;./img/post/trekfont_ggplot.png&#34;/&gt;
+&lt;/p&gt;
+&lt;p&gt;That’s all there is to it. &lt;em&gt;Qapla’&lt;/em&gt;! The above code is simplified. You can tweak your &lt;code&gt;par&lt;/code&gt; and &lt;code&gt;ggplot2&lt;/code&gt; theme settings to achieve a similar appearance to what is shown in the plots.&lt;/p&gt;
+&lt;p&gt;If you have trouble with the fonts not displaying and are receiving warnings such as&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;In grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y,  :   font family not found in Windows font database&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;don’t be a &lt;em&gt;petaQ&lt;/em&gt;. Try using &lt;code&gt;showtext&lt;/code&gt; via the regular R GUI rather than through the RStudio IDE. Unfortunately &lt;code&gt;showtext&lt;/code&gt; does not currently work with RStudio’s built-in graphics device.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>tabr package for guitar tablature now on CRAN</title>
       <link>/post/tabr-package-for-guitar-tablature-now-on-cran/</link>
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
