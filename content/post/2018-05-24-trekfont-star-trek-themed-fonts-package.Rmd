@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 This post gives a basic example of one how to load these fonts in R for use in plots. Using external font files is handled by the `showtext` package, which uses the `sysfonts` package to load the fonts. There is no need to load the `trekfont` package directly; you only need it installed. To see all available font files, call `trekfont::trekfonts`.
 
-This example shows eight fonts. First use base graphics. `font_add` and `font_families` below are part of the `sysfonts` package loaded by `showtext`. Use these to load fonts and then check to see that they are now evailable, respectively. `showtext_auto` handles the rest. If you are not already familiar with `showtext` see its documentation for broader examples.
+This example shows eight fonts. `font_add` and `font_families` below are part of the `sysfonts` package loaded by `showtext`. Use these to load fonts and then check to see that they are now available, respectively. `showtext_auto` handles the rest. If you are not already familiar with `showtext` see its documentation for broader examples.
 
 ```{r font_setup}
 # install.packages("trekfont")
@@ -36,7 +36,8 @@ font_families()
 showtext_auto()
 ```
 
-Did you ever think you would be annotating your plots in Vulcan and Klingon? Next use ggplot2.
+
+First use base graphics.
 
 ```{r font_plot, eval=FALSE}
 y <- seq(0.1, 0.9, length.out = 7)
@@ -47,6 +48,9 @@ for(i in 1:7) text(0, y[i], txt, family = font[i])
 
 <p align="center"><img src="/img/post/trekfont_plot.png"/></p>
 
+
+Did you ever think you would be annotating your plots in Vulcan and Klingon? Next use ggplot2.
+
 ```{r font_ggplot, eval=FALSE}
 library(ggplot2)
 g <- ggplot() + theme_gray(base_family = font[8]) + ggtitle("trekfont package font sample")
@@ -55,6 +59,7 @@ g
 ```
 
 <p align="center"><img src="/img/post/trekfont_ggplot.png"/></p>
+
 
 That's all there is to it. *Qapla'*! The above code is simplified. You can tweak your `par` and `ggplot2` theme settings to achieve a similar appearance to what is shown in the plots.
 
