@@ -1,5 +1,5 @@
 baseurl = "https://leonawicz.github.io/"  # End your URL with a `/` trailing slash.
-title = "Matt's R Blog"
+title = "Matthew Leonawicz | Blog"
 copyright = "&copy; Matthew Leonawicz"
 theme = "hugo-academic"
 enableEmoji = true
