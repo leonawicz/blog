@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Climate Science on Matthew Leonawicz</title>
+    <title>Climate Science on Matt&#39;s R Blog</title>
     <link>/tags/climate-science/</link>
-    <description>Recent content in Climate Science on Matthew Leonawicz</description>
+    <description>Recent content in Climate Science on Matt&#39;s R Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; Matthew Leonawicz</copyright>
     <lastBuildDate>Mon, 23 Oct 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/climate-science/index.xml" rel="self" type="application/rss+xml" />

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Matthew Leonawicz on Matthew Leonawicz</title>
+    <title>Matt&#39;s R Blog on Matt&#39;s R Blog</title>
     <link>/</link>
-    <description>Recent content in Matthew Leonawicz on Matthew Leonawicz</description>
+    <description>Recent content in Matt&#39;s R Blog on Matt&#39;s R Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; Matthew Leonawicz</copyright>
     <lastBuildDate>Thu, 14 Sep 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     

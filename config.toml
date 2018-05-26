@@ -1,6 +1,6 @@
 baseurl = "https://leonawicz.github.io/"  # End your URL with a `/` trailing slash.
-title = "Matthew Leonawicz"
-copyright = "&copy; 2018 Matthew Leonawicz"
+title = "Matt's R Blog"
+copyright = "&copy; Matthew Leonawicz"
 theme = "hugo-academic"
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"

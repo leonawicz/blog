@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tabs on Matthew Leonawicz</title>
+    <title>Tabs on Matt&#39;s R Blog</title>
     <link>/tags/tabs/</link>
-    <description>Recent content in Tabs on Matthew Leonawicz</description>
+    <description>Recent content in Tabs on Matt&#39;s R Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2018 Matthew Leonawicz</copyright>
+    <copyright>&amp;copy; Matthew Leonawicz</copyright>
     <lastBuildDate>Thu, 19 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/tabs/index.xml" rel="self" type="application/rss+xml" />
