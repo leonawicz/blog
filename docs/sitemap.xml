@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>/post/epubr-0-4-0-cran-release/</loc>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/post/trekfont-star-trek-themed-fonts-package/</loc>
       <lastmod>2018-05-24T00:00:00+00:00</lastmod>
     </url>
@@ -200,7 +209,17 @@
     <url>
     
       <loc>/tags/code/</loc>
-      <lastmod>2016-11-15T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/cran/</loc>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -211,6 +230,26 @@
     
       <loc>/tags/distributions/</loc>
       <lastmod>2017-10-23T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/e-books/</loc>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/epub/</loc>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -350,7 +389,7 @@
     <url>
     
       <loc>/tags/package/</loc>
-      <lastmod>2017-10-24T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -380,7 +419,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2018-05-24T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -419,7 +458,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2018-05-24T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -530,6 +569,16 @@
     
       <loc>/tags/</loc>
       <lastmod>2017-01-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/text-mining/</loc>
+      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

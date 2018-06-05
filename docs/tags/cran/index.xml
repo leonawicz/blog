@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Code on Matthew Leonawicz | Blog</title>
-    <link>/tags/code/</link>
-    <description>Recent content in Code on Matthew Leonawicz | Blog</description>
+    <title>Cran on Matthew Leonawicz | Blog</title>
+    <link>/tags/cran/</link>
+    <description>Recent content in Cran on Matthew Leonawicz | Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; Matthew Leonawicz</copyright>
     <lastBuildDate>Tue, 05 Jun 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/code/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/cran/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,16 +20,6 @@
       <guid>/post/epubr-0-4-0-cran-release/</guid>
       <description>The epubr package provides functions supporting the reading and parsing of internal e-book content from EPUB files. E-book metadata and text content are parsed separately and joined together in a tidy, nested tibble data frame.
 E-book formatting is non-standard enough across all literature that no function can curate parsed e-book content across an arbitrary collection of e-books, in completely general form, resulting in a singular, consistently formatted output containing all the same variables.</description>
-    </item>
-    
-    <item>
-      <title>mapmate 0.2.0</title>
-      <link>/post/mapmate-0-2-0/</link>
-      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/post/mapmate-0-2-0/</guid>
-      <description>mapmate is under development and blog posts can become outdated quickly. Up to date mapmate documentation and tutorial examples can be found at the official mapmate Github pages.
-mapmate has now been updating from version 0.1.0 to 0.2.0 on Github. The key change is the incorporation of new functions, help docs and code examples focused on network maps, which is a more complex map type not previously covered. The new tutorial content below provides a a couple basic code examples for making network maps with mapmate.</description>
     </item>
     
   </channel>

@@ -11,6 +11,173 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>epubr 0.4.0 CRAN release</title>
+      <link>/post/epubr-0-4-0-cran-release/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/epubr-0-4-0-cran-release/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;epubr&lt;/code&gt; package provides functions supporting the reading and parsing of internal e-book content from EPUB files. E-book metadata and text content are parsed separately and joined together in a tidy, nested tibble data frame.&lt;/p&gt;
+&lt;p&gt;E-book formatting is non-standard enough across all literature that no function can curate parsed e-book content across an arbitrary collection of e-books, in completely general form, resulting in a singular, consistently formatted output containing all the same variables.&lt;/p&gt;
+&lt;p&gt;EPUB file parsing functionality in this package is intended for relatively general application to arbitrary EPUB e-books. However, poorly formatted e-books or e-books with highly uncommon formatting may not work with this package. There may even be cases where an EPUB file has DRM or some other property that makes it impossible to read with &lt;code&gt;epubr&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Text is read ‘as is’. Additional text cleaning should be performed by the user at their discretion, such as with functions from packages like &lt;code&gt;tm&lt;/code&gt; or &lt;code&gt;qdap&lt;/code&gt;.&lt;/p&gt;
+&lt;div id=&#34;read-epub-files&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Read EPUB files&lt;/h2&gt;
+&lt;p&gt;Bram Stoker’s Dracula novel sourced from Project Gutenberg is a good example of an EPUB file with unfortunate formatting. The first thing that stands out is the naming convention using &lt;code&gt;item&lt;/code&gt; followed by some ordered digits does not differentiate sections like the book preamble from the chapters. The numbering also starts in a weird place. But it is actually worse than this. Notice that sections are not broken into chapters; they can begin and end in the middle of chapters!&lt;/p&gt;
+&lt;p&gt;These annoyances aside, the metadata and contents can still be read into a convenient table. Text mining analyses can still be performed on the overall book, if not so easily on individual chapters.&lt;/p&gt;
+&lt;p&gt;Here a single file is read with &lt;code&gt;epub&lt;/code&gt;. The output of the returned primary data frame and the book text data frame that is nested within its &lt;code&gt;data&lt;/code&gt; column are shown.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(epubr)
+file &amp;lt;- system.file(&amp;quot;dracula.epub&amp;quot;, package = &amp;quot;epubr&amp;quot;)
+(x &amp;lt;- epub(file))
+#&amp;gt; # A tibble: 1 x 9
+#&amp;gt;   rights  identifier   creator  title language subject date  source  data 
+#&amp;gt;   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;lis&amp;gt;
+#&amp;gt; 1 Public~ http://www.~ Bram St~ Drac~ en       Horror~ 1995~ http:/~ &amp;lt;tib~
+
+x$data[[1]]
+#&amp;gt; # A tibble: 15 x 4
+#&amp;gt;    section           text                                      nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;                                     &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 item6             &amp;quot;The Project Gutenberg EBook of Dracula,~ 11252 60972
+#&amp;gt;  2 item7             &amp;quot;But I am not in heart to describe beaut~ 13740 71798
+#&amp;gt;  3 item8             &amp;quot;“ ‘Lucy, you are an honest-hearted girl~ 12356 65522
+#&amp;gt;  4 item9             &amp;quot;CHAPTER VIIIMINA MURRAY’S JOURNAL\nSame~ 12042 62724
+#&amp;gt;  5 item10            &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. A~ 12599 66678
+#&amp;gt;  6 item11            &amp;quot;Once again we went through that ghastly~ 11919 62949
+#&amp;gt;  7 item12            &amp;quot;CHAPTER XIVMINA HARKER’S JOURNAL\n23 Se~ 12003 62234
+#&amp;gt;  8 item13            &amp;quot;CHAPTER XVIDR. SEWARD’S DIARY—continued~ 13812 72903
+#&amp;gt;  9 item14            &amp;quot;“Thus when we find the habitation of th~ 13201 69779
+#&amp;gt; 10 item15            &amp;quot;“I see,” I said. “You want big things t~ 12706 66921
+#&amp;gt; 11 item16            &amp;quot;CHAPTER XXIIIDR. SEWARD’S DIARY\n3 Octo~ 11818 61550
+#&amp;gt; 12 item17            &amp;quot;CHAPTER XXVDR. SEWARD’S DIARY\n11 Octob~ 12989 68564
+#&amp;gt; 13 item18            &amp;quot; \nLater.—Dr. Van Helsing has returned.~  8356 43464
+#&amp;gt; 14 item19            &amp;quot;End of the Project Gutenberg EBook of D~  2669 18541
+#&amp;gt; 15 coverpage-wrapper &amp;quot;&amp;quot;                                            0     0&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;file&lt;/code&gt; argument may be a vector of EPUB files. There is one row for each book.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;epub-metadata&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;EPUB metadata&lt;/h2&gt;
+&lt;p&gt;The above examples jump right in, but it can be helpful to inspect file metadata before reading a large number of books into memory. Formatting may differ across books. It can be helpful to know what fields to expect, the degree of consistency, and what content you may want to drop during the file reading process. &lt;code&gt;epub_meta&lt;/code&gt; strictly parses file metadata and does not read the e-book text.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;epub_meta(file)
+#&amp;gt; # A tibble: 1 x 8
+#&amp;gt;   rights    identifier    creator  title language subject date  source    
+#&amp;gt;   &amp;lt;chr&amp;gt;     &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;     
+#&amp;gt; 1 Public d~ http://www.g~ Bram St~ Drac~ en       Horror~ 1995~ http://ww~&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This provides the big picture, though it will not reveal the internal breakdown of book section naming conventions that were seen in the first &lt;code&gt;epub&lt;/code&gt; example.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;file&lt;/code&gt; can also be a vector for &lt;code&gt;epub_meta&lt;/code&gt;. Whenever &lt;code&gt;file&lt;/code&gt; is a vector, the fields (columns) returned are the union of all fields detected across all EPUB files. Any books (rows) that do not have a field found in another book return &lt;code&gt;NA&lt;/code&gt; for that row and column.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;additonal-arguments&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Additonal arguments&lt;/h2&gt;
+&lt;p&gt;There are three optional arguments that can be provided to &lt;code&gt;epub&lt;/code&gt; to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;select fields, or columns of the primary data frame.&lt;/li&gt;
+&lt;li&gt;filter sections, or rows of the nested data frame.&lt;/li&gt;
+&lt;li&gt;attempt to detect which rows or sections in the nested data frame identify book chapters.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Unless you have a collection of well-formatted and similarly formatted EPUB files, these arguments may not be helpful and can be ignored, especially chapter detection.&lt;/p&gt;
+&lt;div id=&#34;select-fields&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Select fields&lt;/h3&gt;
+&lt;p&gt;Selecting fields is straightforward. All fields found are returned unless a vector of fields is provided.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;epub(file, fields = c(&amp;quot;title&amp;quot;, &amp;quot;creator&amp;quot;, &amp;quot;file&amp;quot;))
+#&amp;gt; # A tibble: 1 x 4
+#&amp;gt;   title   creator     file         data             
+#&amp;gt;   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;        &amp;lt;list&amp;gt;           
+#&amp;gt; 1 Dracula Bram Stoker dracula.epub &amp;lt;tibble [15 x 4]&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that &lt;code&gt;file&lt;/code&gt; was not a field identified in the metadata. This is a special case. Including &lt;code&gt;file&lt;/code&gt; will include the &lt;code&gt;basename&lt;/code&gt; of the input file. This is helpful when you want to retain file names and &lt;code&gt;source&lt;/code&gt; is included in the metadata but may represent something else. Some fields like &lt;code&gt;data&lt;/code&gt; are always returned and do not need to be specified in &lt;code&gt;fields&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;drop-sections&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Drop sections&lt;/h3&gt;
+&lt;p&gt;Filtering out unwanted sections, or rows of the nested data frame, uses a regular expression pattern. Matched rows are dropped. This is where knowing the naming conventions used in the e-books in &lt;code&gt;file&lt;/code&gt;, or at least knowing they are satisfactorily consistent and predictable for a collection, helps with removing extraneous clutter.&lt;/p&gt;
+&lt;p&gt;One section that can be discarded is the cover. For many books it can be helpful to use a pattern like &lt;code&gt;&amp;quot;^(C|c)ov&amp;quot;&lt;/code&gt; to drop any sections whose IDs begin with &lt;code&gt;Cov&lt;/code&gt;, &lt;code&gt;cov&lt;/code&gt;, and may be that abbreviation or the full word. For this book, &lt;code&gt;cov&lt;/code&gt; suffices. The nested data frame has one less row than before.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;epub(file, drop_sections = &amp;quot;cov&amp;quot;)$data[[1]]
+#&amp;gt; # A tibble: 14 x 4
+#&amp;gt;    section text                                                nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                               &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 item6   &amp;quot;The Project Gutenberg EBook of Dracula, by Bram S~ 11252 60972
+#&amp;gt;  2 item7   &amp;quot;But I am not in heart to describe beauty, for whe~ 13740 71798
+#&amp;gt;  3 item8   &amp;quot;“ ‘Lucy, you are an honest-hearted girl, I know. ~ 12356 65522
+#&amp;gt;  4 item9   &amp;quot;CHAPTER VIIIMINA MURRAY’S JOURNAL\nSame day, 11 o~ 12042 62724
+#&amp;gt;  5 item10  &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthur Holm~ 12599 66678
+#&amp;gt;  6 item11  &amp;quot;Once again we went through that ghastly operation~ 11919 62949
+#&amp;gt;  7 item12  &amp;quot;CHAPTER XIVMINA HARKER’S JOURNAL\n23 September.—J~ 12003 62234
+#&amp;gt;  8 item13  &amp;quot;CHAPTER XVIDR. SEWARD’S DIARY—continued\nIT was j~ 13812 72903
+#&amp;gt;  9 item14  &amp;quot;“Thus when we find the habitation of this man-tha~ 13201 69779
+#&amp;gt; 10 item15  &amp;quot;“I see,” I said. “You want big things that you ca~ 12706 66921
+#&amp;gt; 11 item16  &amp;quot;CHAPTER XXIIIDR. SEWARD’S DIARY\n3 October.—The t~ 11818 61550
+#&amp;gt; 12 item17  &amp;quot;CHAPTER XXVDR. SEWARD’S DIARY\n11 October, Evenin~ 12989 68564
+#&amp;gt; 13 item18  &amp;quot; \nLater.—Dr. Van Helsing has returned. He has go~  8356 43464
+#&amp;gt; 14 item19  &amp;quot;End of the Project Gutenberg EBook of Dracula, by~  2669 18541&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;guess-chapters&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Guess chapters&lt;/h3&gt;
+&lt;p&gt;This e-book unfortunately does not have great formatting. For the sake of example, pretend that chapters are known to be sections beginning with &lt;code&gt;item&lt;/code&gt; and followed by &lt;em&gt;two&lt;/em&gt; digits, using the pattern &lt;code&gt;^item\\d\\d&lt;/code&gt;. This does two things. It adds a new metadata column to the primary data frame called &lt;code&gt;nchap&lt;/code&gt; giving the estimated number of chapters in the book. In the nested data frame containing the parsed e-book text, the &lt;code&gt;section&lt;/code&gt; column is conditionally mutated to reflect a new, consistent chapter naming convention for the identified chapters and a logical &lt;code&gt;is_chapter&lt;/code&gt; column is added.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- epub(file, drop_sections = &amp;quot;cov&amp;quot;, chapter_pattern = &amp;quot;^item\\d\\d&amp;quot;)
+x
+#&amp;gt; # A tibble: 1 x 10
+#&amp;gt;   rights  identifier   creator title language subject date  source   nchap
+#&amp;gt;   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt;
+#&amp;gt; 1 Public~ http://www.~ Bram S~ Drac~ en       Horror~ 1995~ http://~    10
+#&amp;gt; # ... with 1 more variable: data &amp;lt;list&amp;gt;
+
+x$data[[1]]
+#&amp;gt; # A tibble: 14 x 5
+#&amp;gt;    section text                                     is_chapter nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                    &amp;lt;lgl&amp;gt;      &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 item6   &amp;quot;The Project Gutenberg EBook of Dracula~ FALSE      11252 60972
+#&amp;gt;  2 item7   &amp;quot;But I am not in heart to describe beau~ FALSE      13740 71798
+#&amp;gt;  3 item8   &amp;quot;“ ‘Lucy, you are an honest-hearted gir~ FALSE      12356 65522
+#&amp;gt;  4 item9   &amp;quot;CHAPTER VIIIMINA MURRAY’S JOURNAL\nSam~ FALSE      12042 62724
+#&amp;gt;  5 ch01    &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. ~ TRUE       12599 66678
+#&amp;gt;  6 ch02    &amp;quot;Once again we went through that ghastl~ TRUE       11919 62949
+#&amp;gt;  7 ch03    &amp;quot;CHAPTER XIVMINA HARKER’S JOURNAL\n23 S~ TRUE       12003 62234
+#&amp;gt;  8 ch04    &amp;quot;CHAPTER XVIDR. SEWARD’S DIARY—continue~ TRUE       13812 72903
+#&amp;gt;  9 ch05    &amp;quot;“Thus when we find the habitation of t~ TRUE       13201 69779
+#&amp;gt; 10 ch06    &amp;quot;“I see,” I said. “You want big things ~ TRUE       12706 66921
+#&amp;gt; 11 ch07    &amp;quot;CHAPTER XXIIIDR. SEWARD’S DIARY\n3 Oct~ TRUE       11818 61550
+#&amp;gt; 12 ch08    &amp;quot;CHAPTER XXVDR. SEWARD’S DIARY\n11 Octo~ TRUE       12989 68564
+#&amp;gt; 13 ch09    &amp;quot; \nLater.—Dr. Van Helsing has returned~ TRUE        8356 43464
+#&amp;gt; 14 ch10    &amp;quot;End of the Project Gutenberg EBook of ~ TRUE        2669 18541&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Also note that not all books have chapters. Make sure an optional argument makes sense to use with a given e-book.&lt;/p&gt;
+&lt;p&gt;Some e-books have formatting that puts chapter sections completely out of order even when they may be easily separable from other book sections and this can be another roadblock, as you may correctly identify and distinguish chapters from other book sections like cover, title, copyright and acknowledgements pages, but you will number the chapters incorrectly.&lt;/p&gt;
+&lt;p&gt;There are some developmental options that can get around issues like this in certain edge cases and where certain reasonable conditions can be met. For example, a second pass can be attempted internally in a call to &lt;code&gt;epub&lt;/code&gt; to cross reference guessed chapter sections with the presence of something like &lt;code&gt;CHAPTER&lt;/code&gt; (or some other secondary regular expression pattern) appearing at the beginning of the actual section text. All is not necessarily lost when file metadata formatting is not useful for a given e-book.&lt;/p&gt;
+&lt;p&gt;These developmental arguments are currently undocumented, though they can be explored if you are inclined to read the package source code and pass additional arguments to &lt;code&gt;...&lt;/code&gt;. They have been tested successfully on many e-books, but certainly not a representative sample of all e-books. The approaches these arguments use may also change before they are formally supported and explicitly added to a future version of the package.&lt;/p&gt;
+&lt;p&gt;Ultimately though, everything depends on the quality of the EPUB file. Some publishers are better than others. Formatting standards may also change over time.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;unzip-epub-file&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Unzip EPUB file&lt;/h2&gt;
+&lt;p&gt;Separate from using &lt;code&gt;epub_meta&lt;/code&gt; and &lt;code&gt;epub&lt;/code&gt;, you can call &lt;code&gt;epub_unzip&lt;/code&gt; directly if all you want to do is extract the files from the &lt;code&gt;.epub&lt;/code&gt; file archive. By default the archive files are extracted to &lt;code&gt;tempdir()&lt;/code&gt; so you may want to change this with the &lt;code&gt;exdir&lt;/code&gt; argument.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;bookdir &amp;lt;- file.path(tempdir(), &amp;quot;dracula&amp;quot;)
+epub_unzip(file, exdir = bookdir)
+list.files(bookdir, recursive = TRUE)
+#&amp;gt;  [1] &amp;quot;META-INF/container.xml&amp;quot;                                                  
+#&amp;gt;  [2] &amp;quot;mimetype&amp;quot;                                                                
+#&amp;gt;  [3] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-0.htm.html&amp;quot;   
+#&amp;gt;  [4] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-1.htm.html&amp;quot;   
+#&amp;gt;  [5] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-10.htm.html&amp;quot;  
+#&amp;gt;  [6] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-11.htm.html&amp;quot;  
+#&amp;gt;  [7] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-12.htm.html&amp;quot;  
+#&amp;gt;  [8] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-13.htm.html&amp;quot;  
+#&amp;gt;  [9] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-2.htm.html&amp;quot;   
+#&amp;gt; [10] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-3.htm.html&amp;quot;   
+#&amp;gt; [11] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-4.htm.html&amp;quot;   
+#&amp;gt; [12] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-5.htm.html&amp;quot;   
+#&amp;gt; [13] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-6.htm.html&amp;quot;   
+#&amp;gt; [14] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-7.htm.html&amp;quot;   
+#&amp;gt; [15] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-8.htm.html&amp;quot;   
+#&amp;gt; [16] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@345-h-9.htm.html&amp;quot;   
+#&amp;gt; [17] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@images@colophon.png&amp;quot;
+#&amp;gt; [18] &amp;quot;OEBPS/@public@vhost@g@gutenberg@html@files@345@345-h@images@cover.jpg&amp;quot;   
+#&amp;gt; [19] &amp;quot;OEBPS/0.css&amp;quot;                                                             
+#&amp;gt; [20] &amp;quot;OEBPS/1.css&amp;quot;                                                             
+#&amp;gt; [21] &amp;quot;OEBPS/content.opf&amp;quot;                                                       
+#&amp;gt; [22] &amp;quot;OEBPS/pgepub.css&amp;quot;                                                        
+#&amp;gt; [23] &amp;quot;OEBPS/toc.ncx&amp;quot;                                                           
+#&amp;gt; [24] &amp;quot;OEBPS/wrap0000.html&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>trekfont: Star Trek-themed fonts package</title>
       <link>/post/trekfont-star-trek-themed-fonts-package/</link>
       <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>

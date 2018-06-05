@@ -69,9 +69,18 @@
     <item>
       <title>Code</title>
       <link>/tags/code/</link>
-      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/code/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cran</title>
+      <link>/tags/cran/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/cran/</guid>
       <description></description>
     </item>
     
@@ -81,6 +90,24 @@
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/distributions/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>E Books</title>
+      <link>/tags/e-books/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/e-books/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Epub</title>
+      <link>/tags/epub/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/epub/</guid>
       <description></description>
     </item>
     
@@ -195,7 +222,7 @@
     <item>
       <title>Package</title>
       <link>/tags/package/</link>
-      <pubDate>Tue, 24 Oct 2017 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/package/</guid>
       <description></description>
@@ -324,6 +351,15 @@
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/tabs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Text Mining</title>
+      <link>/tags/text-mining/</link>
+      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/text-mining/</guid>
       <description></description>
     </item>
     
