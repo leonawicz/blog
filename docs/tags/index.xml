@@ -69,7 +69,7 @@
     <item>
       <title>Code</title>
       <link>/tags/code/</link>
-      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/code/</guid>
       <description></description>
@@ -78,7 +78,7 @@
     <item>
       <title>Cran</title>
       <link>/tags/cran/</link>
-      <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/cran/</guid>
       <description></description>
@@ -121,6 +121,15 @@
     </item>
     
     <item>
+      <title>Geospatial</title>
+      <link>/tags/geospatial/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/geospatial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Ggplot2</title>
       <link>/tags/ggplot2/</link>
       <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
@@ -157,6 +166,15 @@
     </item>
     
     <item>
+      <title>Leaflet</title>
+      <link>/tags/leaflet/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/leaflet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Lilypond</title>
       <link>/tags/lilypond/</link>
       <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
@@ -166,11 +184,29 @@
     </item>
     
     <item>
+      <title>Map Tiles</title>
+      <link>/tags/map-tiles/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/map-tiles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Mapmate</title>
       <link>/tags/mapmate/</link>
       <pubDate>Thu, 29 Sep 2016 00:00:00 +0000</pubDate>
       
       <guid>/tags/mapmate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Maps</title>
+      <link>/tags/maps/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/maps/</guid>
       <description></description>
     </item>
     
@@ -267,7 +303,7 @@
     <item>
       <title>R Package</title>
       <link>/tags/r-package/</link>
-      <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/r-package/</guid>
       <description></description>
@@ -366,7 +402,7 @@
     <item>
       <title>Visualization</title>
       <link>/tags/visualization/</link>
-      <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/visualization/</guid>
       <description></description>

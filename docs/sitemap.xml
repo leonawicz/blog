@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>/post/tiler-0-2-0-cran-release-create-map-tiles-from-r/</loc>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/post/epubr-0-4-0-cran-release/</loc>
       <lastmod>2018-06-05T00:00:00+00:00</lastmod>
     </url>
@@ -209,7 +218,7 @@
     <url>
     
       <loc>/tags/code/</loc>
-      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -219,7 +228,7 @@
     <url>
     
       <loc>/tags/cran/</loc>
-      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -268,6 +277,16 @@
     
     <url>
     
+      <loc>/tags/geospatial/</loc>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/tags/ggplot2/</loc>
       <lastmod>2018-02-13T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -308,6 +327,16 @@
     
     <url>
     
+      <loc>/tags/leaflet/</loc>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/tags/lilypond/</loc>
       <lastmod>2018-04-19T00:00:00+00:00</lastmod>
       <priority>0</priority>
@@ -318,8 +347,28 @@
     
     <url>
     
+      <loc>/tags/map-tiles/</loc>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/tags/mapmate/</loc>
       <lastmod>2016-09-29T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/maps/</loc>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -419,7 +468,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -458,7 +507,7 @@
     <url>
     
       <loc>/categories/r/</loc>
-      <lastmod>2018-06-05T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -468,7 +517,7 @@
     <url>
     
       <loc>/tags/r-package/</loc>
-      <lastmod>2018-05-24T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -588,7 +637,7 @@
     <url>
     
       <loc>/tags/visualization/</loc>
-      <lastmod>2018-02-13T00:00:00+00:00</lastmod>
+      <lastmod>2018-06-11T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

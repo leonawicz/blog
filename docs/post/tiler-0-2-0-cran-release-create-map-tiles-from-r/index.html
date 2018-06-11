@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.40.2" />
+  <meta name="author" content="Matthew Leonawicz">
+  <meta name="description" content="Statistician | R Developer">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="../../css/highlight.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
+  <link rel="stylesheet" href="../../css/hugo-academic.css">
+  
+  <link rel="stylesheet" href="../../css/styles.css">
+  
+
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-46129458-3', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+
+  <link rel="alternate" href="../../index.xml" type="application/rss+xml" title="Matthew Leonawicz | Blog">
+  <link rel="feed" href="../../index.xml" type="application/rss+xml" title="Matthew Leonawicz | Blog">
+
+  <link rel="icon" type="image/png" href="../../img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="../../img/apple-touch-icon.png">
+
+  <link rel="canonical" href="../../post/tiler-0-2-0-cran-release-create-map-tiles-from-r/">
+
+  
+
+  <title>tiler 0.2.0 CRAN release: Create map tiles from R | Matthew Leonawicz | Blog</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../">Matthew Leonawicz | Blog</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="https://leonawicz.github.io/">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="https://leonawicz.github.io/showcase/">
+            
+            <span>Showcase</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#about">
+            
+            <span>About</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  <div class="article-container">
+    <h1 itemprop="name">tiler 0.2.0 CRAN release: Create map tiles from R</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2018-06-11 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Jun 11, 2018
+    </time>
+  </span>
+
+  
+  
+  
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="../../categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="../../tags/cran">CRAN</a
+    >, 
+    
+    <a href="../../tags/code">code</a
+    >, 
+    
+    <a href="../../tags/r-package">R package</a
+    >, 
+    
+    <a href="../../tags/visualization">visualization</a
+    >, 
+    
+    <a href="../../tags/geospatial">geospatial</a
+    >, 
+    
+    <a href="../../tags/maps">maps</a
+    >, 
+    
+    <a href="../../tags/map-tiles">map tiles</a
+    >, 
+    
+    <a href="../../tags/leaflet">leaflet</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2ftiler-0-2-0-cran-release-create-map-tiles-from-r%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=tiler%200.2.0%20CRAN%20release%3a%20Create%20map%20tiles%20from%20R&amp;url=%2fpost%2ftiler-0-2-0-cran-release-create-map-tiles-from-r%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2ftiler-0-2-0-cran-release-create-map-tiles-from-r%2f&amp;title=tiler%200.2.0%20CRAN%20release%3a%20Create%20map%20tiles%20from%20R"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2ftiler-0-2-0-cran-release-create-map-tiles-from-r%2f&amp;title=tiler%200.2.0%20CRAN%20release%3a%20Create%20map%20tiles%20from%20R"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=tiler%200.2.0%20CRAN%20release%3a%20Create%20map%20tiles%20from%20R&amp;body=%2fpost%2ftiler-0-2-0-cran-release-create-map-tiles-from-r%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      <p><img src="../../img/post/tiler.png" style="float:right;padding-left:10px;margin:0px;" width=200 height=173/></p>
+<p>The <code>tiler</code> package provides a map tile-generator function for creating map tile sets for use with packages such as <code>leaflet</code>.</p>
+<p>In addition to generating map tiles based on a common raster layer source, it also handles the non-geographic edge case, producing map tiles from arbitrary images. These map tiles, which have a “simple CRS”, a non-geographic simple Cartesian coordinate reference system, can also be used with <code>leaflet</code> when applying the simple CRS option. Map tiles can be created from an input file with any of the following extensions: <code>tif</code>, <code>grd</code> and <code>nc</code> for spatial maps and <code>png</code>, <code>jpg</code> and <code>bmp</code> for basic images.</p>
+<p align="center">
+<a href="../../img/post/tiler_ex_map.png" target="blank_"><img src="../../img/post/tiler_ex_map.png" style="margin-top:20px; margin-bottom:4px;"/></a><em style="margin-left:40px;">There are some links to example map tile sets made with <code>tiler</code> near the bottom of the post.</em>
+</p>
+<div id="setup-windows-users" class="section level2">
+<h2>Setup (Windows users)</h2>
+<p>Python is required as well as the <code>gdal</code> library for Python. For Windows users, this is not the same as simply having <code>rgdal</code> installed through R. You need to install <code>gdal</code> so that it is accessible by Python. One of the easiest and typically recommended ways to do this in Windows is to install <a href="https://trac.osgeo.org/osgeo4w/">OSGeo4W</a>. It will bring all the required Python <code>gdal</code> library functionality along with it. OSGeo4W is also commonly installed along with <a href="https://qgis.org/en/site/forusers/download.html">QGIS</a>.</p>
+<p>On Windows for potential user convenience, the <code>tiler</code> package will perform a single check on package load for the <code>OSgeo4W.bat</code> utility at <code>C:/Program Files/QGIS 3.0/OSGeo4W.bat</code>. If found, its path is set in <code>tiler_options</code>. If it is not found at this precise location, the path remains unspecified and <code>tiler</code> will fall back on only calling Python during tiling operations, assuming hopefully that <code>gdal</code> will be available to Python nonetheless.</p>
+<p>You should not rely on a gratuitous check like this; <code>tiler</code> is being overly generous. It is recommended that you simply add the paths for <code>python.exe</code>, and <code>OSGeo4.bat</code> if applicable, to your system path after installation. This way you do not need to provide these paths to <code>tiler_options</code> in each R session; R will know where they are just like on other operating systems. That’s all that should be needed. Linux and Mac users should not have to do any additional setup as long as Python and <code>gdal</code> for Python are installed.</p>
+</div>
+<div id="geographic-map-tiles" class="section level2">
+<h2>Geographic map tiles</h2>
+<div id="context" class="section level3">
+<h3>Context</h3>
+<p>For the sake of simple, expedient examples, the map tiles generated below all use small zoom level ranges. There is also no reason to attempt displaying the tiles here. To make these examples more informative, each raster is loaded and plotted for context, though this is not necessary to the tiling process. Loading the <code>raster</code> package is only needed here for the print and plot calls.</p>
+<p>The example maps packaged with <code>tiler</code> are not representative of large, high resolution imagery that benefits from tiling. These maps are very small in order to minimize package size and ensure examples run quickly. But the tiling procedures demonstrated are the same as would be applied to larger images.</p>
+<p>Lastly, consider the power of your system before attempting to make a ton of tiles for large images at very high resolutions. You could find that the system could hang at any one of a number of choke points. If you are attempting to make thousands of tiles for a large, high resolution image and your system is struggling, it is recommended to (1) try making tiles for only one zoom level at a time, starting from zero and then increasing while monitoring your system resources. (2) If this is not enough, find a better system.</p>
+</div>
+<div id="basic-example" class="section level3">
+<h3>Basic example</h3>
+<p>Map tiles are generated with <code>tile</code>. <code>tile</code> takes an input file name <code>file</code> for the source map and a <code>tiles</code> destination path for where to save map tiles. The only other required argument is <code>zoom</code>, the range of zoom levels for the tiles. This is a string of the form, e.g. <code>3:7</code>. In this and the subsequent examples zoom levels 0-3 are used.</p>
+<pre class="r"><code>library(tiler)
+library(raster)
+tile_dir &lt;- file.path(tempdir(), &quot;tiles&quot;)
+map &lt;- system.file(&quot;maps/map_wgs84.tif&quot;, package = &quot;tiler&quot;)
+(r &lt;- raster(map))
+#&gt; class       : RasterLayer 
+#&gt; dimensions  : 32, 71, 2272  (nrow, ncol, ncell)
+#&gt; resolution  : 0.8333333, 0.8333333  (x, y)
+#&gt; extent      : -125.0208, -65.85417, 23.27083, 49.9375  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+#&gt; data source : C:\Users\Matt\Documents\R\win-library\3.5\tiler\maps\map_wgs84.tif 
+#&gt; names       : map_wgs84 
+#&gt; values      : -0.7205295, 5.545086  (min, max)
+plot(r)</code></pre>
+<p><img src="../../post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex1-1.png" width="672" /></p>
+<pre class="r"><code>
+tile(map, tile_dir, &quot;0-3&quot;)
+#&gt; Coloring raster...
+#&gt; Preparing for tiling...
+#&gt; Creating tiles. Please wait...
+#&gt; Creating tile viewer...
+#&gt; Complete.
+
+list.files(tile_dir)
+#&gt; [1] &quot;0&quot;                   &quot;1&quot;                   &quot;2&quot;                  
+#&gt; [4] &quot;3&quot;                   &quot;doc.kml&quot;             &quot;tilemapresource.xml&quot;</code></pre>
+<p>Listing the files in <code>tile_dir</code> shows the top level map tiles directories, 0-3 as expected. This is not printed in subsequent examples since it is not going to change.</p>
+<p>Note that these examples rendered to HTML here do not capture the parts of the log output that result from the internal system call made by <code>tile</code>. When you run this example yourself you will see a bit more information at the console.</p>
+</div>
+<div id="projected-maps" class="section level3">
+<h3>Projected maps</h3>
+<p>The previous example used a map with a geospatial coordinate reference system (CRS) but it was not projected. That map would be ready to view with the <code>leaflet</code> package for example, as would the tiles generated based on it. The next example uses a similar map that is projected. In order to generate map tiles that can be used with <code>leaflet</code> in the standard CRS, the map must be reprojected first. Then the same map tiles are generated as before.</p>
+<pre class="r"><code>map &lt;- system.file(&quot;maps/map_albers.tif&quot;, package = &quot;tiler&quot;)
+(r &lt;- raster(map))
+#&gt; class       : RasterLayer 
+#&gt; dimensions  : 32, 71, 2272  (nrow, ncol, ncell)
+#&gt; resolution  : 85011.74, 103363.8  (x, y)
+#&gt; extent      : -2976297, 3059536, -1577300, 1730342  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+#&gt; data source : C:\Users\Matt\Documents\R\win-library\3.5\tiler\maps\map_albers.tif 
+#&gt; names       : map_albers 
+#&gt; values      : -0.593978, 5.544724  (min, max)
+plot(r)</code></pre>
+<p><img src="../../post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex2-1.png" width="672" /></p>
+<pre class="r"><code>
+tile(map, tile_dir, &quot;0-3&quot;)
+#&gt; Reprojecting raster...
+#&gt; Coloring raster...
+#&gt; Preparing for tiling...
+#&gt; Creating tiles. Please wait...
+#&gt; Creating tile viewer...
+#&gt; Complete.</code></pre>
+<p>The tiles generated this time are the same as before, that is, ready for <code>leaflet</code>. <code>tile</code> reprojects the raster layer internally. This can be seen in the log output printed to the console.</p>
+</div>
+<div id="missing-crs" class="section level3">
+<h3>Missing CRS</h3>
+<p>If the CRS of the raster is <code>NA</code>, there are two options. By default, <code>tile</code> will fall back on processing the raster layer as if it were a simple image file with no geospatial projection information (see the next section on simple CRS/non-geographic map tiles). These tiles are not the same as the previous sets.</p>
+<pre class="r"><code>map &lt;- system.file(&quot;maps/map_albers_NA.tif&quot;, package = &quot;tiler&quot;)
+(r &lt;- raster(map))
+#&gt; class       : RasterLayer 
+#&gt; dimensions  : 32, 71, 2272  (nrow, ncol, ncell)
+#&gt; resolution  : 85011.74, 103363.8  (x, y)
+#&gt; extent      : -2976297, 3059536, -1577300, 1730342  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : NA 
+#&gt; data source : C:\Users\Matt\Documents\R\win-library\3.5\tiler\maps\map_albers_NA.tif 
+#&gt; names       : map_albers_NA 
+#&gt; values      : -0.593978, 5.544724  (min, max)
+plot(r)</code></pre>
+<p><img src="../../post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex3-1.png" width="672" /></p>
+<pre class="r"><code>
+tile(map, tile_dir, &quot;0-3&quot;)
+#&gt; Warning in .proj_check(file, crs, ...): Projection expected but is missing.
+#&gt; Continuing as non-geographic image.
+#&gt; Coloring raster...
+#&gt; Preparing for tiling...
+#&gt; Creating tiles. Please wait...
+#&gt; Creating tile viewer...
+#&gt; Complete.</code></pre>
+<p>This is not likely what is wanted. The other option is to force set a known CRS if it is missing from the file or was dropped for whatever reason. Now reprojection can proceed and the expected tiles are generated.</p>
+<pre class="r"><code>crs &lt;- &quot;+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs +towgs84=0,0,0&quot;
+tile(map, tile_dir, &quot;0-3&quot;, crs)
+#&gt; Reprojecting raster...
+#&gt; Coloring raster...
+#&gt; Preparing for tiling...
+#&gt; Creating tiles. Please wait...
+#&gt; Creating tile viewer...
+#&gt; Complete.</code></pre>
+<p>A note on reprojection: Depending on the nature of the data in a raster, the <code>...</code> argument to <code>tile</code> allows you to pass through the <code>method</code> argument to <code>raster::projectRaster</code>. This is <code>bilinear</code> by default for bilinear interpolation, appropriate for continuous data. It can be set to <code>ngb</code> for nearest neighbor, appropriate for discrete or categorical data. If more control is needed over the reprojection, you should just prepare your raster file first before using <code>tile</code>. <code>tiler</code> is not intended to substitute for or wrap general geospatial processing tasks that can easily be done with other packages.</p>
+</div>
+<div id="coloring-tiles" class="section level3">
+<h3>Coloring tiles</h3>
+<p>Being able to change the default color palette or specify color breaks is important. All other optional <code>...</code> arguments to <code>tile</code> are passed to <code>raster::RGB</code> to provide control over the creation of an intermediary RGB raster. Most arguments to <code>RGB</code> can usually be ignored. The most useful ones are <code>col</code> and <code>colNA</code> for the data values color palette and the <code>noData</code> color, respectively. Coloring tiles differently for the original example is as simple as the following.</p>
+<pre class="r"><code>map &lt;- system.file(&quot;maps/map_wgs84.tif&quot;, package = &quot;tiler&quot;)
+pal &lt;- colorRampPalette(c(&quot;darkblue&quot;, &quot;lightblue&quot;))(20)
+nodata &lt;- &quot;tomato&quot;
+tile(map, tile_dir, &quot;0-3&quot;, col = pal, colNA = nodata)
+#&gt; Coloring raster...
+#&gt; Preparing for tiling...
+#&gt; Creating tiles. Please wait...
+#&gt; Creating tile viewer...
+#&gt; Complete.</code></pre>
+</div>
+<div id="rgb-and-rgba-rasters" class="section level3">
+<h3>RGB and RGBA rasters</h3>
+<p>Multi-band rasters are supported as long as they have three or four layers, in which case <code>tile</code> assumes these represent red, green, blue and alpha channel, respectively. Internally, single-layer raster files are colored and converted to a three- or four-band RGB/A raster object prior to tile generation. If <code>file</code> is already such a raster, this step is simply skipped. Optional arguments like data and <code>noData</code> color, break points, etc., are ignored since this type of raster contains its own color information.</p>
+<pre class="r"><code>map &lt;- system.file(&quot;maps/map_albers_rgb.tif&quot;, package = &quot;tiler&quot;)
+(r &lt;- brick(map))
+#&gt; class       : RasterBrick 
+#&gt; dimensions  : 32, 71, 2272, 3  (nrow, ncol, ncell, nlayers)
+#&gt; resolution  : 85011.74, 103363.8  (x, y)
+#&gt; extent      : -2976297, 3059536, -1577300, 1730342  (xmin, xmax, ymin, ymax)
+#&gt; coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+#&gt; data source : C:\Users\Matt\Documents\R\win-library\3.5\tiler\maps\map_albers_rgb.tif 
+#&gt; names       : map_albers_rgb.1, map_albers_rgb.2, map_albers_rgb.3 
+#&gt; min values  :                0,                0,                0 
+#&gt; max values  :              253,              255,              244
+plot(r)</code></pre>
+<p><img src="../../post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex6-1.png" width="672" /></p>
+<pre class="r"><code>
+tile(map, tile_dir, &quot;0-3&quot;)
+#&gt; Reprojecting raster...
+#&gt; Preparing for tiling...
+#&gt; Creating tiles. Please wait...
+#&gt; Creating tile viewer...
+#&gt; Complete.</code></pre>
+</div>
+</div>
+<div id="non-geographic-map-tiles" class="section level2">
+<h2>Non-geographic map tiles</h2>
+<p>Almost all map tiles you encounter are for geographic maps. They have a geographic coordinate reference system (CRS). Software used to display these map tiles, such as Leaflet, is similarly focused on these kinds of map tiles. Everything is geared towards the dominant use case involving geospatial coordinate systems.</p>
+<p>However, there are edge cases where non-geographic maps are required. These can be maps of outer space, game board maps, etc. The base map used to generate map tiles is usually a simple image like a <code>png</code>, <code>jpg</code> or <code>bmp</code> file. The coordinate reference system is a simple Cartesian coordinate system based on the matrix of pixels or grid cells that represent the image.</p>
+<p>There is no longitude or latitude or more complex geospatial projection associated with these maps, which is why they are said to have a “simple CRS”. Simple does not necessarily mean easier to work with, however, because geospatial tools, like Leaflet for example, do not cater naturally to non-geographic coordinate systems. Using these map tiles in Leaflet is possible, but takes a bit of non-standard effort.</p>
+<div id="basic-example-1" class="section level3">
+<h3>Basic example</h3>
+<p>One example was shown previously where a spatial map lacking critical spatial reference information was processed as a simple image. In the example below, this is the intent. Here, the map is a <code>png</code> file. It is a previously saved plot of the Albers-projected US map used in the earlier projected geotiff example. You can see it has a color key legend. As a simple image, all of this will be tiled.</p>
+<pre class="r"><code>map &lt;- system.file(&quot;maps/map.png&quot;, package = &quot;tiler&quot;)
+plotRGB(brick(map))</code></pre>
+<p><img src="../../post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex7-1.png" width="672" /></p>
+<pre class="r"><code>
+tile(map, tile_dir, &quot;0-3&quot;)
+#&gt; Creating tiles. Please wait...
+#&gt; Creating tile viewer...
+#&gt; Complete.</code></pre>
+<p>The <code>tile</code> function will automatically process simple image files differently. There is no concept of projection, and coloring tiles is irrelevant because the image file has its own coloring already. Map tiles generated from regular image files can be used with <code>leaflet</code> if done properly. The generated tiles have a simple CRS that is based on the pixel dimensions of the image file. If you were to use these tiles in <code>leaflet</code> for example and you wanted to overlay map markers, you would have to first georeference your locations of interest based on the matrix rows and columns of the image. This is outside the scope of <code>tiler</code>. See the Leaflet JS and <code>leaflet</code> package documentation for details on using simple CRS/non-geographic tiles.</p>
+<p>Using a <code>png</code> file is recommended for quality and file size. <code>jpg</code> may yield a lower quality result, while a large, high resolution <code>bmp</code> file may have an enormous file size compared to <code>png</code>.</p>
+<p><code>jpg</code> and <code>bmp</code> are <em>optionally</em> supported by <code>tiler</code>. This means they are not installed and imported with <code>tiler</code>. It is assumed the user will provide <code>png</code> images. If using <code>jpg</code> or <code>bmp</code> and the packages <code>jpeg</code> or <code>bmp</code> are not installed, respectively, <code>tile</code> will print a message to the console notifying of the required package installations.</p>
+</div>
+</div>
+<div id="additional-arguments" class="section level2">
+<h2>Additional arguments</h2>
+<p>Other arguments to <code>tile</code> include <code>format</code>, <code>resume</code>, <code>viewer</code> and <code>georef</code>.</p>
+<p><code>format</code> is either <code>xyz</code> (default) or <code>tms</code>. <code>gdal2tiles</code> generates TMS tiles, but XYZ may be more familiar. Tile format only applies to geographic maps. All simple image-based tiles are XYZ format. If setting <code>format = &quot;tms&quot;</code> you may need to do something similar in your Leaflet JavaScript or <code>leaflet</code> package R code for tiles to display with the proper orientation.</p>
+<p><code>resume = TRUE</code> simply avoids overwriting tiles by picking up where you left off without changing your set zoom levels and output path.</p>
+<p><code>viewer = TRUE</code> creates <code>preview.html</code> adjacent to the <code>tiles</code> directory for previewing tiles in the browser using Leaflet. <code>georef = TRUE</code> adds mouse click feedback to the Leaflet widget. Map markers with matrix index coordinate labels appear on mouse click to assist with georeferencing. <code>georef</code> only applies to non-geographic tiles. This allows for interactive georeferencing of pixels in the image.</p>
+<p>Finally, <code>...</code> can pass along some additional arguments. See help documentation for details.</p>
+</div>
+<div id="serving-map-tiles" class="section level2">
+<h2>Serving map tiles</h2>
+<p>Map tiles must be served online to be of much use. Serving map tiles is not the purpose of <code>tiler</code> but using your GitHub account is an easy way to do this. Create a GitHub repository, enable GitHub pages for the repository in the repository settings. If the repository is exclusively for serving your map tiles, just set the master branch as the source for your GitHub pages. After committing and pushing your tiles to GitHub, you can access them using a URL of the form</p>
+<p><code>https://&lt;your account name&gt;.github.io/maptiles/tiles/{z}/{x}/{y}.png</code></p>
+<p>if you store your tiles in a folder named <code>tiles</code> in a repository named <code>maptiles</code> for example.</p>
+<p>Here are some <a href="https://github.com/leonawicz/tiles/">examples of non-geographic tile sets</a> hosted on GitHub using Star Trek galaxy maps generated with <code>tiler</code> and here they are used in <a href="https://leonawicz.github.io/rtrek/articles/sc.html">Leaflet maps</a>.</p>
+<div id="local-preview" class="section level3">
+<h3>Local preview</h3>
+<p>By default <code>tile</code> also creates <code>preview.html</code> as noted above. This can also be created or re-created directly using <code>tile_viewer</code>. In either case, as long as <code>preview.html</code> exists alongside the tiles directory, it can easily be loaded in the browser with <code>view_tiles</code>. See help documentation for details.</p>
+<p>If you have tiles in a directory <code>&quot;project/tiles&quot;</code>, creating <code>preview.html</code> directly can be done as follows. The arguments shown are just for illustration.</p>
+<pre class="r"><code>tile_viewer(&quot;project/tiles&quot;, &quot;3-7&quot;)  # geographic tiles
+tile_viewer(&quot;project/tiles&quot;, &quot;3-7&quot;, width = 1000, height = 1000)  # non-geographic tiles</code></pre>
+<p>However the tile preview document is created, it can be viewed by passing the same <code>tiles</code> directory to <code>view_tiles</code>.</p>
+<pre class="r"><code>view_tiles(&quot;project/tiles&quot;)</code></pre>
+</div>
+<div id="details" class="section level3">
+<h3>Details</h3>
+<p>The <code>leaflet</code> R code needed in order to use custom non-geographic tiles like these requires setting <code>leafletOptions(crs = leafletCRS(&quot;L.CRS.Simple&quot;))</code> as well as calling <code>addTiles(urlTemplate = url)</code> where <code>url</code> is like the example URL shown above. Setting the focus of the map can be a bit tricky for non-geographic map tiles based on an arbitrary image file. It may take some trial and error to get a sense for the custom coordinate system.</p>
+</div>
+</div>
+
+    </div>
+  </div>
+
+</article>
+
+
+
+<div class="article-container">
+  <h3>Related</h3>
+  <ul>
+    
+    <li><a href="../../post/epubr-0-4-0-cran-release/">epubr 0.4.0 CRAN release</a></li>
+    
+    <li><a href="../../post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/">Mix ggplot2 graphs with your favorite memes. memery 0.4.2 released.</a></li>
+    
+    <li><a href="../../post/2017-11-09-memery-0-3-0-on-cran/">Make memorable plots with memery. v0.3.0 now on CRAN.</a></li>
+    
+    <li><a href="../../post/mapmate-0-2-0/">mapmate 0.2.0</a></li>
+    
+    <li><a href="../../post/trekfont-star-trek-themed-fonts-package/">trekfont: Star Trek-themed fonts package</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="../../post/epubr-0-4-0-cran-release/"><span
+      aria-hidden="true">&larr;</span> epubr 0.4.0 CRAN release</a></li>
+    
+
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; Matthew Leonawicz &middot; 
+
+      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
+      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    
+    <script src="../../js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+

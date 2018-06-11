@@ -11,6 +11,214 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>tiler 0.2.0 CRAN release: Create map tiles from R</title>
+      <link>/post/tiler-0-2-0-cran-release-create-map-tiles-from-r/</link>
+      <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tiler-0-2-0-cran-release-create-map-tiles-from-r/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;./img/post/tiler.png&#34; style=&#34;float:right;padding-left:10px;margin:0px;&#34; width=200 height=173/&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;tiler&lt;/code&gt; package provides a map tile-generator function for creating map tile sets for use with packages such as &lt;code&gt;leaflet&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In addition to generating map tiles based on a common raster layer source, it also handles the non-geographic edge case, producing map tiles from arbitrary images. These map tiles, which have a “simple CRS”, a non-geographic simple Cartesian coordinate reference system, can also be used with &lt;code&gt;leaflet&lt;/code&gt; when applying the simple CRS option. Map tiles can be created from an input file with any of the following extensions: &lt;code&gt;tif&lt;/code&gt;, &lt;code&gt;grd&lt;/code&gt; and &lt;code&gt;nc&lt;/code&gt; for spatial maps and &lt;code&gt;png&lt;/code&gt;, &lt;code&gt;jpg&lt;/code&gt; and &lt;code&gt;bmp&lt;/code&gt; for basic images.&lt;/p&gt;
+&lt;p align=&#34;center&#34;&gt;
+&lt;a href=&#34;./img/post/tiler_ex_map.png&#34; target=&#34;blank_&#34;&gt;&lt;img src=&#34;./img/post/tiler_ex_map.png&#34; style=&#34;margin-top:20px; margin-bottom:4px;&#34;/&gt;&lt;/a&gt;&lt;em style=&#34;margin-left:40px;&#34;&gt;There are some links to example map tile sets made with &lt;code&gt;tiler&lt;/code&gt; near the bottom of the post.&lt;/em&gt;
+&lt;/p&gt;
+&lt;div id=&#34;setup-windows-users&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Setup (Windows users)&lt;/h2&gt;
+&lt;p&gt;Python is required as well as the &lt;code&gt;gdal&lt;/code&gt; library for Python. For Windows users, this is not the same as simply having &lt;code&gt;rgdal&lt;/code&gt; installed through R. You need to install &lt;code&gt;gdal&lt;/code&gt; so that it is accessible by Python. One of the easiest and typically recommended ways to do this in Windows is to install &lt;a href=&#34;https://trac.osgeo.org/osgeo4w/&#34;&gt;OSGeo4W&lt;/a&gt;. It will bring all the required Python &lt;code&gt;gdal&lt;/code&gt; library functionality along with it. OSGeo4W is also commonly installed along with &lt;a href=&#34;https://qgis.org/en/site/forusers/download.html&#34;&gt;QGIS&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;On Windows for potential user convenience, the &lt;code&gt;tiler&lt;/code&gt; package will perform a single check on package load for the &lt;code&gt;OSgeo4W.bat&lt;/code&gt; utility at &lt;code&gt;C:/Program Files/QGIS 3.0/OSGeo4W.bat&lt;/code&gt;. If found, its path is set in &lt;code&gt;tiler_options&lt;/code&gt;. If it is not found at this precise location, the path remains unspecified and &lt;code&gt;tiler&lt;/code&gt; will fall back on only calling Python during tiling operations, assuming hopefully that &lt;code&gt;gdal&lt;/code&gt; will be available to Python nonetheless.&lt;/p&gt;
+&lt;p&gt;You should not rely on a gratuitous check like this; &lt;code&gt;tiler&lt;/code&gt; is being overly generous. It is recommended that you simply add the paths for &lt;code&gt;python.exe&lt;/code&gt;, and &lt;code&gt;OSGeo4.bat&lt;/code&gt; if applicable, to your system path after installation. This way you do not need to provide these paths to &lt;code&gt;tiler_options&lt;/code&gt; in each R session; R will know where they are just like on other operating systems. That’s all that should be needed. Linux and Mac users should not have to do any additional setup as long as Python and &lt;code&gt;gdal&lt;/code&gt; for Python are installed.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;geographic-map-tiles&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Geographic map tiles&lt;/h2&gt;
+&lt;div id=&#34;context&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Context&lt;/h3&gt;
+&lt;p&gt;For the sake of simple, expedient examples, the map tiles generated below all use small zoom level ranges. There is also no reason to attempt displaying the tiles here. To make these examples more informative, each raster is loaded and plotted for context, though this is not necessary to the tiling process. Loading the &lt;code&gt;raster&lt;/code&gt; package is only needed here for the print and plot calls.&lt;/p&gt;
+&lt;p&gt;The example maps packaged with &lt;code&gt;tiler&lt;/code&gt; are not representative of large, high resolution imagery that benefits from tiling. These maps are very small in order to minimize package size and ensure examples run quickly. But the tiling procedures demonstrated are the same as would be applied to larger images.&lt;/p&gt;
+&lt;p&gt;Lastly, consider the power of your system before attempting to make a ton of tiles for large images at very high resolutions. You could find that the system could hang at any one of a number of choke points. If you are attempting to make thousands of tiles for a large, high resolution image and your system is struggling, it is recommended to (1) try making tiles for only one zoom level at a time, starting from zero and then increasing while monitoring your system resources. (2) If this is not enough, find a better system.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;basic-example&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Basic example&lt;/h3&gt;
+&lt;p&gt;Map tiles are generated with &lt;code&gt;tile&lt;/code&gt;. &lt;code&gt;tile&lt;/code&gt; takes an input file name &lt;code&gt;file&lt;/code&gt; for the source map and a &lt;code&gt;tiles&lt;/code&gt; destination path for where to save map tiles. The only other required argument is &lt;code&gt;zoom&lt;/code&gt;, the range of zoom levels for the tiles. This is a string of the form, e.g. &lt;code&gt;3:7&lt;/code&gt;. In this and the subsequent examples zoom levels 0-3 are used.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tiler)
+library(raster)
+tile_dir &amp;lt;- file.path(tempdir(), &amp;quot;tiles&amp;quot;)
+map &amp;lt;- system.file(&amp;quot;maps/map_wgs84.tif&amp;quot;, package = &amp;quot;tiler&amp;quot;)
+(r &amp;lt;- raster(map))
+#&amp;gt; class       : RasterLayer 
+#&amp;gt; dimensions  : 32, 71, 2272  (nrow, ncol, ncell)
+#&amp;gt; resolution  : 0.8333333, 0.8333333  (x, y)
+#&amp;gt; extent      : -125.0208, -65.85417, 23.27083, 49.9375  (xmin, xmax, ymin, ymax)
+#&amp;gt; coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+#&amp;gt; data source : C:\Users\Matt\Documents\R\win-library\3.5\tiler\maps\map_wgs84.tif 
+#&amp;gt; names       : map_wgs84 
+#&amp;gt; values      : -0.7205295, 5.545086  (min, max)
+plot(r)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
+#&amp;gt; Coloring raster...
+#&amp;gt; Preparing for tiling...
+#&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Creating tile viewer...
+#&amp;gt; Complete.
+
+list.files(tile_dir)
+#&amp;gt; [1] &amp;quot;0&amp;quot;                   &amp;quot;1&amp;quot;                   &amp;quot;2&amp;quot;                  
+#&amp;gt; [4] &amp;quot;3&amp;quot;                   &amp;quot;doc.kml&amp;quot;             &amp;quot;tilemapresource.xml&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Listing the files in &lt;code&gt;tile_dir&lt;/code&gt; shows the top level map tiles directories, 0-3 as expected. This is not printed in subsequent examples since it is not going to change.&lt;/p&gt;
+&lt;p&gt;Note that these examples rendered to HTML here do not capture the parts of the log output that result from the internal system call made by &lt;code&gt;tile&lt;/code&gt;. When you run this example yourself you will see a bit more information at the console.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;projected-maps&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Projected maps&lt;/h3&gt;
+&lt;p&gt;The previous example used a map with a geospatial coordinate reference system (CRS) but it was not projected. That map would be ready to view with the &lt;code&gt;leaflet&lt;/code&gt; package for example, as would the tiles generated based on it. The next example uses a similar map that is projected. In order to generate map tiles that can be used with &lt;code&gt;leaflet&lt;/code&gt; in the standard CRS, the map must be reprojected first. Then the same map tiles are generated as before.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map &amp;lt;- system.file(&amp;quot;maps/map_albers.tif&amp;quot;, package = &amp;quot;tiler&amp;quot;)
+(r &amp;lt;- raster(map))
+#&amp;gt; class       : RasterLayer 
+#&amp;gt; dimensions  : 32, 71, 2272  (nrow, ncol, ncell)
+#&amp;gt; resolution  : 85011.74, 103363.8  (x, y)
+#&amp;gt; extent      : -2976297, 3059536, -1577300, 1730342  (xmin, xmax, ymin, ymax)
+#&amp;gt; coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+#&amp;gt; data source : C:\Users\Matt\Documents\R\win-library\3.5\tiler\maps\map_albers.tif 
+#&amp;gt; names       : map_albers 
+#&amp;gt; values      : -0.593978, 5.544724  (min, max)
+plot(r)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
+#&amp;gt; Reprojecting raster...
+#&amp;gt; Coloring raster...
+#&amp;gt; Preparing for tiling...
+#&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Creating tile viewer...
+#&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The tiles generated this time are the same as before, that is, ready for &lt;code&gt;leaflet&lt;/code&gt;. &lt;code&gt;tile&lt;/code&gt; reprojects the raster layer internally. This can be seen in the log output printed to the console.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;missing-crs&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Missing CRS&lt;/h3&gt;
+&lt;p&gt;If the CRS of the raster is &lt;code&gt;NA&lt;/code&gt;, there are two options. By default, &lt;code&gt;tile&lt;/code&gt; will fall back on processing the raster layer as if it were a simple image file with no geospatial projection information (see the next section on simple CRS/non-geographic map tiles). These tiles are not the same as the previous sets.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map &amp;lt;- system.file(&amp;quot;maps/map_albers_NA.tif&amp;quot;, package = &amp;quot;tiler&amp;quot;)
+(r &amp;lt;- raster(map))
+#&amp;gt; class       : RasterLayer 
+#&amp;gt; dimensions  : 32, 71, 2272  (nrow, ncol, ncell)
+#&amp;gt; resolution  : 85011.74, 103363.8  (x, y)
+#&amp;gt; extent      : -2976297, 3059536, -1577300, 1730342  (xmin, xmax, ymin, ymax)
+#&amp;gt; coord. ref. : NA 
+#&amp;gt; data source : C:\Users\Matt\Documents\R\win-library\3.5\tiler\maps\map_albers_NA.tif 
+#&amp;gt; names       : map_albers_NA 
+#&amp;gt; values      : -0.593978, 5.544724  (min, max)
+plot(r)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
+#&amp;gt; Warning in .proj_check(file, crs, ...): Projection expected but is missing.
+#&amp;gt; Continuing as non-geographic image.
+#&amp;gt; Coloring raster...
+#&amp;gt; Preparing for tiling...
+#&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Creating tile viewer...
+#&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is not likely what is wanted. The other option is to force set a known CRS if it is missing from the file or was dropped for whatever reason. Now reprojection can proceed and the expected tiles are generated.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;crs &amp;lt;- &amp;quot;+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs +towgs84=0,0,0&amp;quot;
+tile(map, tile_dir, &amp;quot;0-3&amp;quot;, crs)
+#&amp;gt; Reprojecting raster...
+#&amp;gt; Coloring raster...
+#&amp;gt; Preparing for tiling...
+#&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Creating tile viewer...
+#&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A note on reprojection: Depending on the nature of the data in a raster, the &lt;code&gt;...&lt;/code&gt; argument to &lt;code&gt;tile&lt;/code&gt; allows you to pass through the &lt;code&gt;method&lt;/code&gt; argument to &lt;code&gt;raster::projectRaster&lt;/code&gt;. This is &lt;code&gt;bilinear&lt;/code&gt; by default for bilinear interpolation, appropriate for continuous data. It can be set to &lt;code&gt;ngb&lt;/code&gt; for nearest neighbor, appropriate for discrete or categorical data. If more control is needed over the reprojection, you should just prepare your raster file first before using &lt;code&gt;tile&lt;/code&gt;. &lt;code&gt;tiler&lt;/code&gt; is not intended to substitute for or wrap general geospatial processing tasks that can easily be done with other packages.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;coloring-tiles&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Coloring tiles&lt;/h3&gt;
+&lt;p&gt;Being able to change the default color palette or specify color breaks is important. All other optional &lt;code&gt;...&lt;/code&gt; arguments to &lt;code&gt;tile&lt;/code&gt; are passed to &lt;code&gt;raster::RGB&lt;/code&gt; to provide control over the creation of an intermediary RGB raster. Most arguments to &lt;code&gt;RGB&lt;/code&gt; can usually be ignored. The most useful ones are &lt;code&gt;col&lt;/code&gt; and &lt;code&gt;colNA&lt;/code&gt; for the data values color palette and the &lt;code&gt;noData&lt;/code&gt; color, respectively. Coloring tiles differently for the original example is as simple as the following.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map &amp;lt;- system.file(&amp;quot;maps/map_wgs84.tif&amp;quot;, package = &amp;quot;tiler&amp;quot;)
+pal &amp;lt;- colorRampPalette(c(&amp;quot;darkblue&amp;quot;, &amp;quot;lightblue&amp;quot;))(20)
+nodata &amp;lt;- &amp;quot;tomato&amp;quot;
+tile(map, tile_dir, &amp;quot;0-3&amp;quot;, col = pal, colNA = nodata)
+#&amp;gt; Coloring raster...
+#&amp;gt; Preparing for tiling...
+#&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Creating tile viewer...
+#&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rgb-and-rgba-rasters&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;RGB and RGBA rasters&lt;/h3&gt;
+&lt;p&gt;Multi-band rasters are supported as long as they have three or four layers, in which case &lt;code&gt;tile&lt;/code&gt; assumes these represent red, green, blue and alpha channel, respectively. Internally, single-layer raster files are colored and converted to a three- or four-band RGB/A raster object prior to tile generation. If &lt;code&gt;file&lt;/code&gt; is already such a raster, this step is simply skipped. Optional arguments like data and &lt;code&gt;noData&lt;/code&gt; color, break points, etc., are ignored since this type of raster contains its own color information.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map &amp;lt;- system.file(&amp;quot;maps/map_albers_rgb.tif&amp;quot;, package = &amp;quot;tiler&amp;quot;)
+(r &amp;lt;- brick(map))
+#&amp;gt; class       : RasterBrick 
+#&amp;gt; dimensions  : 32, 71, 2272, 3  (nrow, ncol, ncell, nlayers)
+#&amp;gt; resolution  : 85011.74, 103363.8  (x, y)
+#&amp;gt; extent      : -2976297, 3059536, -1577300, 1730342  (xmin, xmax, ymin, ymax)
+#&amp;gt; coord. ref. : +proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+#&amp;gt; data source : C:\Users\Matt\Documents\R\win-library\3.5\tiler\maps\map_albers_rgb.tif 
+#&amp;gt; names       : map_albers_rgb.1, map_albers_rgb.2, map_albers_rgb.3 
+#&amp;gt; min values  :                0,                0,                0 
+#&amp;gt; max values  :              253,              255,              244
+plot(r)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
+#&amp;gt; Reprojecting raster...
+#&amp;gt; Preparing for tiling...
+#&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Creating tile viewer...
+#&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;non-geographic-map-tiles&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Non-geographic map tiles&lt;/h2&gt;
+&lt;p&gt;Almost all map tiles you encounter are for geographic maps. They have a geographic coordinate reference system (CRS). Software used to display these map tiles, such as Leaflet, is similarly focused on these kinds of map tiles. Everything is geared towards the dominant use case involving geospatial coordinate systems.&lt;/p&gt;
+&lt;p&gt;However, there are edge cases where non-geographic maps are required. These can be maps of outer space, game board maps, etc. The base map used to generate map tiles is usually a simple image like a &lt;code&gt;png&lt;/code&gt;, &lt;code&gt;jpg&lt;/code&gt; or &lt;code&gt;bmp&lt;/code&gt; file. The coordinate reference system is a simple Cartesian coordinate system based on the matrix of pixels or grid cells that represent the image.&lt;/p&gt;
+&lt;p&gt;There is no longitude or latitude or more complex geospatial projection associated with these maps, which is why they are said to have a “simple CRS”. Simple does not necessarily mean easier to work with, however, because geospatial tools, like Leaflet for example, do not cater naturally to non-geographic coordinate systems. Using these map tiles in Leaflet is possible, but takes a bit of non-standard effort.&lt;/p&gt;
+&lt;div id=&#34;basic-example-1&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Basic example&lt;/h3&gt;
+&lt;p&gt;One example was shown previously where a spatial map lacking critical spatial reference information was processed as a simple image. In the example below, this is the intent. Here, the map is a &lt;code&gt;png&lt;/code&gt; file. It is a previously saved plot of the Albers-projected US map used in the earlier projected geotiff example. You can see it has a color key legend. As a simple image, all of this will be tiled.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;map &amp;lt;- system.file(&amp;quot;maps/map.png&amp;quot;, package = &amp;quot;tiler&amp;quot;)
+plotRGB(brick(map))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;./post/2018-06-11-tiler-0-2-0-cran-release-create-map-tiles-from-r_files/figure-html/ex7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
+#&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Creating tile viewer...
+#&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;code&gt;tile&lt;/code&gt; function will automatically process simple image files differently. There is no concept of projection, and coloring tiles is irrelevant because the image file has its own coloring already. Map tiles generated from regular image files can be used with &lt;code&gt;leaflet&lt;/code&gt; if done properly. The generated tiles have a simple CRS that is based on the pixel dimensions of the image file. If you were to use these tiles in &lt;code&gt;leaflet&lt;/code&gt; for example and you wanted to overlay map markers, you would have to first georeference your locations of interest based on the matrix rows and columns of the image. This is outside the scope of &lt;code&gt;tiler&lt;/code&gt;. See the Leaflet JS and &lt;code&gt;leaflet&lt;/code&gt; package documentation for details on using simple CRS/non-geographic tiles.&lt;/p&gt;
+&lt;p&gt;Using a &lt;code&gt;png&lt;/code&gt; file is recommended for quality and file size. &lt;code&gt;jpg&lt;/code&gt; may yield a lower quality result, while a large, high resolution &lt;code&gt;bmp&lt;/code&gt; file may have an enormous file size compared to &lt;code&gt;png&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;jpg&lt;/code&gt; and &lt;code&gt;bmp&lt;/code&gt; are &lt;em&gt;optionally&lt;/em&gt; supported by &lt;code&gt;tiler&lt;/code&gt;. This means they are not installed and imported with &lt;code&gt;tiler&lt;/code&gt;. It is assumed the user will provide &lt;code&gt;png&lt;/code&gt; images. If using &lt;code&gt;jpg&lt;/code&gt; or &lt;code&gt;bmp&lt;/code&gt; and the packages &lt;code&gt;jpeg&lt;/code&gt; or &lt;code&gt;bmp&lt;/code&gt; are not installed, respectively, &lt;code&gt;tile&lt;/code&gt; will print a message to the console notifying of the required package installations.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;additional-arguments&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Additional arguments&lt;/h2&gt;
+&lt;p&gt;Other arguments to &lt;code&gt;tile&lt;/code&gt; include &lt;code&gt;format&lt;/code&gt;, &lt;code&gt;resume&lt;/code&gt;, &lt;code&gt;viewer&lt;/code&gt; and &lt;code&gt;georef&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;format&lt;/code&gt; is either &lt;code&gt;xyz&lt;/code&gt; (default) or &lt;code&gt;tms&lt;/code&gt;. &lt;code&gt;gdal2tiles&lt;/code&gt; generates TMS tiles, but XYZ may be more familiar. Tile format only applies to geographic maps. All simple image-based tiles are XYZ format. If setting &lt;code&gt;format = &amp;quot;tms&amp;quot;&lt;/code&gt; you may need to do something similar in your Leaflet JavaScript or &lt;code&gt;leaflet&lt;/code&gt; package R code for tiles to display with the proper orientation.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;resume = TRUE&lt;/code&gt; simply avoids overwriting tiles by picking up where you left off without changing your set zoom levels and output path.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;viewer = TRUE&lt;/code&gt; creates &lt;code&gt;preview.html&lt;/code&gt; adjacent to the &lt;code&gt;tiles&lt;/code&gt; directory for previewing tiles in the browser using Leaflet. &lt;code&gt;georef = TRUE&lt;/code&gt; adds mouse click feedback to the Leaflet widget. Map markers with matrix index coordinate labels appear on mouse click to assist with georeferencing. &lt;code&gt;georef&lt;/code&gt; only applies to non-geographic tiles. This allows for interactive georeferencing of pixels in the image.&lt;/p&gt;
+&lt;p&gt;Finally, &lt;code&gt;...&lt;/code&gt; can pass along some additional arguments. See help documentation for details.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;serving-map-tiles&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Serving map tiles&lt;/h2&gt;
+&lt;p&gt;Map tiles must be served online to be of much use. Serving map tiles is not the purpose of &lt;code&gt;tiler&lt;/code&gt; but using your GitHub account is an easy way to do this. Create a GitHub repository, enable GitHub pages for the repository in the repository settings. If the repository is exclusively for serving your map tiles, just set the master branch as the source for your GitHub pages. After committing and pushing your tiles to GitHub, you can access them using a URL of the form&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;https://&amp;lt;your account name&amp;gt;.github.io/maptiles/tiles/{z}/{x}/{y}.png&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;if you store your tiles in a folder named &lt;code&gt;tiles&lt;/code&gt; in a repository named &lt;code&gt;maptiles&lt;/code&gt; for example.&lt;/p&gt;
+&lt;p&gt;Here are some &lt;a href=&#34;https://github.com/leonawicz/tiles/&#34;&gt;examples of non-geographic tile sets&lt;/a&gt; hosted on GitHub using Star Trek galaxy maps generated with &lt;code&gt;tiler&lt;/code&gt; and here they are used in &lt;a href=&#34;https://leonawicz.github.io/rtrek/articles/sc.html&#34;&gt;Leaflet maps&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;local-preview&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Local preview&lt;/h3&gt;
+&lt;p&gt;By default &lt;code&gt;tile&lt;/code&gt; also creates &lt;code&gt;preview.html&lt;/code&gt; as noted above. This can also be created or re-created directly using &lt;code&gt;tile_viewer&lt;/code&gt;. In either case, as long as &lt;code&gt;preview.html&lt;/code&gt; exists alongside the tiles directory, it can easily be loaded in the browser with &lt;code&gt;view_tiles&lt;/code&gt;. See help documentation for details.&lt;/p&gt;
+&lt;p&gt;If you have tiles in a directory &lt;code&gt;&amp;quot;project/tiles&amp;quot;&lt;/code&gt;, creating &lt;code&gt;preview.html&lt;/code&gt; directly can be done as follows. The arguments shown are just for illustration.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tile_viewer(&amp;quot;project/tiles&amp;quot;, &amp;quot;3-7&amp;quot;)  # geographic tiles
+tile_viewer(&amp;quot;project/tiles&amp;quot;, &amp;quot;3-7&amp;quot;, width = 1000, height = 1000)  # non-geographic tiles&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However the tile preview document is created, it can be viewed by passing the same &lt;code&gt;tiles&lt;/code&gt; directory to &lt;code&gt;view_tiles&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;view_tiles(&amp;quot;project/tiles&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;details&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Details&lt;/h3&gt;
+&lt;p&gt;The &lt;code&gt;leaflet&lt;/code&gt; R code needed in order to use custom non-geographic tiles like these requires setting &lt;code&gt;leafletOptions(crs = leafletCRS(&amp;quot;L.CRS.Simple&amp;quot;))&lt;/code&gt; as well as calling &lt;code&gt;addTiles(urlTemplate = url)&lt;/code&gt; where &lt;code&gt;url&lt;/code&gt; is like the example URL shown above. Setting the focus of the map can be a bit tricky for non-geographic map tiles based on an arbitrary image file. It may take some trial and error to get a sense for the custom coordinate system.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>epubr 0.4.0 CRAN release</title>
       <link>/post/epubr-0-4-0-cran-release/</link>
       <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
@@ -934,72 +1142,6 @@ saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network3D.gif
 &lt;p&gt;I used geolocation data from Google Analytics. I routed all the traffic randomly through either Fairbanks, AK or Denver, CO to complete the network since those two places best describe where my apps come from. It&amp;rsquo;s great to see how many people connect to the apps and from where; too many people to plot as a single static graphic without some of the essence of the data being lost.&lt;/p&gt;
 
 &lt;p&gt;As usual, the still frames of the rotating globe, its surface texture, country boundaries and great circle paths are all made in R. It&amp;rsquo;s basically a series of plots made with ggplot2.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>R animation: great circles 3, final draft</title>
-      <link>/post/r-animation-great-circles-3/</link>
-      <pubDate>Fri, 04 Sep 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/post/r-animation-great-circles-3/</guid>
-      <description>&lt;p&gt;Here is the final draft of my great circle arcs R animation. I made this back in January shortly after my first two drafts, but am only now getting around to sharing it, which is a typical representation of how seldom I can make time for blogging. But given the recent spike in interest (thanks to &lt;a href=&#34;http://urbandemographics.blogspot.co.uk/2015/08/data-visualization-with-r-geographic.html&#34; target=&#34;_blank&#34;&gt;Urban Demographics&lt;/a&gt; for sharing my work) in the first, and roughest, draft, I am motivated to finally share something better.&lt;/p&gt;
-
-&lt;p&gt;As with &lt;a href=&#34;http://blog.snap.uaf.edu/2015/03/04/animated-great-circles-1-flat-map-to-3d-earth/&#34; title=&#34;Animated great circles 1: flat map to 3D Earth&#34;&gt;DRAFT 1&lt;/a&gt; and &lt;a href=&#34;http://blog.snap.uaf.edu/2015/04/16/animated-great-circles-2-smoother-lines/&#34; title=&#34;Animated great circles 2: smoother lines&#34;&gt;DRAFT 2&lt;/a&gt;, the YouTube video upload is of significantly reduced quality compared to the original render. As I&amp;rsquo;ve said in the previous posts, it&amp;rsquo;s really not even worth watching on YouTube.&lt;/p&gt;
-
-&lt;p&gt;A much higher quality &lt;a href=&#34;https://www.snap.uaf.edu/webshared/leonawicz/video/geonet_seq3.zip&#34;&gt;source video is available here&lt;/a&gt;. It can be downloaded (~365 MB) and viewed locally using a standard video player such as VLC. Here is a screenshot taken from source as an example:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;./img/post/datavis_r_geonet3.jpg&#34;&gt;&lt;img src=&#34;./img/post/datavis_r_geonet3.jpg?w=774&#34; alt=&#34;datavis_R_geonet3&#34; width=&#34;774&#34; height=&#34;424&#34; class=&#34;aligncenter size-large&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The previous posts describe the issues with video streaming sites compressing videos for steaming and how this will not noticeably degrade most videos, but my great circle animations (particularly this one) have many tiny rapidly moving lines and subtle color and transparency changes; i.e., the perfect candidate videos for being severely degraded by re-encoding, with too much information being tossed out from frame to frame for streaming purposes. In fact, despite being my final draft, this video may ironically display more poorly on YouTube since it contains so many more elements in motion and frame-to-frame pixel changes than my first two drafts, while being far superior in quality when viewing the source video.&lt;/p&gt;
-
-&lt;p&gt;I am quite pleasantly surprised at the video quality on YouTube (1080p, full screen mode) at the beginning of the video. Perhaps this is because there are only 1,000 lines at first and they do not move quite as fast as in my previous videos. Furthermore, being shorter in length, their movement on the screen involves fewer pixel changes from frame to frame. There may be occasional stutter or moments of blurriness during streaming but overall not too bad with a good connection. As I expected, however, later in the video as I increment the number of great circle pathways simultaneously on the screen to over 10,000, the quality degrades significantly.&lt;/p&gt;
-
-&lt;p&gt;Here is the YouTube version if you must:&lt;/p&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/yoyIUMvIP3Q?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;In addition to my great circle path traversal animation, this video also incorporates a layer of my gridded path traversal in places. See &lt;a href=&#34;http://blog.snap.uaf.edu/2015/02/06/animated-gridded-paths-in-r/&#34;&gt;Animated gridded paths in R&lt;/a&gt; for a description and video example of this process.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://blog.snap.uaf.edu/2015/04/14/animated-paths-in-r-toy-example/&#34; title=&#34;Animated paths in R: toy example&#34;&gt;This post&lt;/a&gt; explains one way to animate basic path traversal in R using a toy code example. Please read this before inquiring about source code. It explains how the basic concept is easy to implement for your data and provides template code, but the resources and computing environment I used to produce the frames for these videos makes the specific code I used not reproducible.&lt;/p&gt;
-
-&lt;p&gt;There is nothing special about the code that will make it magically perfectly scalable. That&amp;rsquo;s where you have to provide your own ingenuity to deal with your data. For example, few people are going to want to use or have access to the &lt;code&gt;Rmpi&lt;/code&gt; package on a multi-node Linux cluster to speed up the process. Depending on your data, you would have to find your own ways of dealing with the sheer resource overhead you may create. Believe it or not, the gridded paths can be much more resource intensive (RAM, CPUs, and/or time, pick your poison) to produce quality animations than great circles. This is because sometimes displaying movement of line segments along gridded paths requires segments which are defined by longer vectors of more closely spaced points in order to &amp;ldquo;turn corners&amp;rdquo; nicely.&lt;/p&gt;
-
-&lt;p&gt;Also, recall from previous posts that I am using R to make still frames and I then dump the image sequence onto a timeline in a movie editing program to render the video. There are R packages like &lt;code&gt;animation&lt;/code&gt; which can abstract the entire process for you, but it isn&amp;rsquo;t meant for something as large as this video. Besides, it just makes sense to use R for statistically and mathematically defined data plotting and animation sequences and use a video rendering program for finishing touches and rendering to mp4 format. Do what makes the most sense with each piece of software.&lt;/p&gt;
-
-&lt;p&gt;Lastly, credit obviously to John Tukey for the &amp;ldquo;Tukey tally&amp;rdquo; 30-point countdown visual I made for the beginning of the video. While perhaps not the most interesting, that code is short, simple, and shareable so I will just dump it here:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# Tukey tally plot sequence
-tukeyTally &amp;lt;- function(i, ...){
-  stopifnot(as.numeric(i) &amp;amp;&amp;amp; i %in% 1:10)
-  par(mai=c(0,0,0,0))
-  plot(0, 0, type=&amp;quot;n&amp;quot;, axes=F, xlab=&amp;quot;&amp;quot;, ylab=&amp;quot;&amp;quot;, xlim=c(0, 1), ylim=c(0, 1))
-  m &amp;lt;- matrix(c(0,1,1,0,1,1,0,0), nrow=4)
-
-  if(i&amp;gt;=5) segments(m[1,1], m[1,2], m[2,1], m[2,2], ...)
-  if(i&amp;gt;=6) segments(m[2,1], m[2,2], m[3,1], m[3,2], ...)
-  if(i&amp;gt;=7) segments(m[4,1], m[4,2], m[3,1], m[3,2], ...)
-  if(i&amp;gt;=8) segments(m[1,1], m[1,2], m[4,1], m[4,2], ...)
-  if(i&amp;gt;=9) segments(m[1,1], m[1,2], m[3,1], m[3,2], ...)
-  if(i==10) segments(m[4,1], m[4,2], m[2,1], m[2,2], ...)
-
-  points(m[1,1], m[1,2], ...)
-  if(i&amp;gt;=2) points(m[2,1], m[2,2], ...)
-  if(i&amp;gt;=3) points(m[3,1], m[3,2], ...)
-  if(i&amp;gt;=4) points(m[4,1], m[4,2], ...)
-}
-
-dir.create(outDir &amp;lt;- &amp;quot;C:/leonawicz/GlobalNetworks/plots/frames/tukey_ticker_10to1&amp;quot;, showWarnings=FALSE)
-for(i in 1:10){
-  png(paste0(outDir, &amp;quot;/tukey_ticker_10to1_frame&amp;quot;, 10-i, &amp;quot;.png&amp;quot;), bg=&amp;quot;transparent&amp;quot;)
-  tukeyTally(i, lwd=10,  pch=19, cex=4, col=&amp;quot;greenyellow&amp;quot;)
-  dev.off()
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You may be wondering how this can be a &amp;ldquo;final&amp;rdquo; draft. The obvious next step is to reproduce this video projected onto a 3D rotating earth, right!? Believe me, I have thought about it. That would take a good deal more work. As I explained in the post for the first draft, the only one to feature great circle lines on a spinning globe, resource issues makes it orders of magnitude more challenging, and this 2D flat map video is already far more complex than the original draft. Perhaps later I will take this on. In the meantime enjoy the video.&lt;/p&gt;
 </description>
     </item>
     
