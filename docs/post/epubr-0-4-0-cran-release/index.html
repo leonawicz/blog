@@ -256,7 +256,7 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      <p>The <code>epubr</code> package provides functions supporting the reading and parsing of internal e-book content from EPUB files. E-book metadata and text content are parsed separately and joined together in a tidy, nested tibble data frame.</p>
+      <p>The <a href="https://github.com/ropensci/epubr">epubr</a> package provides functions supporting the reading and parsing of internal e-book content from EPUB files. E-book metadata and text content are parsed separately and joined together in a tidy, nested tibble data frame.</p>
 <p>E-book formatting is non-standard enough across all literature that no function can curate parsed e-book content across an arbitrary collection of e-books, in completely general form, resulting in a singular, consistently formatted output containing all the same variables.</p>
 <p>EPUB file parsing functionality in this package is intended for relatively general application to arbitrary EPUB e-books. However, poorly formatted e-books or e-books with highly uncommon formatting may not work with this package. There may even be cases where an EPUB file has DRM or some other property that makes it impossible to read with <code>epubr</code>.</p>
 <p>Text is read ‘as is’. Additional text cleaning should be performed by the user at their discretion, such as with functions from packages like <code>tm</code> or <code>qdap</code>.</p>
