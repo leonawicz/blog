@@ -1,5 +1,5 @@
 baseurl = "https://leonawicz.github.io/"  # End your URL with a `/` trailing slash.
-title = "Matthew Leonawicz | Blog"
+title = "Matthew Leonawicz | Blog: I think, therefore I R"
 copyright = "&copy; Matthew Leonawicz"
 theme = "hugo-academic"
 enableEmoji = true
@@ -24,13 +24,13 @@ defaultContentLanguageInSubdir = false
 
 [params]
   name = "Matthew Leonawicz"
-  role = "Statistician | R Developer"
-  organization = "Scenarios Network for Alaska and Arctic Planning"
-  organization_url = "https://www.snap.uaf.edu/"
+  role = "R Developer | Data Scientist | Statistician"
+  organization = "E Source"
+  organization_url = "https://www.esource.com/about-e-source"
   gravatar = true  # Get your avatar from Gravatar.com? (true/false)
   avatar = ""  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
-  email = "mfleonawicz@alaska.edu"
-  address = "Denver, Colorado, USA"
+  email = "matt.rstat@gmail.com"
+  address = "Boulder, Colorado, USA"
   office_hours = ""
   phone = ""
   skype = ""
@@ -167,7 +167,7 @@ defaultContentLanguageInSubdir = false
   [[params.social]]
     icon = "envelope"
     icon_pack = "fa"
-    link = "mailto:mfleonawicz@alaska.edu"
+    link = "mailto:matt_leonawicz@esource.com"
 
 # Navigation Links
 #   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the
