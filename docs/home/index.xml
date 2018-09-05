@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Homes on Matthew Leonawicz | Blog</title>
+    <title>Homes on Matthew Leonawicz | Blog: I think, therefore I R</title>
     <link>/home/</link>
-    <description>Recent content in Homes on Matthew Leonawicz | Blog</description>
+    <description>Recent content in Homes on Matthew Leonawicz | Blog: I think, therefore I R</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; Matthew Leonawicz</copyright>
@@ -18,7 +18,8 @@
       <pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate>
       
       <guid>/home/about/</guid>
-      <description>Bio I am the lead statistical analyst for Scenarios Network for Alaska &amp;amp; Arctic Planning at the University of Alaska Fairbanks. I love programming in R. Much of my work revolves around high performance statistical computing, web application development, data visualization, and dynamic reporting. I develop R Shiny apps for presentation of statistical analyses and scientific information suitable for a range of audiences and I always enjoy opportunities to create informative, beautiful graphics.</description>
+      <description>Bio I am a software developer and data scientist with E Source. I especially love programming in R, including high performance statistical computing, web application development, data visualization, and dynamic reporting. I enjoy developing R Shiny apps and creating informative, beautiful graphics.
+I also enjoy networking with other R developers, data analysts, researchers, and useRs around the globe. While I don&amp;rsquo;t have a lot of time to blog, I post more frequent updates on Twitter.</description>
     </item>
     
     <item>
