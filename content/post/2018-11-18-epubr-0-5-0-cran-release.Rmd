@@ -1,0 +1,82 @@
+---
+title: epubr 0.5.0 CRAN release
+author: Matthew Leonawicz
+date: '2018-11-18'
+slug: epubr-0-5-0-cran-release
+categories:
+  - R
+tags:
+  - code
+  - package
+  - CRAN
+  - epub
+  - text mining
+  - e-books
+header:
+  caption: ''
+  image: '../img/post/epubr.png'
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>", message = FALSE, warning = FALSE, error = FALSE, tidy = TRUE
+)
+```
+
+The [epubr](https://github.com/ropensci/epubr) package provides functions supporting the reading and parsing of internal e-book content from EPUB files. This post briefly highlights the changes from v0.4.0. See the [vignette](https://ropensci.github.io/epubr/articles/epubr.html) for a more comprehensive introduction. 
+
+## Minor addition
+
+There is not much to see with the upgrade to version 0.5.0. Only one user function has been added, `epub_cat`. All this does is allow you to `cat` chunks of parsed e-book text to the console in a more readable manner. This can be helpful to get a quick glimpse of the content you are working with in a way that is easier on the eyes than looking at table entries and object structures.
+
+Arguments to `epub_cat` give you control over the formatting. It is not intended to serve any other purposes beyond this human-guided content inspection. Arguments include:
+
+* `max_paragraphs`
+* `skip`
+* `paragraph_spacing`
+* `paragraph_indent`
+* `section_sep`
+* `book_sep`
+
+See the help documentation for details.
+
+## Minor change
+
+`epub_cat`, and now `epub_head` for consistency, take a more generic-sounding first argument `x` as a data argument, rather than `data` or `file`. This is because these summary functions can now be used on a filename string pointing to an external EPUB file that does not otherwise need to be read into R or, alternatively, a data frame already read into R by `epub`. This allows you to avoid reading the files from disk multiple times if the data is already in your R session.
+
+### Some context around `epub_cat`
+
+Also, notice that this operates on paragraphs, not lines, if by lines I meant sentences. Since this level of information has not been stripped from the text that has been read in, it can be used. This may not mean the same thing in every section of every e-book, but the general idea is that `epub_cat` respects line breaks in the text. It pays attention to where they are and where they are not. I chose to call these paragraphs; it's the label that is by far most often the correct one. But a one-line title or even the distinct lines of text on the copyright page of an e-book would all be treated the same way.
+
+Control ends there of course. For example, you cannot stipulate that a title line should be excluded from indenting. Remember that the purpose of `epubr` is to bring in *text* for analysis, while preserving much (but not all) of its structure. I.e., you want "only the text" to operate on with ease, but you also don't want to be relegated to a single, gigantic character string (that may not even be in the correct order) that aggregates out potential variables that could be mapped to sections of text and their sequence. `epubr` is not intended to retain all the the XML tags that define the appearance of the original document. The fundamental purpose of `epubr` is to strip that out entirely.
+
+Here is an example:
+
+```{r epub-cat}
+library(epubr)
+file <- system.file("dracula.epub", package = "epubr")
+(x <- epub(file))
+
+x$data[[1]]
+
+epub_cat(x, max_paragraphs = 3, skip = 100)
+```
+
+I suppose this function could be useful for `cat`-ing text externally to another display or document for some use case other than just quick inspection at the console. If so, I would love to hear what that purpose is so that I might be able to improve `epub_ cat` or add some other functionality entirely. But in general I would consider this a tangential function in `epubr`. There are bigger fish to fry.
+
+## Encoding
+
+The main change was my decision to no longer rely on native encoding (`getOption("encoding")`) when reading EPUB files. In my ignorance I thought there was no reason to fuss with this. However, I began noticing issues with improper character parsing, resulting in weird characters showing up in some places. My initial thought to substitute these odd strings of characters for what they were supposed to represent, e.g., an apostrophe, was a natural first thought and it did seem like a fairly contained problem, which is why I didn't notice it sooner and no one else made any mention of it either. But this idea was missing the bigger picture (and it didn't work well anyway).
+
+I did some poking around and learned that while EPUB titles from various publishers can give the impression that EPUB formatting is the Wild West, there is apparently some standardization at least in terms of encoding, such that EPUB files have UTF encoding in common- UTF-8 obviously, but possibly UTF-16.
+
+This led me to add an explicit `encoding` argument to `epub`, defaulting to UTF-8. This still allows the user to change it, though typically there should be no reason to do so, except possibly to change it to UTF-16 and I have no idea how common that even is.
+
+This had the result of clearing up every issue I was seeing with improper character translation. Even at this point I thought it was just something to do with the fact that apparently EPUB files are all UTF-encoded. I only found out more recently that the native encoding option in relation to the Windows environment has been a nightmare to other developers on a more fundamental level.
+
+Anyhow, if you were seeing any weird characters after reading in some EPUB files with `epubr`, hopefully the situation is improved now. I don't expect `epubr` to be perfect (there are some strangely put together e-books out there), but so far so good.
+
+## Upcoming version
+
+Work is already underway on version 0.6.0. While 0.5.0 is more of an unsung hero, making changes and handling edge cases you are unlikely to notice, 0.6.0 will add some new user functions that enhance the ease with which you can restructure parsed e-book text that comes in looking like crap due to crappy e-book metadata (see the open source packaged EPUB file above as a good example of formatting sadness). The next version will help improve some situations like this in terms of section breaks and content sequence. Garbage in does not need to equal garbage out!
