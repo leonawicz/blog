@@ -59,8 +59,7 @@ tabr offers functions for describing and organizing musical structures and wraps
       
       <guid>/post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/</guid>
       <description>Make memorable plots with memery. memery is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. Version 0.4.2 of memery is now on CRAN. The latest development version and a package vignette are available on GitHub.
-Changes in v0.4.2This latest version of memery includes a demo Shiny app.
-library(memery)memeApp()Animated gif support is now also included (example below).</description>
+Changes in v0.4.2This latest version of memery includes a demo Shiny app.</description>
     </item>
     
     <item>

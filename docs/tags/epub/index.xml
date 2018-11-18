@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; Matthew Leonawicz</copyright>
-    <lastBuildDate>Tue, 05 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 18 Nov 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/epub/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>epubr 0.5.0 CRAN release</title>
+      <link>/post/epubr-0-5-0-cran-release/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/epubr-0-5-0-cran-release/</guid>
+      <description>The epubr package provides functions supporting the reading and parsing of internal e-book content from EPUB files. This post briefly highlights the changes from v0.4.0. See the vignette for a more comprehensive introduction.
+Minor additionThere is not much to see with the upgrade to version 0.5.0. Only one user function has been added, epub_cat. All this does is allow you to cat chunks of parsed e-book text to the console in a more readable manner.</description>
+    </item>
     
     <item>
       <title>epubr 0.4.0 CRAN release</title>

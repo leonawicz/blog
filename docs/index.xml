@@ -11,12 +11,99 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>epubr 0.5.0 CRAN release</title>
+      <link>/post/epubr-0-5-0-cran-release/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/epubr-0-5-0-cran-release/</guid>
+      <description>
+
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/ropensci/epubr&#34;&gt;epubr&lt;/a&gt; package provides functions supporting the reading and parsing of internal e-book content from EPUB files. This post briefly highlights the changes from v0.4.0. See the &lt;a href=&#34;https://ropensci.github.io/epubr/articles/epubr.html&#34;&gt;vignette&lt;/a&gt; for a more comprehensive introduction.&lt;/p&gt;
+&lt;div id=&#34;minor-addition&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Minor addition&lt;/h2&gt;
+&lt;p&gt;There is not much to see with the upgrade to version 0.5.0. Only one user function has been added, &lt;code&gt;epub_cat&lt;/code&gt;. All this does is allow you to &lt;code&gt;cat&lt;/code&gt; chunks of parsed e-book text to the console in a more readable manner. This can be helpful to get a quick glimpse of the content you are working with in a way that is easier on the eyes than looking at table entries and object structures.&lt;/p&gt;
+&lt;p&gt;Arguments to &lt;code&gt;epub_cat&lt;/code&gt; give you control over the formatting. It is not intended to serve any other purposes beyond this human-guided content inspection. Arguments include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;max_paragraphs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;skip&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;paragraph_spacing&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;paragraph_indent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;section_sep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;book_sep&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;See the help documentation for details.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;minor-change&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Minor change&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;epub_cat&lt;/code&gt;, and now &lt;code&gt;epub_head&lt;/code&gt; for consistency, take a more generic-sounding first argument &lt;code&gt;x&lt;/code&gt; as a data argument, rather than &lt;code&gt;data&lt;/code&gt; or &lt;code&gt;file&lt;/code&gt;. This is because these summary functions can now be used on a filename string pointing to an external EPUB file that does not otherwise need to be read into R or, alternatively, a data frame already read into R by &lt;code&gt;epub&lt;/code&gt;. This allows you to avoid reading the files from disk multiple times if the data is already in your R session.&lt;/p&gt;
+&lt;div id=&#34;some-context-around-epub_cat&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Some context around &lt;code&gt;epub_cat&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;Also, notice that this operates on paragraphs, not lines, if by lines I meant sentences. Since this level of information has not been stripped from the text that has been read in, it can be used. This may not mean the same thing in every section of every e-book, but the general idea is that &lt;code&gt;epub_cat&lt;/code&gt; respects line breaks in the text. It pays attention to where they are and where they are not. I chose to call these paragraphs; it’s the label that is by far most often the correct one. But a one-line title or even the distinct lines of text on the copyright page of an e-book would all be treated the same way.&lt;/p&gt;
+&lt;p&gt;Control ends there of course. For example, you cannot stipulate that a title line should be excluded from indenting. Remember that the purpose of &lt;code&gt;epubr&lt;/code&gt; is to bring in &lt;em&gt;text&lt;/em&gt; for analysis, while preserving much (but not all) of its structure. I.e., you want “only the text” to operate on with ease, but you also don’t want to be relegated to a single, gigantic character string (that may not even be in the correct order) that aggregates out potential variables that could be mapped to sections of text and their sequence. &lt;code&gt;epubr&lt;/code&gt; is not intended to retain all the the XML tags that define the appearance of the original document. The fundamental purpose of &lt;code&gt;epubr&lt;/code&gt; is to strip that out entirely.&lt;/p&gt;
+&lt;p&gt;Here is an example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(epubr)
+file &amp;lt;- system.file(&amp;quot;dracula.epub&amp;quot;, package = &amp;quot;epubr&amp;quot;)
+(x &amp;lt;- epub(file))
+#&amp;gt; # A tibble: 1 x 9
+#&amp;gt;   rights  identifier   creator  title language subject date  source  data 
+#&amp;gt;   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;   &amp;lt;lis&amp;gt;
+#&amp;gt; 1 Public~ http://www.~ Bram St~ Drac~ en       Horror~ 1995~ http:/~ &amp;lt;tib~
+
+x$data[[1]]
+#&amp;gt; # A tibble: 15 x 4
+#&amp;gt;    section       text                                          nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;                                         &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 item6         &amp;quot;The Project Gutenberg EBook of Dracula, by ~ 11252 60972
+#&amp;gt;  2 item7         &amp;quot;But I am not in heart to describe beauty, f~ 13740 71798
+#&amp;gt;  3 item8         &amp;quot;\&amp;quot; &amp;#39;Lucy, you are an honest-hearted girl, I~ 12356 65522
+#&amp;gt;  4 item9         &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSame day~ 12042 62724
+#&amp;gt;  5 item10        &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthu~ 12599 66678
+#&amp;gt;  6 item11        &amp;quot;Once again we went through that ghastly ope~ 11919 62949
+#&amp;gt;  7 item12        &amp;quot;CHAPTER XIVMINA HARKER&amp;#39;S JOURNAL\n23 Septem~ 12003 62234
+#&amp;gt;  8 item13        &amp;quot;CHAPTER XVIDR. SEWARD&amp;#39;S DIARY-continued\nIT~ 13812 72903
+#&amp;gt;  9 item14        &amp;quot;\&amp;quot;Thus when we find the habitation of this ~ 13201 69779
+#&amp;gt; 10 item15        &amp;quot;\&amp;quot;I see,\&amp;quot; I said. \&amp;quot;You want big things th~ 12706 66921
+#&amp;gt; 11 item16        &amp;quot;CHAPTER XXIIIDR. SEWARD&amp;#39;S DIARY\n3 October.~ 11818 61550
+#&amp;gt; 12 item17        &amp;quot;CHAPTER XXVDR. SEWARD&amp;#39;S DIARY\n11 October, ~ 12989 68564
+#&amp;gt; 13 item18        &amp;quot; \nLater.-Dr. Van Helsing has returned. He ~  8356 43464
+#&amp;gt; 14 item19        &amp;quot;End of the Project Gutenberg EBook of Dracu~  2669 18541
+#&amp;gt; 15 coverpage-wr~ &amp;quot;&amp;quot;                                                0     0
+
+epub_cat(x, max_paragraphs = 3, skip = 100)
+#&amp;gt;   CHAPTER IJONATHAN HARKER&amp;#39;S JOURNAL
+#&amp;gt; 
+#&amp;gt;   (Kept in shorthand.)
+#&amp;gt; 
+#&amp;gt;   3 May. Bistritz.-Left Munich at 8:35 P. M., on 1st May, arriving at Vienna early next morning; should have arrived at 6:46, but train was an hour late. Buda-Pesth seems a wonderful place, from the glimpse which I got of it from the train and the little I could walk through the streets. I feared to go very far from the station, as we had arrived late and would start as near the correct time as possible. The impression I had was that we were leaving the West and entering the East; the most western of splendid bridges over the Danube, which is here of noble width and depth, took us among the traditions of Turkish rule.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I suppose this function could be useful for &lt;code&gt;cat&lt;/code&gt;-ing text externally to another display or document for some use case other than just quick inspection at the console. If so, I would love to hear what that purpose is so that I might be able to improve &lt;code&gt;epub_ cat&lt;/code&gt; or add some other functionality entirely. But in general I would consider this a tangential function in &lt;code&gt;epubr&lt;/code&gt;. There are bigger fish to fry.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;encoding&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Encoding&lt;/h2&gt;
+&lt;p&gt;The main change was my decision to no longer rely on native encoding (&lt;code&gt;getOption(&amp;quot;encoding&amp;quot;)&lt;/code&gt;) when reading EPUB files. In my ignorance I thought there was no reason to fuss with this. However, I began noticing issues with improper character parsing, resulting in weird characters showing up in some places. My initial thought to substitute these odd strings of characters for what they were supposed to represent, e.g., an apostrophe, was a natural first thought and it did seem like a fairly contained problem, which is why I didn’t notice it sooner and no one else made any mention of it either. But this idea was missing the bigger picture (and it didn’t work well anyway).&lt;/p&gt;
+&lt;p&gt;I did some poking around and learned that while EPUB titles from various publishers can give the impression that EPUB formatting is the Wild West, there is apparently some standardization at least in terms of encoding, such that EPUB files have UTF encoding in common- UTF-8 obviously, but possibly UTF-16.&lt;/p&gt;
+&lt;p&gt;This led me to add an explicit &lt;code&gt;encoding&lt;/code&gt; argument to &lt;code&gt;epub&lt;/code&gt;, defaulting to UTF-8. This still allows the user to change it, though typically there should be no reason to do so, except possibly to change it to UTF-16 and I have no idea how common that even is.&lt;/p&gt;
+&lt;p&gt;This had the result of clearing up every issue I was seeing with improper character translation. Even at this point I thought it was just something to do with the fact that apparently EPUB files are all UTF-encoded. I only found out more recently that the native encoding option in relation to the Windows environment has been a nightmare to other developers on a more fundamental level.&lt;/p&gt;
+&lt;p&gt;Anyhow, if you were seeing any weird characters after reading in some EPUB files with &lt;code&gt;epubr&lt;/code&gt;, hopefully the situation is improved now. I don’t expect &lt;code&gt;epubr&lt;/code&gt; to be perfect (there are some strangely put together e-books out there), but so far so good.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;upcoming-version&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Upcoming version&lt;/h2&gt;
+&lt;p&gt;Work is already underway on version 0.6.0. While 0.5.0 is more of an unsung hero, making changes and handling edge cases you are unlikely to notice, 0.6.0 will add some new user functions that enhance the ease with which you can restructure parsed e-book text that comes in looking like crap due to crappy e-book metadata (see the open source packaged EPUB file above as a good example of formatting sadness). The next version will help improve some situations like this in terms of section breaks and content sequence. Garbage in does not need to equal garbage out!&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>tiler 0.2.0 CRAN release: Create map tiles from R</title>
       <link>/post/tiler-0-2-0-cran-release-create-map-tiles-from-r/</link>
       <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/tiler-0-2-0-cran-release-create-map-tiles-from-r/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;./img/post/tiler.png&#34; style=&#34;float:right;padding-left:10px;margin:0px;&#34; width=200 height=173/&gt;&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;&lt;img src=&#34;./img/post/tiler.png&#34; style=&#34;float:right;padding-left:10px;margin:0px;&#34; width=200 height=173/&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;tiler&lt;/code&gt; package provides a map tile-generator function for creating map tile sets for use with packages such as &lt;code&gt;leaflet&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;In addition to generating map tiles based on a common raster layer source, it also handles the non-geographic edge case, producing map tiles from arbitrary images. These map tiles, which have a “simple CRS”, a non-geographic simple Cartesian coordinate reference system, can also be used with &lt;code&gt;leaflet&lt;/code&gt; when applying the simple CRS option. Map tiles can be created from an input file with any of the following extensions: &lt;code&gt;tif&lt;/code&gt;, &lt;code&gt;grd&lt;/code&gt; and &lt;code&gt;nc&lt;/code&gt; for spatial maps and &lt;code&gt;png&lt;/code&gt;, &lt;code&gt;jpg&lt;/code&gt; and &lt;code&gt;bmp&lt;/code&gt; for basic images.&lt;/p&gt;
 &lt;p align=&#34;center&#34;&gt;
@@ -59,12 +146,12 @@ tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
 #&amp;gt; Coloring raster...
 #&amp;gt; Preparing for tiling...
 #&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Warning in system(ex, ignore.stderr = TRUE): &amp;#39;python&amp;#39; not found
 #&amp;gt; Creating tile viewer...
 #&amp;gt; Complete.
 
 list.files(tile_dir)
-#&amp;gt; [1] &amp;quot;0&amp;quot;                   &amp;quot;1&amp;quot;                   &amp;quot;2&amp;quot;                  
-#&amp;gt; [4] &amp;quot;3&amp;quot;                   &amp;quot;doc.kml&amp;quot;             &amp;quot;tilemapresource.xml&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+#&amp;gt; character(0)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Listing the files in &lt;code&gt;tile_dir&lt;/code&gt; shows the top level map tiles directories, 0-3 as expected. This is not printed in subsequent examples since it is not going to change.&lt;/p&gt;
 &lt;p&gt;Note that these examples rendered to HTML here do not capture the parts of the log output that result from the internal system call made by &lt;code&gt;tile&lt;/code&gt;. When you run this example yourself you will see a bit more information at the console.&lt;/p&gt;
 &lt;/div&gt;
@@ -89,6 +176,7 @@ tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
 #&amp;gt; Coloring raster...
 #&amp;gt; Preparing for tiling...
 #&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Warning in system(ex, ignore.stderr = TRUE): &amp;#39;python&amp;#39; not found
 #&amp;gt; Creating tile viewer...
 #&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The tiles generated this time are the same as before, that is, ready for &lt;code&gt;leaflet&lt;/code&gt;. &lt;code&gt;tile&lt;/code&gt; reprojects the raster layer internally. This can be seen in the log output printed to the console.&lt;/p&gt;
@@ -115,6 +203,7 @@ tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
 #&amp;gt; Coloring raster...
 #&amp;gt; Preparing for tiling...
 #&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Warning in system(ex, ignore.stderr = TRUE): &amp;#39;python&amp;#39; not found
 #&amp;gt; Creating tile viewer...
 #&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This is not likely what is wanted. The other option is to force set a known CRS if it is missing from the file or was dropped for whatever reason. Now reprojection can proceed and the expected tiles are generated.&lt;/p&gt;
@@ -124,6 +213,7 @@ tile(map, tile_dir, &amp;quot;0-3&amp;quot;, crs)
 #&amp;gt; Coloring raster...
 #&amp;gt; Preparing for tiling...
 #&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Warning in system(ex, ignore.stderr = TRUE): &amp;#39;python&amp;#39; not found
 #&amp;gt; Creating tile viewer...
 #&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A note on reprojection: Depending on the nature of the data in a raster, the &lt;code&gt;...&lt;/code&gt; argument to &lt;code&gt;tile&lt;/code&gt; allows you to pass through the &lt;code&gt;method&lt;/code&gt; argument to &lt;code&gt;raster::projectRaster&lt;/code&gt;. This is &lt;code&gt;bilinear&lt;/code&gt; by default for bilinear interpolation, appropriate for continuous data. It can be set to &lt;code&gt;ngb&lt;/code&gt; for nearest neighbor, appropriate for discrete or categorical data. If more control is needed over the reprojection, you should just prepare your raster file first before using &lt;code&gt;tile&lt;/code&gt;. &lt;code&gt;tiler&lt;/code&gt; is not intended to substitute for or wrap general geospatial processing tasks that can easily be done with other packages.&lt;/p&gt;
@@ -138,6 +228,7 @@ tile(map, tile_dir, &amp;quot;0-3&amp;quot;, col = pal, colNA = nodata)
 #&amp;gt; Coloring raster...
 #&amp;gt; Preparing for tiling...
 #&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Warning in system(ex, ignore.stderr = TRUE): &amp;#39;python&amp;#39; not found
 #&amp;gt; Creating tile viewer...
 #&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -162,6 +253,7 @@ tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
 #&amp;gt; Reprojecting raster...
 #&amp;gt; Preparing for tiling...
 #&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Warning in system(ex, ignore.stderr = TRUE): &amp;#39;python&amp;#39; not found
 #&amp;gt; Creating tile viewer...
 #&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -180,6 +272,7 @@ plotRGB(brick(map))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
 tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
 #&amp;gt; Creating tiles. Please wait...
+#&amp;gt; Warning in system(ex, ignore.stderr = TRUE): &amp;#39;python&amp;#39; not found
 #&amp;gt; Creating tile viewer...
 #&amp;gt; Complete.&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The &lt;code&gt;tile&lt;/code&gt; function will automatically process simple image files differently. There is no concept of projection, and coloring tiles is irrelevant because the image file has its own coloring already. Map tiles generated from regular image files can be used with &lt;code&gt;leaflet&lt;/code&gt; if done properly. The generated tiles have a simple CRS that is based on the pixel dimensions of the image file. If you were to use these tiles in &lt;code&gt;leaflet&lt;/code&gt; for example and you wanted to overlay map markers, you would have to first georeference your locations of interest based on the matrix rows and columns of the image. This is outside the scope of &lt;code&gt;tiler&lt;/code&gt;. See the Leaflet JS and &lt;code&gt;leaflet&lt;/code&gt; package documentation for details on using simple CRS/non-geographic tiles.&lt;/p&gt;
@@ -205,8 +298,8 @@ tile(map, tile_dir, &amp;quot;0-3&amp;quot;)
 &lt;h3&gt;Local preview&lt;/h3&gt;
 &lt;p&gt;By default &lt;code&gt;tile&lt;/code&gt; also creates &lt;code&gt;preview.html&lt;/code&gt; as noted above. This can also be created or re-created directly using &lt;code&gt;tile_viewer&lt;/code&gt;. In either case, as long as &lt;code&gt;preview.html&lt;/code&gt; exists alongside the tiles directory, it can easily be loaded in the browser with &lt;code&gt;view_tiles&lt;/code&gt;. See help documentation for details.&lt;/p&gt;
 &lt;p&gt;If you have tiles in a directory &lt;code&gt;&amp;quot;project/tiles&amp;quot;&lt;/code&gt;, creating &lt;code&gt;preview.html&lt;/code&gt; directly can be done as follows. The arguments shown are just for illustration.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tile_viewer(&amp;quot;project/tiles&amp;quot;, &amp;quot;3-7&amp;quot;)  # geographic tiles
-tile_viewer(&amp;quot;project/tiles&amp;quot;, &amp;quot;3-7&amp;quot;, width = 1000, height = 1000)  # non-geographic tiles&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tile_viewer(&amp;quot;project/tiles&amp;quot;, &amp;quot;3-7&amp;quot;) # geographic tiles
+tile_viewer(&amp;quot;project/tiles&amp;quot;, &amp;quot;3-7&amp;quot;, width = 1000, height = 1000) # non-geographic tiles&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;However the tile preview document is created, it can be viewed by passing the same &lt;code&gt;tiles&lt;/code&gt; directory to &lt;code&gt;view_tiles&lt;/code&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;view_tiles(&amp;quot;project/tiles&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
@@ -224,7 +317,10 @@ tile_viewer(&amp;quot;project/tiles&amp;quot;, &amp;quot;3-7&amp;quot;, width = 
       <pubDate>Tue, 05 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/epubr-0-4-0-cran-release/</guid>
-      <description>&lt;p&gt;The &lt;a href=&#34;https://github.com/ropensci/epubr&#34;&gt;epubr&lt;/a&gt; package provides functions supporting the reading and parsing of internal e-book content from EPUB files. E-book metadata and text content are parsed separately and joined together in a tidy, nested tibble data frame.&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/ropensci/epubr&#34;&gt;epubr&lt;/a&gt; package provides functions supporting the reading and parsing of internal e-book content from EPUB files. E-book metadata and text content are parsed separately and joined together in a tidy, nested tibble data frame.&lt;/p&gt;
 &lt;p&gt;E-book formatting is non-standard enough across all literature that no function can curate parsed e-book content across an arbitrary collection of e-books, in completely general form, resulting in a singular, consistently formatted output containing all the same variables.&lt;/p&gt;
 &lt;p&gt;EPUB file parsing functionality in this package is intended for relatively general application to arbitrary EPUB e-books. However, poorly formatted e-books or e-books with highly uncommon formatting may not work with this package. There may even be cases where an EPUB file has DRM or some other property that makes it impossible to read with &lt;code&gt;epubr&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Text is read ‘as is’. Additional text cleaning should be performed by the user at their discretion, such as with functions from packages like &lt;code&gt;tm&lt;/code&gt; or &lt;code&gt;qdap&lt;/code&gt;.&lt;/p&gt;
@@ -243,23 +339,23 @@ file &amp;lt;- system.file(&amp;quot;dracula.epub&amp;quot;, package = &amp;quot
 
 x$data[[1]]
 #&amp;gt; # A tibble: 15 x 4
-#&amp;gt;    section           text                                      nword nchar
-#&amp;gt;    &amp;lt;chr&amp;gt;             &amp;lt;chr&amp;gt;                                     &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
-#&amp;gt;  1 item6             &amp;quot;The Project Gutenberg EBook of Dracula,~ 11252 60972
-#&amp;gt;  2 item7             &amp;quot;But I am not in heart to describe beaut~ 13740 71798
-#&amp;gt;  3 item8             &amp;quot;“ ‘Lucy, you are an honest-hearted girl~ 12356 65522
-#&amp;gt;  4 item9             &amp;quot;CHAPTER VIIIMINA MURRAY’S JOURNAL\nSame~ 12042 62724
-#&amp;gt;  5 item10            &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. A~ 12599 66678
-#&amp;gt;  6 item11            &amp;quot;Once again we went through that ghastly~ 11919 62949
-#&amp;gt;  7 item12            &amp;quot;CHAPTER XIVMINA HARKER’S JOURNAL\n23 Se~ 12003 62234
-#&amp;gt;  8 item13            &amp;quot;CHAPTER XVIDR. SEWARD’S DIARY—continued~ 13812 72903
-#&amp;gt;  9 item14            &amp;quot;“Thus when we find the habitation of th~ 13201 69779
-#&amp;gt; 10 item15            &amp;quot;“I see,” I said. “You want big things t~ 12706 66921
-#&amp;gt; 11 item16            &amp;quot;CHAPTER XXIIIDR. SEWARD’S DIARY\n3 Octo~ 11818 61550
-#&amp;gt; 12 item17            &amp;quot;CHAPTER XXVDR. SEWARD’S DIARY\n11 Octob~ 12989 68564
-#&amp;gt; 13 item18            &amp;quot; \nLater.—Dr. Van Helsing has returned.~  8356 43464
-#&amp;gt; 14 item19            &amp;quot;End of the Project Gutenberg EBook of D~  2669 18541
-#&amp;gt; 15 coverpage-wrapper &amp;quot;&amp;quot;                                            0     0&lt;/code&gt;&lt;/pre&gt;
+#&amp;gt;    section       text                                          nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;         &amp;lt;chr&amp;gt;                                         &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 item6         &amp;quot;The Project Gutenberg EBook of Dracula, by ~ 11252 60972
+#&amp;gt;  2 item7         &amp;quot;But I am not in heart to describe beauty, f~ 13740 71798
+#&amp;gt;  3 item8         &amp;quot;\&amp;quot; &amp;#39;Lucy, you are an honest-hearted girl, I~ 12356 65522
+#&amp;gt;  4 item9         &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSame day~ 12042 62724
+#&amp;gt;  5 item10        &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthu~ 12599 66678
+#&amp;gt;  6 item11        &amp;quot;Once again we went through that ghastly ope~ 11919 62949
+#&amp;gt;  7 item12        &amp;quot;CHAPTER XIVMINA HARKER&amp;#39;S JOURNAL\n23 Septem~ 12003 62234
+#&amp;gt;  8 item13        &amp;quot;CHAPTER XVIDR. SEWARD&amp;#39;S DIARY-continued\nIT~ 13812 72903
+#&amp;gt;  9 item14        &amp;quot;\&amp;quot;Thus when we find the habitation of this ~ 13201 69779
+#&amp;gt; 10 item15        &amp;quot;\&amp;quot;I see,\&amp;quot; I said. \&amp;quot;You want big things th~ 12706 66921
+#&amp;gt; 11 item16        &amp;quot;CHAPTER XXIIIDR. SEWARD&amp;#39;S DIARY\n3 October.~ 11818 61550
+#&amp;gt; 12 item17        &amp;quot;CHAPTER XXVDR. SEWARD&amp;#39;S DIARY\n11 October, ~ 12989 68564
+#&amp;gt; 13 item18        &amp;quot; \nLater.-Dr. Van Helsing has returned. He ~  8356 43464
+#&amp;gt; 14 item19        &amp;quot;End of the Project Gutenberg EBook of Dracu~  2669 18541
+#&amp;gt; 15 coverpage-wr~ &amp;quot;&amp;quot;                                                0     0&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The &lt;code&gt;file&lt;/code&gt; argument may be a vector of EPUB files. There is one row for each book.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;epub-metadata&#34; class=&#34;section level2&#34;&gt;
@@ -302,17 +398,17 @@ x$data[[1]]
 #&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                               &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
 #&amp;gt;  1 item6   &amp;quot;The Project Gutenberg EBook of Dracula, by Bram S~ 11252 60972
 #&amp;gt;  2 item7   &amp;quot;But I am not in heart to describe beauty, for whe~ 13740 71798
-#&amp;gt;  3 item8   &amp;quot;“ ‘Lucy, you are an honest-hearted girl, I know. ~ 12356 65522
-#&amp;gt;  4 item9   &amp;quot;CHAPTER VIIIMINA MURRAY’S JOURNAL\nSame day, 11 o~ 12042 62724
+#&amp;gt;  3 item8   &amp;quot;\&amp;quot; &amp;#39;Lucy, you are an honest-hearted girl, I know.~ 12356 65522
+#&amp;gt;  4 item9   &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSame day, 11 o~ 12042 62724
 #&amp;gt;  5 item10  &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthur Holm~ 12599 66678
 #&amp;gt;  6 item11  &amp;quot;Once again we went through that ghastly operation~ 11919 62949
-#&amp;gt;  7 item12  &amp;quot;CHAPTER XIVMINA HARKER’S JOURNAL\n23 September.—J~ 12003 62234
-#&amp;gt;  8 item13  &amp;quot;CHAPTER XVIDR. SEWARD’S DIARY—continued\nIT was j~ 13812 72903
-#&amp;gt;  9 item14  &amp;quot;“Thus when we find the habitation of this man-tha~ 13201 69779
-#&amp;gt; 10 item15  &amp;quot;“I see,” I said. “You want big things that you ca~ 12706 66921
-#&amp;gt; 11 item16  &amp;quot;CHAPTER XXIIIDR. SEWARD’S DIARY\n3 October.—The t~ 11818 61550
-#&amp;gt; 12 item17  &amp;quot;CHAPTER XXVDR. SEWARD’S DIARY\n11 October, Evenin~ 12989 68564
-#&amp;gt; 13 item18  &amp;quot; \nLater.—Dr. Van Helsing has returned. He has go~  8356 43464
+#&amp;gt;  7 item12  &amp;quot;CHAPTER XIVMINA HARKER&amp;#39;S JOURNAL\n23 September.-J~ 12003 62234
+#&amp;gt;  8 item13  &amp;quot;CHAPTER XVIDR. SEWARD&amp;#39;S DIARY-continued\nIT was j~ 13812 72903
+#&amp;gt;  9 item14  &amp;quot;\&amp;quot;Thus when we find the habitation of this man-th~ 13201 69779
+#&amp;gt; 10 item15  &amp;quot;\&amp;quot;I see,\&amp;quot; I said. \&amp;quot;You want big things that you~ 12706 66921
+#&amp;gt; 11 item16  &amp;quot;CHAPTER XXIIIDR. SEWARD&amp;#39;S DIARY\n3 October.-The t~ 11818 61550
+#&amp;gt; 12 item17  &amp;quot;CHAPTER XXVDR. SEWARD&amp;#39;S DIARY\n11 October, Evenin~ 12989 68564
+#&amp;gt; 13 item18  &amp;quot; \nLater.-Dr. Van Helsing has returned. He has go~  8356 43464
 #&amp;gt; 14 item19  &amp;quot;End of the Project Gutenberg EBook of Dracula, by~  2669 18541&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;guess-chapters&#34; class=&#34;section level3&#34;&gt;
@@ -321,10 +417,9 @@ x$data[[1]]
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- epub(file, drop_sections = &amp;quot;cov&amp;quot;, chapter_pattern = &amp;quot;^item\\d\\d&amp;quot;)
 x
 #&amp;gt; # A tibble: 1 x 10
-#&amp;gt;   rights  identifier   creator title language subject date  source   nchap
-#&amp;gt;   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt;
-#&amp;gt; 1 Public~ http://www.~ Bram S~ Drac~ en       Horror~ 1995~ http://~    10
-#&amp;gt; # ... with 1 more variable: data &amp;lt;list&amp;gt;
+#&amp;gt;   rights identifier creator title language subject date  source nchap data
+#&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;int&amp;gt; &amp;lt;li&amp;gt;
+#&amp;gt; 1 Publi~ http://ww~ Bram S~ Drac~ en       Horror~ 1995~ http:~    10 &amp;lt;ti~
 
 x$data[[1]]
 #&amp;gt; # A tibble: 14 x 5
@@ -332,17 +427,17 @@ x$data[[1]]
 #&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                    &amp;lt;lgl&amp;gt;      &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
 #&amp;gt;  1 item6   &amp;quot;The Project Gutenberg EBook of Dracula~ FALSE      11252 60972
 #&amp;gt;  2 item7   &amp;quot;But I am not in heart to describe beau~ FALSE      13740 71798
-#&amp;gt;  3 item8   &amp;quot;“ ‘Lucy, you are an honest-hearted gir~ FALSE      12356 65522
-#&amp;gt;  4 item9   &amp;quot;CHAPTER VIIIMINA MURRAY’S JOURNAL\nSam~ FALSE      12042 62724
+#&amp;gt;  3 item8   &amp;quot;\&amp;quot; &amp;#39;Lucy, you are an honest-hearted gi~ FALSE      12356 65522
+#&amp;gt;  4 item9   &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSam~ FALSE      12042 62724
 #&amp;gt;  5 ch01    &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. ~ TRUE       12599 66678
 #&amp;gt;  6 ch02    &amp;quot;Once again we went through that ghastl~ TRUE       11919 62949
-#&amp;gt;  7 ch03    &amp;quot;CHAPTER XIVMINA HARKER’S JOURNAL\n23 S~ TRUE       12003 62234
-#&amp;gt;  8 ch04    &amp;quot;CHAPTER XVIDR. SEWARD’S DIARY—continue~ TRUE       13812 72903
-#&amp;gt;  9 ch05    &amp;quot;“Thus when we find the habitation of t~ TRUE       13201 69779
-#&amp;gt; 10 ch06    &amp;quot;“I see,” I said. “You want big things ~ TRUE       12706 66921
-#&amp;gt; 11 ch07    &amp;quot;CHAPTER XXIIIDR. SEWARD’S DIARY\n3 Oct~ TRUE       11818 61550
-#&amp;gt; 12 ch08    &amp;quot;CHAPTER XXVDR. SEWARD’S DIARY\n11 Octo~ TRUE       12989 68564
-#&amp;gt; 13 ch09    &amp;quot; \nLater.—Dr. Van Helsing has returned~ TRUE        8356 43464
+#&amp;gt;  7 ch03    &amp;quot;CHAPTER XIVMINA HARKER&amp;#39;S JOURNAL\n23 S~ TRUE       12003 62234
+#&amp;gt;  8 ch04    &amp;quot;CHAPTER XVIDR. SEWARD&amp;#39;S DIARY-continue~ TRUE       13812 72903
+#&amp;gt;  9 ch05    &amp;quot;\&amp;quot;Thus when we find the habitation of ~ TRUE       13201 69779
+#&amp;gt; 10 ch06    &amp;quot;\&amp;quot;I see,\&amp;quot; I said. \&amp;quot;You want big thin~ TRUE       12706 66921
+#&amp;gt; 11 ch07    &amp;quot;CHAPTER XXIIIDR. SEWARD&amp;#39;S DIARY\n3 Oct~ TRUE       11818 61550
+#&amp;gt; 12 ch08    &amp;quot;CHAPTER XXVDR. SEWARD&amp;#39;S DIARY\n11 Octo~ TRUE       12989 68564
+#&amp;gt; 13 ch09    &amp;quot; \nLater.-Dr. Van Helsing has returned~ TRUE        8356 43464
 #&amp;gt; 14 ch10    &amp;quot;End of the Project Gutenberg EBook of ~ TRUE        2669 18541&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Also note that not all books have chapters. Make sure an optional argument makes sense to use with a given e-book.&lt;/p&gt;
 &lt;p&gt;Some e-books have formatting that puts chapter sections completely out of order even when they may be easily separable from other book sections and this can be another roadblock, as you may correctly identify and distinguish chapters from other book sections like cover, title, copyright and acknowledgements pages, but you will number the chapters incorrectly.&lt;/p&gt;
@@ -391,15 +486,17 @@ list.files(bookdir, recursive = TRUE)
       <pubDate>Thu, 24 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/trekfont-star-trek-themed-fonts-package/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/trekfont/&#34;&gt;trekfont&lt;/a&gt; is now available on CRAN. This is a simple data package that exposes 107 Star Trek font families. You might not want to use Star Trek fonts for work, but if you are making plots for fun and like Star Trek then these fonts are for you.&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;&lt;a href=&#34;https://cran.r-project.org/web/packages/trekfont/&#34;&gt;trekfont&lt;/a&gt; is now available on CRAN. This is a simple data package that exposes 107 Star Trek font families. You might not want to use Star Trek fonts for work, but if you are making plots for fun and like Star Trek then these fonts are for you.&lt;/p&gt;
 &lt;p&gt;This post gives a basic example of one how to load these fonts in R for use in plots. Using external font files is handled by the &lt;code&gt;showtext&lt;/code&gt; package, which uses the &lt;code&gt;sysfonts&lt;/code&gt; package to load the fonts. There is no need to load the &lt;code&gt;trekfont&lt;/code&gt; package directly; you only need it installed. To see all available font files, call &lt;code&gt;trekfont::trekfonts&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;This example shows eight fonts. &lt;code&gt;font_add&lt;/code&gt; and &lt;code&gt;font_families&lt;/code&gt; below are part of the &lt;code&gt;sysfonts&lt;/code&gt; package loaded by &lt;code&gt;showtext&lt;/code&gt;. Use these to load fonts and then check to see that they are now available, respectively. &lt;code&gt;showtext_auto&lt;/code&gt; handles the rest. If you are not already familiar with &lt;code&gt;showtext&lt;/code&gt; see its documentation for broader examples.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;#39;trekfont&amp;#39;)
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# install.packages(&amp;quot;trekfont&amp;quot;)
 library(showtext)
-font &amp;lt;- c(&amp;quot;Khan&amp;quot;, &amp;quot;StarNext&amp;quot;, &amp;quot;FederationDS9Title&amp;quot;, &amp;quot;Federation&amp;quot;, &amp;quot;Klingon&amp;quot;, 
-    &amp;quot;ModernVulcan&amp;quot;, &amp;quot;TNGcast&amp;quot;, &amp;quot;FederationStarfleet&amp;quot;)
+font &amp;lt;- c(&amp;quot;Khan&amp;quot;, &amp;quot;StarNext&amp;quot;, &amp;quot;FederationDS9Title&amp;quot;, &amp;quot;Federation&amp;quot;, &amp;quot;Klingon&amp;quot;, &amp;quot;ModernVulcan&amp;quot;, &amp;quot;TNGcast&amp;quot;, &amp;quot;FederationStarfleet&amp;quot;)
 path &amp;lt;- system.file(paste0(&amp;quot;fonts/&amp;quot;, font, &amp;quot;.ttf&amp;quot;), package = &amp;quot;trekfont&amp;quot;)
-for (i in 1:8) font_add(font[i], path[i])
+for(i in 1:8) font_add(font[i], path[i])
 font_families()
 #&amp;gt;  [1] &amp;quot;sans&amp;quot;                &amp;quot;serif&amp;quot;               &amp;quot;mono&amp;quot;               
 #&amp;gt;  [4] &amp;quot;wqy-microhei&amp;quot;        &amp;quot;Khan&amp;quot;                &amp;quot;StarNext&amp;quot;           
@@ -409,17 +506,15 @@ showtext_auto()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;First use base graphics.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;y &amp;lt;- seq(0.1, 0.9, length.out = 7)
 txt &amp;lt;- &amp;quot;The Quick Brown Fox Jumps Over The Lazy Dog&amp;quot;
-plot(0, 0, type = &amp;quot;n&amp;quot;, ylim = c(0, 1), main = &amp;quot;trekfont package font sample&amp;quot;, 
-    family = font[8])
-for (i in 1:7) text(0, y[i], txt, family = font[i])&lt;/code&gt;&lt;/pre&gt;
+plot(0, 0, type = &amp;quot;n&amp;quot;, ylim = c(0, 1), main = &amp;quot;trekfont package font sample&amp;quot;, family = font[8])
+for(i in 1:7) text(0, y[i], txt, family = font[i])&lt;/code&gt;&lt;/pre&gt;
 &lt;p align=&#34;center&#34;&gt;
 &lt;img src=&#34;./img/post/trekfont_plot.png&#34;/&gt;
 &lt;/p&gt;
 &lt;p&gt;Did you ever think you would be annotating your plots in Vulcan and Klingon? Next use ggplot2.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
 g &amp;lt;- ggplot() + theme_gray(base_family = font[8]) + ggtitle(&amp;quot;trekfont package font sample&amp;quot;)
-for (i in 1:7) g &amp;lt;- g + annotate(&amp;quot;text&amp;quot;, 0, y[i], label = txt, family = font[i], 
-    size = 12.5)
+for(i in 1:7) g &amp;lt;- g + annotate(&amp;quot;text&amp;quot;, 0, y[i], label = txt, family = font[i], size=12.5)
 g&lt;/code&gt;&lt;/pre&gt;
 &lt;p align=&#34;center&#34;&gt;
 &lt;img src=&#34;./img/post/trekfont_ggplot.png&#34;/&gt;
@@ -667,7 +762,10 @@ tab(song, &amp;quot;phrase.pdf&amp;quot;, key = &amp;quot;dm&amp;quot;, time = &
       <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-02-09-mix-ggplot2-graphs-with-your-favorite-memes-memery-0-4-2-on-cran/</guid>
-      <description>&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.4.2&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.4.2&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;div id=&#34;changes-in-v0.4.2&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Changes in v0.4.2&lt;/h2&gt;
 &lt;p&gt;This latest version of &lt;code&gt;memery&lt;/code&gt; includes a demo Shiny app.&lt;/p&gt;
@@ -734,7 +832,10 @@ meme_gif(img, lab, &amp;quot;sine.gif&amp;quot;, size = c(1.5, 0.75), label_pos 
       <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-11-09-memery-0-3-0-on-cran/</guid>
-      <description>&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.3.0&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;Make memorable plots with memery. &lt;code&gt;memery&lt;/code&gt; is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. &lt;a href=&#34;https://cran.r-project.org/web/packages/memery/&#34;&gt;Version 0.3.0&lt;/a&gt; of &lt;code&gt;memery&lt;/code&gt; is now on CRAN. The latest development version and a package vignette are available on &lt;a href=&#34;https://github.com/leonawicz/memery&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels. The &lt;code&gt;meme&lt;/code&gt; function will produce basic memes without needing to specify a number of additional arguments, but this is not the main purpose of the package. Adding a plot is then as simple as passing the plot to &lt;code&gt;inset&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;memery&lt;/code&gt; offers sensible defaults as well as a variety of basic templates for controlling how the meme and graph are spliced together. The example here shows how additional arguments can be specified to further control the content and layout. See the package &lt;a href=&#34;https://leonawicz.github.io/memery/articles/memery.html&#34;&gt;vignette&lt;/a&gt; for a more complete set of examples and description of available features and graph templates.&lt;/p&gt;
 &lt;p&gt;Please do share your data analyst meme creations. Enjoy!&lt;/p&gt;
@@ -910,7 +1011,10 @@ The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base gra
       <pubDate>Wed, 26 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017-04-26-assorted-shiny-apps/</guid>
-      <description>&lt;p&gt;Here is an &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34;&gt;assortment of R Shiny apps&lt;/a&gt; that you may find useful for exploration if you are in the process of learning Shiny and looking for something different. Some of these apps are very small and simple whereas others are large and complex. This repository provides full code and any necessary accompanying data sets. The repo also links to the apps hosted online at shinyapps.io so that you can run apps in your browser without having to download the entire collection repo to run apps locally. That and other details can be found at the repo linked above. This isn’t a tutorial or other form of support, but it’s plenty of R code to peruse if that is what you are looking for.&lt;/p&gt;
+      <description>
+
+
+&lt;p&gt;Here is an &lt;a href=&#34;https://github.com/ua-snap/shiny-apps&#34;&gt;assortment of R Shiny apps&lt;/a&gt; that you may find useful for exploration if you are in the process of learning Shiny and looking for something different. Some of these apps are very small and simple whereas others are large and complex. This repository provides full code and any necessary accompanying data sets. The repo also links to the apps hosted online at shinyapps.io so that you can run apps in your browser without having to download the entire collection repo to run apps locally. That and other details can be found at the repo linked above. This isn’t a tutorial or other form of support, but it’s plenty of R code to peruse if that is what you are looking for.&lt;/p&gt;
 &lt;p&gt;A bit of backstory. If I recall correctly, I began exploring RStudio’s Shiny package when I first heard of it in late 2012. Needless to say, a lot has changed since then, including not only all the alpha-release code-breaking changes I had to adjust to when making my first apps and what features and capabilities Shiny has grown to offer, but also simply how I go about coding apps has changed over time symbiotically with the package’s continued development. None of the apps in this repository are quite that old, though a few are close. Even so, they have been maintained and updated and tweaked since then to keep with the times as necessary.&lt;/p&gt;
 &lt;p&gt;Most of the apps are newer. But one nice thing about this collection is that it shows a diversity of approaches to coding different features and behavior into apps depending on their purposes and how for me that has changed over time. For example, some apps are heavy on maps. Prior to the robust availability of Leaflet in Shiny, I would tend to have a Shiny app display maps using static (but reactive) plots made with Lattice or ggplot2. There are many ways to do the same thing, and the way that is best in one case is not always the best way.&lt;/p&gt;
 &lt;p&gt;Across these apps there are many other examples of different ways to implement the same general task, depending on how I want that to be presented to the user in a specific app. In other cases, some approaches have proven more powerful and outright superior to others and have won out and it is equally useful to see these examples of what once was considered to be “good enough” is no longer.&lt;/p&gt;
@@ -1124,24 +1228,6 @@ saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network3D.gif
 &lt;p&gt;Typically an ensemble of models would be used but this video is just to demonstrate a basic animation using one climate model, both with a monthly time series and a monthly 10-year moving average time series. If wondering about the y-axis range, the animation shows anomalies, or delta change, from the climate model&amp;rsquo;s historical baseline monthly average temperatures using a given climatology window.&lt;/p&gt;
 
 &lt;p&gt;In a later video I will use annual and seasonal averages, which will display a smoother signal than monthly series.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>R animation: global SNAP Shiny app users</title>
-      <link>/post/r-animation-global-snap-shiny-app-users/</link>
-      <pubDate>Fri, 25 Mar 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/post/r-animation-global-snap-shiny-app-users/</guid>
-      <description>&lt;p&gt;For the blog readers, just a quick heads up that I have posted a new R data animation to YouTube. A complete post will follow, but for now here is the video. It displays the social network of SNAP Shiny app users over about the past year and a half using great circle trajectories on a rotating 3D Earth. It&amp;rsquo;s best in 1080p, but still somewhat degraded for streaming. I&amp;rsquo;ll post the raw source video later as well, which is crystal clear.&lt;/p&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/uQYR91qixgo?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;p&gt;I used geolocation data from Google Analytics. I routed all the traffic randomly through either Fairbanks, AK or Denver, CO to complete the network since those two places best describe where my apps come from. It&amp;rsquo;s great to see how many people connect to the apps and from where; too many people to plot as a single static graphic without some of the essence of the data being lost.&lt;/p&gt;
-
-&lt;p&gt;As usual, the still frames of the rotating globe, its surface texture, country boundaries and great circle paths are all made in R. It&amp;rsquo;s basically a series of plots made with ggplot2.&lt;/p&gt;
 </description>
     </item>
     
