@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.40.2" />
+  <meta name="generator" content="Hugo 0.51" />
   <meta name="author" content="Matthew Leonawicz">
   <meta name="description" content="R Developer | Data Scientist | Statistician">
 
@@ -247,15 +247,17 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      <p><a href="https://cran.r-project.org/web/packages/trekfont/">trekfont</a> is now available on CRAN. This is a simple data package that exposes 107 Star Trek font families. You might not want to use Star Trek fonts for work, but if you are making plots for fun and like Star Trek then these fonts are for you.</p>
+      
+
+
+<p><a href="https://cran.r-project.org/web/packages/trekfont/">trekfont</a> is now available on CRAN. This is a simple data package that exposes 107 Star Trek font families. You might not want to use Star Trek fonts for work, but if you are making plots for fun and like Star Trek then these fonts are for you.</p>
 <p>This post gives a basic example of one how to load these fonts in R for use in plots. Using external font files is handled by the <code>showtext</code> package, which uses the <code>sysfonts</code> package to load the fonts. There is no need to load the <code>trekfont</code> package directly; you only need it installed. To see all available font files, call <code>trekfont::trekfonts</code>.</p>
 <p>This example shows eight fonts. <code>font_add</code> and <code>font_families</code> below are part of the <code>sysfonts</code> package loaded by <code>showtext</code>. Use these to load fonts and then check to see that they are now available, respectively. <code>showtext_auto</code> handles the rest. If you are not already familiar with <code>showtext</code> see its documentation for broader examples.</p>
-<pre class="r"><code># install.packages(&#39;trekfont&#39;)
+<pre class="r"><code># install.packages(&quot;trekfont&quot;)
 library(showtext)
-font &lt;- c(&quot;Khan&quot;, &quot;StarNext&quot;, &quot;FederationDS9Title&quot;, &quot;Federation&quot;, &quot;Klingon&quot;, 
-    &quot;ModernVulcan&quot;, &quot;TNGcast&quot;, &quot;FederationStarfleet&quot;)
+font &lt;- c(&quot;Khan&quot;, &quot;StarNext&quot;, &quot;FederationDS9Title&quot;, &quot;Federation&quot;, &quot;Klingon&quot;, &quot;ModernVulcan&quot;, &quot;TNGcast&quot;, &quot;FederationStarfleet&quot;)
 path &lt;- system.file(paste0(&quot;fonts/&quot;, font, &quot;.ttf&quot;), package = &quot;trekfont&quot;)
-for (i in 1:8) font_add(font[i], path[i])
+for(i in 1:8) font_add(font[i], path[i])
 font_families()
 #&gt;  [1] &quot;sans&quot;                &quot;serif&quot;               &quot;mono&quot;               
 #&gt;  [4] &quot;wqy-microhei&quot;        &quot;Khan&quot;                &quot;StarNext&quot;           
@@ -265,17 +267,15 @@ showtext_auto()</code></pre>
 <p>First use base graphics.</p>
 <pre class="r"><code>y &lt;- seq(0.1, 0.9, length.out = 7)
 txt &lt;- &quot;The Quick Brown Fox Jumps Over The Lazy Dog&quot;
-plot(0, 0, type = &quot;n&quot;, ylim = c(0, 1), main = &quot;trekfont package font sample&quot;, 
-    family = font[8])
-for (i in 1:7) text(0, y[i], txt, family = font[i])</code></pre>
+plot(0, 0, type = &quot;n&quot;, ylim = c(0, 1), main = &quot;trekfont package font sample&quot;, family = font[8])
+for(i in 1:7) text(0, y[i], txt, family = font[i])</code></pre>
 <p align="center">
 <img src="../../img/post/trekfont_plot.png"/>
 </p>
 <p>Did you ever think you would be annotating your plots in Vulcan and Klingon? Next use ggplot2.</p>
 <pre class="r"><code>library(ggplot2)
 g &lt;- ggplot() + theme_gray(base_family = font[8]) + ggtitle(&quot;trekfont package font sample&quot;)
-for (i in 1:7) g &lt;- g + annotate(&quot;text&quot;, 0, y[i], label = txt, family = font[i], 
-    size = 12.5)
+for(i in 1:7) g &lt;- g + annotate(&quot;text&quot;, 0, y[i], label = txt, family = font[i], size=12.5)
 g</code></pre>
 <p align="center">
 <img src="../../img/post/trekfont_ggplot.png"/>

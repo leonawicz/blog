@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
-  <meta name="generator" content="Hugo 0.40.2" />
+  <meta name="generator" content="Hugo 0.51" />
   <meta name="author" content="Matthew Leonawicz">
   <meta name="description" content="R Developer | Data Scientist | Statistician">
 
@@ -262,7 +262,10 @@
 </div>
 
     <div class="article-style" itemprop="articleBody">
-      <p><img src="../../img/post/tiler.png" style="float:right;padding-left:10px;margin:0px;" width=200 height=173/></p>
+      
+
+
+<p><img src="../../img/post/tiler.png" style="float:right;padding-left:10px;margin:0px;" width=200 height=173/></p>
 <p>The <code>tiler</code> package provides a map tile-generator function for creating map tile sets for use with packages such as <code>leaflet</code>.</p>
 <p>In addition to generating map tiles based on a common raster layer source, it also handles the non-geographic edge case, producing map tiles from arbitrary images. These map tiles, which have a “simple CRS”, a non-geographic simple Cartesian coordinate reference system, can also be used with <code>leaflet</code> when applying the simple CRS option. Map tiles can be created from an input file with any of the following extensions: <code>tif</code>, <code>grd</code> and <code>nc</code> for spatial maps and <code>png</code>, <code>jpg</code> and <code>bmp</code> for basic images.</p>
 <p align="center">
@@ -270,9 +273,7 @@
 </p>
 <div id="setup-windows-users" class="section level2">
 <h2>Setup (Windows users)</h2>
-<p>Python is required as well as the <code>gdal</code> library for Python. For Windows users, this is not the same as simply having <code>rgdal</code> installed through R. You need to install <code>gdal</code> so that it is accessible by Python. One of the easiest and typically recommended ways to do this in Windows is to install <a href="https://trac.osgeo.org/osgeo4w/">OSGeo4W</a>. It will bring all the required Python <code>gdal</code> library functionality along with it. OSGeo4W is also commonly installed along with <a href="https://qgis.org/en/site/forusers/download.html">QGIS</a>.</p>
-<p>On Windows for potential user convenience, the <code>tiler</code> package will perform a single check on package load for the <code>OSgeo4W.bat</code> utility at <code>C:/Program Files/QGIS 3.0/OSGeo4W.bat</code>. If found, its path is set in <code>tiler_options</code>. If it is not found at this precise location, the path remains unspecified and <code>tiler</code> will fall back on only calling Python during tiling operations, assuming hopefully that <code>gdal</code> will be available to Python nonetheless.</p>
-<p>You should not rely on a gratuitous check like this; <code>tiler</code> is being overly generous. It is recommended that you simply add the paths for <code>python.exe</code>, and <code>OSGeo4.bat</code> if applicable, to your system path after installation. This way you do not need to provide these paths to <code>tiler_options</code> in each R session; R will know where they are just like on other operating systems. That’s all that should be needed. Linux and Mac users should not have to do any additional setup as long as Python and <code>gdal</code> for Python are installed.</p>
+<p>Python is required as well as the <code>gdal</code> library for Python. For Windows users, this is not the same as simply having <code>rgdal</code> installed through R. You need to install <code>gdal</code> so that it is accessible by Python. One of the easiest and typically recommended ways to do this in Windows is to install <a href="https://trac.osgeo.org/osgeo4w/">OSGeo4W</a>. It will bring all the required Python <code>gdal</code> library functionality along with it. OSGeo4W is also commonly installed along with <a href="https://qgis.org/en/site/forusers/download.html">QGIS</a>. Linux and Mac users should not have to do any additional setup as long as Python and <code>gdal</code> for Python are installed.</p>
 </div>
 <div id="geographic-map-tiles" class="section level2">
 <h2>Geographic map tiles</h2>
@@ -495,6 +496,9 @@ tile_viewer(&quot;project/tiles&quot;, &quot;3-7&quot;, width = 1000, height = 1
       aria-hidden="true">&larr;</span> epubr 0.4.0 CRAN release</a></li>
     
 
+    
+    <li class="next"><a href="../../post/epubr-0-5-0-cran-release/">epubr 0.5.0 CRAN release <span
+      aria-hidden="true">&rarr;</span></a></li>
     
   </ul>
 </nav>
