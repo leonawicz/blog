@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; Matthew Leonawicz</copyright>
-    <lastBuildDate>Thu, 19 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 Dec 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/tabr/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My 2018 #rstats year in review</title>
+      <link>/post/my-2018-rstats-year-in-review/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/my-2018-rstats-year-in-review/</guid>
+      <description>This past year in R has been a good one for me; productive, exciting, different. I decided it was worth taking a moment to reflect and share. Goals were set and met. There were also unexpected changes.
+CRANA year ago, at the tail end of 2017, I published my first package to CRAN. It’s a fun, silly package, but I also had to make a successful case for in the initial review process to distinguish it from other similar works.</description>
+    </item>
     
     <item>
       <title>tabr package for guitar tablature now on CRAN</title>
