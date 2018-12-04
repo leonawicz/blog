@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>/post/my-2018-rstats-year-in-review/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/post/epubr-0-5-0-cran-release/</loc>
       <lastmod>2018-11-18T00:00:00+00:00</lastmod>
     </url>
@@ -227,7 +236,7 @@
     <url>
     
       <loc>/tags/code/</loc>
-      <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -237,7 +246,7 @@
     <url>
     
       <loc>/tags/cran/</loc>
-      <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -268,6 +277,16 @@
     
       <loc>/tags/epub/</loc>
       <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/epubr/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -407,7 +426,7 @@
     <url>
     
       <loc>/tags/memery/</loc>
-      <lastmod>2018-02-13T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -418,6 +437,16 @@
     
       <loc>/tags/memes/</loc>
       <lastmod>2018-02-13T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/music/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -447,7 +476,7 @@
     <url>
     
       <loc>/tags/package/</loc>
-      <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -477,7 +506,7 @@
     <url>
     
       <loc>/post/</loc>
-      <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -515,8 +544,18 @@
     
     <url>
     
+      <loc>/tags/publishing/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/categories/r/</loc>
-      <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -537,6 +576,36 @@
     
       <loc>/tags/random-variables/</loc>
       <lastmod>2017-10-12T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/review/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/ropensci/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/rtrek/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -606,7 +675,7 @@
     <url>
     
       <loc>/tags/tabr/</loc>
-      <lastmod>2018-04-19T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -637,6 +706,26 @@
     
       <loc>/tags/text-mining/</loc>
       <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/tiler/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/trekfont/</loc>
+      <lastmod>2018-12-04T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

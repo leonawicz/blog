@@ -69,7 +69,7 @@
     <item>
       <title>Code</title>
       <link>/tags/code/</link>
-      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/code/</guid>
       <description></description>
@@ -78,7 +78,7 @@
     <item>
       <title>Cran</title>
       <link>/tags/cran/</link>
-      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/cran/</guid>
       <description></description>
@@ -108,6 +108,15 @@
       <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/epub/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Epubr</title>
+      <link>/tags/epubr/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/epubr/</guid>
       <description></description>
     </item>
     
@@ -222,7 +231,7 @@
     <item>
       <title>Memery</title>
       <link>/tags/memery/</link>
-      <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/memery/</guid>
       <description></description>
@@ -234,6 +243,15 @@
       <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/memes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Music</title>
+      <link>/tags/music/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/music/</guid>
       <description></description>
     </item>
     
@@ -258,7 +276,7 @@
     <item>
       <title>Package</title>
       <link>/tags/package/</link>
-      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/package/</guid>
       <description></description>
@@ -301,6 +319,15 @@
     </item>
     
     <item>
+      <title>Publishing</title>
+      <link>/tags/publishing/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/publishing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R Package</title>
       <link>/tags/r-package/</link>
       <pubDate>Mon, 11 Jun 2018 00:00:00 +0000</pubDate>
@@ -315,6 +342,33 @@
       <pubDate>Thu, 12 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/random-variables/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Review</title>
+      <link>/tags/review/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/review/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ropensci</title>
+      <link>/tags/ropensci/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/ropensci/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rtrek</title>
+      <link>/tags/rtrek/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rtrek/</guid>
       <description></description>
     </item>
     
@@ -375,7 +429,7 @@
     <item>
       <title>Tabr</title>
       <link>/tags/tabr/</link>
-      <pubDate>Thu, 19 Apr 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/tabr/</guid>
       <description></description>
@@ -396,6 +450,24 @@
       <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/text-mining/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tiler</title>
+      <link>/tags/tiler/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tiler/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Trekfont</title>
+      <link>/tags/trekfont/</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/trekfont/</guid>
       <description></description>
     </item>
     
