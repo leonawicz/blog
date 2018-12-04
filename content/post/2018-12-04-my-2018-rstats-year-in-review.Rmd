@@ -21,7 +21,7 @@ tags:
   - review
 header:
   caption: ''
-  image: '../img/post/IMG_0721.jpg'
+  image: '../img/post/band.png'
 ---
 
 This past year in R has been a good one for me; productive, exciting, different. I decided it was worth taking a moment to reflect and share. Goals were set and met. There were also unexpected changes.
