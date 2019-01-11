@@ -165,6 +165,21 @@
   
   
   <div>
+    <h2><a href="../../post/epubr-0-6-0-cran-release/">epubr 0.6.0 CRAN release</a></h2>
+    <div class="article-style">
+      
+      The epubr R package provides functions supporting the reading and parsing of internal e-book content from EPUB files. It has been updated to v0.6.0 on CRAN. This post highlights new functionality. The key improvements focus on cases where EPUB files have poorly arranged text when loaded into R as a result of their metadata entries and archive file structure.
+library(epubr)
+file &lt;- system.file(&quot;dracula.epub&quot;, package = &quot;epubr&quot;)
+(x &lt;- epub(file))
+#&gt; # A tibble: 1 x 9
+#&gt; rights identifier creator title language subject date source data #&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;lis&gt;
+#&gt; 1 Public~ <a href="http://www" target="_blank">http://www</a>.
+      
+    </div>
+  </div>
+  
+  <div>
     <h2><a href="../../post/my-2018-rstats-year-in-review/">My 2018 #rstats year in review</a></h2>
     <div class="article-style">
       
@@ -253,17 +268,6 @@ This latest version of memery includes a demo Shiny app.
       
       Make memorable plots with memery. memery is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. Version 0.3.0 of memery is now on CRAN. The latest development version and a package vignette are available on GitHub.
 Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels.
-      
-    </div>
-  </div>
-  
-  <div>
-    <h2><a href="../../post/apputils-0-5-0-released/">apputils 0.5.0 released</a></h2>
-    <div class="article-style">
-      
-      Version 0.5.0 of the apputils R package has been released on GitHub. Complete documentation is available at the apputils website.
-The key updates are:
- Added exApp for running Shiny app package examples. Ported custom icons demo app to apputils. Included all current custom icons in example app, adding the newer linear model themed icons. Added package css for infoBox override. Added introduction vignette content for stat boxes with package icons.
       
     </div>
   </div>

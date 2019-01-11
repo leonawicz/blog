@@ -395,6 +395,91 @@ While I don&rsquo;t have a lot of time to <a href="https://leonawicz.github.io/b
 
 <div class="article-list-item" itemscope itemprop="blogPost">
   <h3 class="article-title" itemprop="name">
+    <a href="./post/epubr-0-6-0-cran-release/" itemprop="url">epubr 0.6.0 CRAN release</a>
+  </h3>
+  
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2019-01-11 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Jan 11, 2019
+    </time>
+  </span>
+
+  
+  
+  
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="./categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="./tags/code">code</a
+    >, 
+    
+    <a href="./tags/package">package</a
+    >, 
+    
+    <a href="./tags/cran">CRAN</a
+    >, 
+    
+    <a href="./tags/epub">epub</a
+    >, 
+    
+    <a href="./tags/text-mining">text mining</a
+    >, 
+    
+    <a href="./tags/e-books">e-books</a
+    >
+    
+  </span>
+  
+  
+
+  
+
+</div>
+
+  
+  
+  <a href="./post/epubr-0-6-0-cran-release/">
+    <img src="./img/../img/post/epubr.png" class="article-banner" itemprop="image">
+  </a>
+  <br>
+  
+  <div class="article-style" itemprop="articleBody">
+    
+    <p style="text-align:justify;">The epubr R package provides functions supporting the reading and parsing of internal e-book content from EPUB files. It has been updated to v0.6.0 on CRAN. This post highlights new functionality. The key improvements focus on cases where EPUB files have poorly arranged text when loaded into R as a result of their metadata entries and archive file structure.
+library(epubr)file &lt;- system.file(&quot;dracula.epub&quot;, package = &quot;epubr&quot;)(x &lt;- epub(file))#&gt; # A tibble: 1 x 9#&gt; rights identifier creator title language subject date source data #&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;lis&gt;#&gt; 1 Public~ http://www.</p>
+    
+  </div>
+  <p class="read-more">
+    <a href="./post/epubr-0-6-0-cran-release/" class="btn btn-primary btn-outline">
+      CONTINUE READING
+    </a>
+  </p>
+</div>
+
+      
+        
+        
+
+
+<div class="article-list-item" itemscope itemprop="blogPost">
+  <h3 class="article-title" itemprop="name">
     <a href="./post/my-2018-rstats-year-in-review/" itemprop="url">My 2018 #rstats year in review</a>
   </h3>
   
@@ -750,82 +835,6 @@ E-book formatting is non-standard enough across all literature that no function 
   </div>
   <p class="read-more">
     <a href="./post/epubr-0-4-0-cran-release/" class="btn btn-primary btn-outline">
-      CONTINUE READING
-    </a>
-  </p>
-</div>
-
-      
-        
-        
-
-
-<div class="article-list-item" itemscope itemprop="blogPost">
-  <h3 class="article-title" itemprop="name">
-    <a href="./post/trekfont-star-trek-themed-fonts-package/" itemprop="url">trekfont: Star Trek-themed fonts package</a>
-  </h3>
-  
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    
-    <time datetime="2018-05-24 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      May 24, 2018
-    </time>
-  </span>
-
-  
-  
-  
-  <span class="article-categories">
-    <i class="fa fa-folder"></i>
-    
-    <a href="./categories/r">R</a
-    >
-    
-  </span>
-  
-  
-
-  
-  
-  
-  <span class="article-tags">
-    <i class="fa fa-tags"></i>
-    
-    <a href="./tags/r-package">R package</a
-    >, 
-    
-    <a href="./tags/fonts">fonts</a
-    >, 
-    
-    <a href="./tags/star-trek">Star Trek</a
-    >
-    
-  </span>
-  
-  
-
-  
-
-</div>
-
-  
-  
-  <a href="./post/trekfont-star-trek-themed-fonts-package/">
-    <img src="./img/../img/post/font_preview.png" class="article-banner" itemprop="image">
-  </a>
-  <br>
-  
-  <div class="article-style" itemprop="articleBody">
-    
-    <p style="text-align:justify;">trekfont is now available on CRAN. This is a simple data package that exposes 107 Star Trek font families. You might not want to use Star Trek fonts for work, but if you are making plots for fun and like Star Trek then these fonts are for you.
-This post gives a basic example of one how to load these fonts in R for use in plots. Using external font files is handled by the showtext package, which uses the sysfonts package to load the fonts.</p>
-    
-  </div>
-  <p class="read-more">
-    <a href="./post/trekfont-star-trek-themed-fonts-package/" class="btn btn-primary btn-outline">
       CONTINUE READING
     </a>
   </p>

@@ -169,6 +169,85 @@
     
     
     
+    <a href="../post/epubr-0-6-0-cran-release/">
+      <img src="../img/../img/post/epubr.png" class="article-banner" itemprop="image" style="float:right;width:150px;max-height:75px;" >
+    </a>
+    
+    <h2><a href="../post/epubr-0-6-0-cran-release/">epubr 0.6.0 CRAN release</a></h2>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2019-01-11 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Jan 11, 2019
+    </time>
+  </span>
+
+  
+  
+  
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="../categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="../tags/code">code</a
+    >, 
+    
+    <a href="../tags/package">package</a
+    >, 
+    
+    <a href="../tags/cran">CRAN</a
+    >, 
+    
+    <a href="../tags/epub">epub</a
+    >, 
+    
+    <a href="../tags/text-mining">text mining</a
+    >, 
+    
+    <a href="../tags/e-books">e-books</a
+    >
+    
+  </span>
+  
+  
+
+  
+
+</div>
+
+    <div class="article-style"><p>
+      
+      The epubr R package provides functions supporting the reading and parsing of internal e-book content from EPUB files. It has been updated to v0.6.0 on CRAN. This post highlights new functionality. The key improvements focus on cases where EPUB files have poorly arranged text when loaded into R as a result of their metadata entries and archive file structure.
+library(epubr)
+file &lt;- system.file(&quot;dracula.epub&quot;, package = &quot;epubr&quot;)
+(x &lt;- epub(file))
+#&gt; # A tibble: 1 x 9
+#&gt; rights identifier creator title language subject date source data #&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;lis&gt;
+#&gt; 1 Public~ <a href="http://www" target="_blank">http://www</a>.
+      
+      </p>
+    </div>
+  </div>
+  
+  <div>
+    
+    
+    
     <a href="../post/my-2018-rstats-year-in-review/">
       <img src="../img/../img/post/band.png" class="article-banner" itemprop="image" style="float:right;width:150px;max-height:75px;" >
     </a>
@@ -865,78 +944,6 @@ This latest version of memery includes a demo Shiny app.
       
       Make memorable plots with memery. memery is an R package that generates internet memes including superimposed inset graphs and other atypical features, combining the visual impact of an attention-grabbing meme with graphic results of data analysis. Version 0.3.0 of memery is now on CRAN. The latest development version and a package vignette are available on GitHub.
 Below is an example interleaving a semi-transparent ggplot2 graph between a meme image backdrop and overlying meme text labels.
-      
-      </p>
-    </div>
-  </div>
-  
-  <div>
-    
-    
-    
-    <a href="../post/apputils-0-5-0-released/">
-      <img src="../img/../img/post/apputils.png" class="article-banner" itemprop="image" style="float:right;width:150px;max-height:75px;" >
-    </a>
-    
-    <h2><a href="../post/apputils-0-5-0-released/">apputils 0.5.0 released</a></h2>
-    
-
-<div class="article-metadata">
-
-  <span class="article-date">
-    
-    <time datetime="2017-10-24 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-      Oct 24, 2017
-    </time>
-  </span>
-
-  
-  
-  
-  <span class="article-categories">
-    <i class="fa fa-folder"></i>
-    
-    <a href="../categories/r">R</a
-    >
-    
-  </span>
-  
-  
-
-  
-  
-  
-  <span class="article-tags">
-    <i class="fa fa-tags"></i>
-    
-    <a href="../tags/shiny">Shiny</a
-    >, 
-    
-    <a href="../tags/statistics">statistics</a
-    >, 
-    
-    <a href="../tags/visualization">visualization</a
-    >, 
-    
-    <a href="../tags/package">package</a
-    >, 
-    
-    <a href="../tags/apps">apps</a
-    >
-    
-  </span>
-  
-  
-
-  
-
-</div>
-
-    <div class="article-style"><p>
-      
-      Version 0.5.0 of the apputils R package has been released on GitHub. Complete documentation is available at the apputils website.
-The key updates are:
- Added exApp for running Shiny app package examples. Ported custom icons demo app to apputils. Included all current custom icons in example app, adding the newer linear model themed icons. Added package css for infoBox override. Added introduction vignette content for stat boxes with package icons.
       
       </p>
     </div>

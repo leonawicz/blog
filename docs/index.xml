@@ -11,6 +11,192 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>epubr 0.6.0 CRAN release</title>
+      <link>/post/epubr-0-6-0-cran-release/</link>
+      <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/epubr-0-6-0-cran-release/</guid>
+      <description>
+
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/ropensci/epubr&#34;&gt;epubr&lt;/a&gt; R package provides functions supporting the reading and parsing of internal e-book content from EPUB files. It has been updated to v0.6.0 on CRAN. This post highlights new functionality. The key improvements focus on cases where EPUB files have poorly arranged text when loaded into R as a result of their metadata entries and archive file structure.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(epubr)
+file &amp;lt;- system.file(&amp;quot;dracula.epub&amp;quot;, package = &amp;quot;epubr&amp;quot;)
+(x &amp;lt;- epub(file))
+#&amp;gt; # A tibble: 1 x 9
+#&amp;gt;   rights  identifier   creator  title language subject date  source   data 
+#&amp;gt;   &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;        &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;lis&amp;gt;
+#&amp;gt; 1 Public~ http://www.~ Bram St~ Drac~ en       Horror~ 1995~ http://~ &amp;lt;tib~
+
+x$data[[1]]
+#&amp;gt; # A tibble: 15 x 4
+#&amp;gt;    section        text                                          nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;                                         &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 item6          &amp;quot;The Project Gutenberg EBook of Dracula, by ~ 11446 60972
+#&amp;gt;  2 item7          &amp;quot;But I am not in heart to describe beauty, f~ 13879 71798
+#&amp;gt;  3 item8          &amp;quot;\&amp;quot; &amp;#39;Lucy, you are an honest-hearted girl, I~ 12474 65522
+#&amp;gt;  4 item9          &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSame day~ 12177 62724
+#&amp;gt;  5 item10         &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthu~ 12806 66678
+#&amp;gt;  6 item11         &amp;quot;Once again we went through that ghastly ope~ 12103 62949
+#&amp;gt;  7 item12         &amp;quot;CHAPTER XIVMINA HARKER&amp;#39;S JOURNAL\n23 Septem~ 12214 62234
+#&amp;gt;  8 item13         &amp;quot;CHAPTER XVIDR. SEWARD&amp;#39;S DIARY-continued\nIT~ 13990 72903
+#&amp;gt;  9 item14         &amp;quot;\&amp;quot;Thus when we find the habitation of this ~ 13356 69779
+#&amp;gt; 10 item15         &amp;quot;\&amp;quot;I see,\&amp;quot; I said. \&amp;quot;You want big things th~ 12866 66921
+#&amp;gt; 11 item16         &amp;quot;CHAPTER XXIIIDR. SEWARD&amp;#39;S DIARY\n3 October.~ 11928 61550
+#&amp;gt; 12 item17         &amp;quot;CHAPTER XXVDR. SEWARD&amp;#39;S DIARY\n11 October, ~ 13119 68564
+#&amp;gt; 13 item18         &amp;quot; \nLater.-Dr. Van Helsing has returned. He ~  8435 43464
+#&amp;gt; 14 item19         &amp;quot;End of the Project Gutenberg EBook of Dracu~  2665 18541
+#&amp;gt; 15 coverpage-wra~ &amp;quot;&amp;quot;                                                0     0&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;restructure-parsed-content&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Restructure parsed content&lt;/h2&gt;
+&lt;p&gt;When reading EPUB files it is ideal to be able to identify meaningful sections to retain via a regular expression pattern, as well as to drop extraneous sections in a similar manner. Using pattern matching as shown above is a convenient way to filter rows of the nested text content data frame.&lt;/p&gt;
+&lt;p&gt;For e-books with poor metadata formatting this is not always possible, or may be possible only after some other pre-processing. &lt;code&gt;epubr&lt;/code&gt; provides other functions to assist in restructuring the text table. The Dracula EPUB file included in &lt;code&gt;epubr&lt;/code&gt; is a good example to continue with here.&lt;/p&gt;
+&lt;div id=&#34;split-and-recombine-into-new-sections&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Split and recombine into new sections&lt;/h3&gt;
+&lt;p&gt;This book is internally broken into sections at arbitrary break points, hence why several sections begin in the middle of chapters, as seen above. Other chapters begin in the middle of sections. Use &lt;code&gt;epub_recombine&lt;/code&gt; along with a regular expression that can match the true section breaks. This function collapses the full text and then rebuilds the text table using new sections with proper break points. In the process it also recalculates the numbers of words and characters and relabels the sections with chapter notation.&lt;/p&gt;
+&lt;p&gt;Fortunately, a reliable pattern exists, which consists of &lt;code&gt;CHAPTER&lt;/code&gt; in capital letters followed by a space and some Roman numerals. Recombine the text into a new object.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pat &amp;lt;- &amp;quot;CHAPTER [IVX]+&amp;quot;
+x2 &amp;lt;- epub_recombine(x, pat)
+x2
+#&amp;gt; # A tibble: 1 x 10
+#&amp;gt;   rights identifier creator title language subject date  source nchap data 
+#&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;int&amp;gt; &amp;lt;lis&amp;gt;
+#&amp;gt; 1 Publi~ http://ww~ Bram S~ Drac~ en       Horror~ 1995~ http:~    54 &amp;lt;tib~
+
+x2$data[[1]]
+#&amp;gt; # A tibble: 55 x 4
+#&amp;gt;    section text                                                 nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                                &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 prior   &amp;quot;The Project Gutenberg EBook of Dracula, by Bram St~   159  1110
+#&amp;gt;  2 ch01    &amp;quot;CHAPTER I\nPage\nJonathan Harker&amp;#39;s Journal\n1\n&amp;quot;        7    43
+#&amp;gt;  3 ch02    &amp;quot;CHAPTER II\nJonathan Harker&amp;#39;s Journal\n14\n&amp;quot;            6    40
+#&amp;gt;  4 ch03    &amp;quot;CHAPTER III\nJonathan Harker&amp;#39;s Journal\n26\n&amp;quot;           6    41
+#&amp;gt;  5 ch04    &amp;quot;CHAPTER IV\nJonathan Harker&amp;#39;s Journal\n38\n&amp;quot;            6    40
+#&amp;gt;  6 ch05    &amp;quot;CHAPTER V\nLetters-Lucy and Mina\n51\n&amp;quot;                 6    35
+#&amp;gt;  7 ch06    &amp;quot;CHAPTER VI\nMina Murray&amp;#39;s Journal\n59\n&amp;quot;                6    36
+#&amp;gt;  8 ch07    &amp;quot;CHAPTER VII\nCutting from \&amp;quot;The Dailygraph,\&amp;quot; 8 Au~     9    55
+#&amp;gt;  9 ch08    &amp;quot;CHAPTER VIII\nMina Murray&amp;#39;s Journal\n84\n&amp;quot;              6    38
+#&amp;gt; 10 ch09    &amp;quot;CHAPTER IX\nMina Murray&amp;#39;s Journal\n98\n&amp;quot;                6    36
+#&amp;gt; # ... with 45 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;But this is not quite as expected. There should be 27 chapters, not 54. What was not initially apparent was that the same pattern matching each chapter name also appears in the first section where every chapter is listed in the table of contents. The new section breaks were successful in keeping chapter text in single, unique sections, but there are now twice as many as needed. Unintentionally, the first 27 “chapters” represent the table of contents being split on each chapter ID. These should be removed.&lt;/p&gt;
+&lt;p&gt;An easy way to do this is with &lt;code&gt;epub_sift&lt;/code&gt;, which sifts, or filters out, small word- or character-count sections from the nested data frame. It’s a simple sieve and you can control the size of the holes with &lt;code&gt;n&lt;/code&gt;. You can choose &lt;code&gt;type = &amp;quot;word&amp;quot;&lt;/code&gt; (default) or &lt;code&gt;type = &amp;quot;character&amp;quot;&lt;/code&gt;. This is somewhat of a blunt instrument, but is useful in a circumstance like this one where it is clear it will work as desired.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+x2 &amp;lt;- epub_recombine(x, pat) %&amp;gt;% epub_sift(n = 200)
+x2
+#&amp;gt; # A tibble: 1 x 10
+#&amp;gt;   rights identifier creator title language subject date  source nchap data 
+#&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;int&amp;gt; &amp;lt;lis&amp;gt;
+#&amp;gt; 1 Publi~ http://ww~ Bram S~ Drac~ en       Horror~ 1995~ http:~    54 &amp;lt;tib~
+
+x2$data[[1]]
+#&amp;gt; # A tibble: 27 x 4
+#&amp;gt;    section text                                                 nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                                &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 ch28    &amp;quot;CHAPTER IJONATHAN HARKER&amp;#39;S JOURNAL\n(Kept in short~  5694 30602
+#&amp;gt;  2 ch29    &amp;quot;CHAPTER IIJONATHAN HARKER&amp;#39;S JOURNAL-continued\n5 M~  5476 28462
+#&amp;gt;  3 ch30    &amp;quot;CHAPTER IIIJONATHAN HARKER&amp;#39;S JOURNAL-continued\nWH~  5703 29778
+#&amp;gt;  4 ch31    &amp;quot;CHAPTER IVJONATHAN HARKER&amp;#39;S JOURNAL-continued\nI A~  5828 30195
+#&amp;gt;  5 ch32    &amp;quot;CHAPTER V\nLetter from Miss Mina Murray to Miss Lu~  3546 18004
+#&amp;gt;  6 ch33    &amp;quot;CHAPTER VIMINA MURRAY&amp;#39;S JOURNAL\n24 July. Whitby.-~  5654 29145
+#&amp;gt;  7 ch34    &amp;quot;CHAPTER VIICUTTING FROM \&amp;quot;THE DAILYGRAPH,\&amp;quot; 8 AUGU~  5567 29912
+#&amp;gt;  8 ch35    &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSame day, 11 o&amp;#39;~  6267 32596
+#&amp;gt;  9 ch36    &amp;quot;CHAPTER IX\nLetter, Mina Harker to Lucy Westenra.\~  5910 30129
+#&amp;gt; 10 ch37    &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthur Holmw~  5932 30730
+#&amp;gt; # ... with 17 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This removes the unwanted rows, but one problem remains. Note that sifting the table sections in this case results in a need to re-apply &lt;code&gt;epub_recombine&lt;/code&gt; because the sections we removed had nevertheless offset the chapter indexing. Another call to &lt;code&gt;epub_recombine&lt;/code&gt; can be chained, but it may be more convenient to use the &lt;code&gt;sift&lt;/code&gt; argument to &lt;code&gt;epub_recombine&lt;/code&gt;, which is applied recursively.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# epub_recombine(x, pat) %&amp;gt;% epub_sift(n = 200) %&amp;gt;% epub_recombine(pat)
+x2 &amp;lt;- epub_recombine(x, pat, sift = list(n = 200))
+x2
+#&amp;gt; # A tibble: 1 x 10
+#&amp;gt;   rights identifier creator title language subject date  source nchap data 
+#&amp;gt;   &amp;lt;chr&amp;gt;  &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;  &amp;lt;int&amp;gt; &amp;lt;lis&amp;gt;
+#&amp;gt; 1 Publi~ http://ww~ Bram S~ Drac~ en       Horror~ 1995~ http:~    27 &amp;lt;tib~
+
+x2$data[[1]]
+#&amp;gt; # A tibble: 27 x 4
+#&amp;gt;    section text                                                 nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                                &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 ch01    &amp;quot;CHAPTER IJONATHAN HARKER&amp;#39;S JOURNAL\n(Kept in short~  5694 30602
+#&amp;gt;  2 ch02    &amp;quot;CHAPTER IIJONATHAN HARKER&amp;#39;S JOURNAL-continued\n5 M~  5476 28462
+#&amp;gt;  3 ch03    &amp;quot;CHAPTER IIIJONATHAN HARKER&amp;#39;S JOURNAL-continued\nWH~  5703 29778
+#&amp;gt;  4 ch04    &amp;quot;CHAPTER IVJONATHAN HARKER&amp;#39;S JOURNAL-continued\nI A~  5828 30195
+#&amp;gt;  5 ch05    &amp;quot;CHAPTER V\nLetter from Miss Mina Murray to Miss Lu~  3546 18005
+#&amp;gt;  6 ch06    &amp;quot;CHAPTER VIMINA MURRAY&amp;#39;S JOURNAL\n24 July. Whitby.-~  5654 29145
+#&amp;gt;  7 ch07    &amp;quot;CHAPTER VIICUTTING FROM \&amp;quot;THE DAILYGRAPH,\&amp;quot; 8 AUGU~  5567 29912
+#&amp;gt;  8 ch08    &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSame day, 11 o&amp;#39;~  6267 32596
+#&amp;gt;  9 ch09    &amp;quot;CHAPTER IX\nLetter, Mina Harker to Lucy Westenra.\~  5910 30129
+#&amp;gt; 10 ch10    &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthur Holmw~  5932 30730
+#&amp;gt; # ... with 17 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;reorder-sections-based-on-pattern-in-text&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Reorder sections based on pattern in text&lt;/h3&gt;
+&lt;p&gt;Some poorly formatted e-books have their internal sections occur in an arbitrary order. This can be frustrating to work with when doing text analysis on each section and where order matters. Just like recombining into new sections based on a pattern, sections that are out of order can be reordered based on a pattern. This requires a bit more work. In this case the user must provide a function that will map something in the matched pattern to an integer representing the desired row index.&lt;/p&gt;
+&lt;p&gt;Continue with the Dracula example, but with one difference. Even though the sections were originally broken at arbitrary points, they were in chronological order. To demonstrate the utility of &lt;code&gt;epub_reorder&lt;/code&gt;, first randomize the rows so that chronological order can be recovered.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;set.seed(1)
+x2$data[[1]] &amp;lt;- sample_frac(x2$data[[1]])  # randomize rows for example
+x2$data[[1]]
+#&amp;gt; # A tibble: 27 x 4
+#&amp;gt;    section text                                                 nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                                &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 ch08    &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSame day, 11 o&amp;#39;~  6267 32596
+#&amp;gt;  2 ch10    &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthur Holmw~  5932 30730
+#&amp;gt;  3 ch15    &amp;quot;CHAPTER XVDR. SEWARD&amp;#39;S DIARY-continued.\nFOR a whi~  5803 29705
+#&amp;gt;  4 ch22    &amp;quot;CHAPTER XXIIJONATHAN HARKER&amp;#39;S JOURNAL\n3 October.-~  5450 28081
+#&amp;gt;  5 ch05    &amp;quot;CHAPTER V\nLetter from Miss Mina Murray to Miss Lu~  3546 18005
+#&amp;gt;  6 ch20    &amp;quot;CHAPTER XXJONATHAN HARKER&amp;#39;S JOURNAL\n1 October, ev~  5890 31151
+#&amp;gt;  7 ch24    &amp;quot;CHAPTER XXIVDR. SEWARD&amp;#39;S PHONOGRAPH DIARY, SPOKEN ~  6272 32065
+#&amp;gt;  8 ch14    &amp;quot;CHAPTER XIVMINA HARKER&amp;#39;S JOURNAL\n23 September.-Jo~  6411 32530
+#&amp;gt;  9 ch12    &amp;quot;CHAPTER XIIDR. SEWARD&amp;#39;S DIARY\n18 September.-I dro~  7285 37868
+#&amp;gt; 10 ch02    &amp;quot;CHAPTER IIJONATHAN HARKER&amp;#39;S JOURNAL-continued\n5 M~  5476 28462
+#&amp;gt; # ... with 17 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is clear above that sections are now out of order. It is common enough to load poorly formatted EPUB files and yield this type of result. If all you care about is the text in its entirely, this does not matter, but if your analysis involves trends over the course of a book, this is problematic.&lt;/p&gt;
+&lt;p&gt;For this book, you need a function that will convert an annoying Roman numeral to an integer. You already have the pattern for finding the relevant information in each text section. You only need to tweak it for proper substitution. Here is an example:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;f &amp;lt;- function(x, pattern) as.numeric(as.roman(gsub(pattern, &amp;quot;\\1&amp;quot;, x)))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This function is passed to &lt;code&gt;epub_reorder&lt;/code&gt;. It takes and returns scalars. It must take two arguments: the first is a text string. The second is the regular expression. It must return a single number representing the index of that row. For example, if the pattern matches &lt;code&gt;CHAPTER IV&lt;/code&gt;, the function should return a &lt;code&gt;4&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;epub_reorder&lt;/code&gt; takes care of the rest. It applies your function to every row in the the nested data frame and then reorders the rows based on the full set of indices. Note that it also repeats this for every row (book) in the primary data frame, i.e., for every nested table. This means that the same function will be applied to every book. Therefore, you should only use this in bulk on a collection of e-books if you know the pattern does not change and the function will work correctly in each case.&lt;/p&gt;
+&lt;p&gt;The pattern has changed slightly. Parentheses are used to retain the important part of the matched pattern, the Roman numeral. The function &lt;code&gt;f&lt;/code&gt; here substitutes the entire string (because now it begins with &lt;code&gt;^&lt;/code&gt; and ends with &lt;code&gt;.*&lt;/code&gt;) with only the part stored in parentheses (In &lt;code&gt;f&lt;/code&gt;, this is the &lt;code&gt;\\1&lt;/code&gt; substitution). &lt;code&gt;epub_reorder&lt;/code&gt; applies this to all rows in the nested data frame:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x2 &amp;lt;- epub_reorder(x2, f, &amp;quot;^CHAPTER ([IVX]+).*&amp;quot;)
+x2$data[[1]]
+#&amp;gt; # A tibble: 27 x 4
+#&amp;gt;    section text                                                 nword nchar
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;                                                &amp;lt;int&amp;gt; &amp;lt;int&amp;gt;
+#&amp;gt;  1 ch01    &amp;quot;CHAPTER IJONATHAN HARKER&amp;#39;S JOURNAL\n(Kept in short~  5694 30602
+#&amp;gt;  2 ch02    &amp;quot;CHAPTER IIJONATHAN HARKER&amp;#39;S JOURNAL-continued\n5 M~  5476 28462
+#&amp;gt;  3 ch03    &amp;quot;CHAPTER IIIJONATHAN HARKER&amp;#39;S JOURNAL-continued\nWH~  5703 29778
+#&amp;gt;  4 ch04    &amp;quot;CHAPTER IVJONATHAN HARKER&amp;#39;S JOURNAL-continued\nI A~  5828 30195
+#&amp;gt;  5 ch05    &amp;quot;CHAPTER V\nLetter from Miss Mina Murray to Miss Lu~  3546 18005
+#&amp;gt;  6 ch06    &amp;quot;CHAPTER VIMINA MURRAY&amp;#39;S JOURNAL\n24 July. Whitby.-~  5654 29145
+#&amp;gt;  7 ch07    &amp;quot;CHAPTER VIICUTTING FROM \&amp;quot;THE DAILYGRAPH,\&amp;quot; 8 AUGU~  5567 29912
+#&amp;gt;  8 ch08    &amp;quot;CHAPTER VIIIMINA MURRAY&amp;#39;S JOURNAL\nSame day, 11 o&amp;#39;~  6267 32596
+#&amp;gt;  9 ch09    &amp;quot;CHAPTER IX\nLetter, Mina Harker to Lucy Westenra.\~  5910 30129
+#&amp;gt; 10 ch10    &amp;quot;CHAPTER X\nLetter, Dr. Seward to Hon. Arthur Holmw~  5932 30730
+#&amp;gt; # ... with 17 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is important that this is done on a nested data frame that has already been cleaned to the point of not containing extraneous rows that cannot be matched by the desired pattern. If they cannot be matched, then it is unknown where those rows should be placed relative to the others.&lt;/p&gt;
+&lt;p&gt;If sections are both out of order and use arbitrary break points, it would be necessary to reorder them before you split and recombine. If you split and recombine first, this would yield new sections that contain text from different parts of the e-book. However, the two are not likely to occur together; in fact it may be impossible for an EPUB file to be structured this way. In developing &lt;code&gt;epubr&lt;/code&gt;, no such examples have been encountered. In any event, reordering out of order sections essentially requires a human-identifiable pattern near the beginning of each section text string, so it does not make sense to perform this operation unless the sections have meaningful break points.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;other-new-functions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Other new functions&lt;/h2&gt;
+&lt;div id=&#34;word-count&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Word count&lt;/h3&gt;
+&lt;p&gt;The helper function &lt;code&gt;count_words&lt;/code&gt; provides word counts for strings, but allows you to control the regular expression patterns used for both splitting the string and conditionally counting the resulting character elements. This is the same function used internally by &lt;code&gt;epub&lt;/code&gt; and &lt;code&gt;epub_recombine&lt;/code&gt;. It is exported so that it can be used directly.&lt;/p&gt;
+&lt;p&gt;By default, &lt;code&gt;count_words&lt;/code&gt; splits on spaces and new line characters. It counts as a word any element containing at least one alphanumeric character or the ampersand. It ignores everything else as noise, such as extra spaces, empty strings and isolated bits of punctuation.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;x &amp;lt;- &amp;quot; This   sentence will be counted to have:\n\n10 (ten) words.&amp;quot;
+count_words(x)
+#&amp;gt; [1] 10&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;inspection&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Inspection&lt;/h3&gt;
+&lt;p&gt;Helper functions for inspecting the text in the R console include &lt;code&gt;epub_head&lt;/code&gt; and &lt;code&gt;epub_cat&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;epub_head&lt;/code&gt; provides an overview of the text by section for each book in the primary data frame. The nested data frames are unnested and row bound to one another and returned as a single data frame. The text is shortened to only the first few characters (defaults to &lt;code&gt;n = 50&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;epub_cat&lt;/code&gt; can be used to &lt;code&gt;cat&lt;/code&gt; the text of an e-book to the console for quick inspection in a more readable form. It can take several arguments that help slice out a section of the text and customize how it is printed.&lt;/p&gt;
+&lt;p&gt;Both functions can take an EPUB filename or a data frame of an already loaded EPUB file as their first argument.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>My 2018 #rstats year in review</title>
       <link>/post/my-2018-rstats-year-in-review/</link>
       <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
@@ -1114,177 +1300,6 @@ The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base gra
 &lt;p&gt;I&amp;rsquo;ve included both light and dark examples using icons that can be used to generally represent a distribution, mean, standard deviation, minimum, maximum, median or interquartile range. Note that &lt;code&gt;app.R&lt;/code&gt; adds some custom CSS; it is not sufficient to override the definitions of &lt;code&gt;icon&lt;/code&gt; and &lt;code&gt;valueBox&lt;/code&gt; alone. I placed it inline for to reduce the number of required files, but it could alternatively be loaded from a file using &lt;code&gt;includeCSS&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;This overriding functionality is only for &lt;code&gt;valueBox&lt;/code&gt; widgets and the way in which a local image file is passed to &lt;code&gt;icon&lt;/code&gt; is with a named list where the available names are &lt;code&gt;src&lt;/code&gt; (required, image file name) and &lt;code&gt;width&lt;/code&gt; (optional, defaults to &lt;code&gt;&#39;100%&#39;&lt;/code&gt;). It is restrictive but demonstrates potential to use image files in place of icon library options without too much code refactoring.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>mapmate 0.2.0</title>
-      <link>/post/mapmate-0-2-0/</link>
-      <pubDate>Tue, 15 Nov 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/post/mapmate-0-2-0/</guid>
-      <description>
-
-&lt;p&gt;&lt;em&gt;&lt;code&gt;mapmate&lt;/code&gt; is under development and blog posts can become outdated quickly. Up to date &lt;code&gt;mapmate&lt;/code&gt; documentation and tutorial examples can be found at the &lt;a href=&#34;https://leonawicz.github.io/mapmate/&#34;&gt;official mapmate Github pages&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/leonawicz/mapmate&#34;&gt;mapmate&lt;/a&gt; has now been updating from version 0.1.0 to 0.2.0 on Github. The key change is the incorporation of new functions, help docs and code examples focused on network maps, which is a more complex map type not previously covered. The new tutorial content below provides a a couple basic code examples for making network maps with &lt;code&gt;mapmate&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;While &lt;code&gt;mapmate&lt;/code&gt; is aimed at still image sequence generation, allowing the user to exert full control over how still image sequences are used to produce animations subsequently (GUI video editor, ffmpeg, ImageMagick, etc) and not directly at animating from R, the examples here include the use of the &lt;code&gt;animation&lt;/code&gt; package to help you quickly reproduce some basic animated gifs (as long as you have ImageMagick installed on your system). But the takeaway message is that &lt;code&gt;mapmate&lt;/code&gt; now has better support for still image map sequence generation when using the network map type based on great circle arc path traversal.&lt;/p&gt;
-
-&lt;p&gt;If you are new to &lt;code&gt;mapmate&lt;/code&gt; there is also the &lt;a href=&#34;https://leonawicz.github.io/mapmate/mapmate.html&#34;&gt;introductory vignette&lt;/a&gt;. The &lt;a href=&#34;https://leonawicz.github.io/mapmate/networks.html&#34;&gt;content of this post&lt;/a&gt; is available on the &lt;a href=&#34;https://leonawicz.github.io/mapmate/&#34;&gt;mapmate Github pages&lt;/a&gt; as well.&lt;/p&gt;
-
-&lt;p&gt;To install the package:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;devtools::install_github(&amp;quot;leonawicz/mapmate&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;networks&#34;&gt;Networks&lt;/h1&gt;
-
-&lt;p&gt;The &lt;code&gt;save_map&lt;/code&gt; function in the &lt;code&gt;mapmate&lt;/code&gt; package offers the &lt;code&gt;type=&amp;quot;network&amp;quot;&lt;/code&gt; map type. This type of map displays networks or pathways defined by overlapping segments traversing along great circle arcs. This map type can be used to display arbitrary line segments as well if such data is provided, but the provided helper functions used here are aimed specifically at drawing great circles.&lt;/p&gt;
-
-&lt;h1 id=&#34;setup&#34;&gt;Setup&lt;/h1&gt;
-
-&lt;h2 id=&#34;obtain-great-circle-arc-endpoints&#34;&gt;Obtain great circle arc endpoints&lt;/h2&gt;
-
-&lt;p&gt;The first example uses a flat map. Therefore it is important to break lines at the international dateline when preparing the data. In the second example, lines cross the dateline are not split because the segments will be plotted on the globe.&lt;/p&gt;
-
-&lt;p&gt;First, begin with the &lt;code&gt;network&lt;/code&gt; data set provided in &lt;code&gt;mapmate&lt;/code&gt; is a simple data frame of lon/lat locations of various cities and corresponding weights related to population sizes. It must be expanded to a larger, more complex data frame that contains location pairs and, optionally, distances between locations in each pair. &lt;code&gt;gc_endpoints&lt;/code&gt; assists with this by simulating some pairs. The resulting data frame contains endpoints of lines that are defined subsequently.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(mapmate)
-library(dplyr)
-
-set.seed(192)
-data(network)
-network
-
-distFun &amp;lt;- function(x) 1 - x/max(x)  # simple inverse distance weighting
-endpoints &amp;lt;- gc_endpoints(network, &amp;quot;lon&amp;quot;, &amp;quot;lat&amp;quot;)
-endpoints
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;obtain-great-circle-arcs&#34;&gt;Obtain great circle arcs&lt;/h2&gt;
-
-&lt;p&gt;Next, we sample based on a combination of weights. This is an arbitrary and optional step. The example is given primarily to make the data set used in these examples smaller in size. More importantly, the &lt;code&gt;gc_arcs&lt;/code&gt; helper function is used to further expand the &lt;code&gt;endpoints&lt;/code&gt; data frame to one containing sequences of points describing great circle arcs instead of only their endpoints.&lt;/p&gt;
-
-&lt;p&gt;The default number of points added between the endpoints of each great circle arc is &lt;code&gt;n=50&lt;/code&gt;, but this can be changed and can also differ for each arc (e.g., based on distance between points). As noted, arcs are filled out planning for use with both flat maps and a globes. A &lt;code&gt;group&lt;/code&gt; column is used to identify distinct arcs for plotting.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# take a weighted sample, e.g., favoring larger averaged populations and
-# shorter distances
-endpoints &amp;lt;- mutate(endpoints, Dist_wts = distFun(Dist))
-endpoints &amp;lt;- sample_n(endpoints, 500, replace = TRUE, weight = (Pop_wts0 + Pop_wts1)/2 + 
-    Dist_wts)
-
-# expand data frame from endpoints to arcs, each composed of a sequence of
-# points
-arcs_flat &amp;lt;- gc_arcs(endpoints, &amp;quot;lon0&amp;quot;, &amp;quot;lat0&amp;quot;, &amp;quot;lon1&amp;quot;, &amp;quot;lat1&amp;quot;, breakAtDateLine = TRUE)
-arcs_globe &amp;lt;- gc_arcs(endpoints, &amp;quot;lon0&amp;quot;, &amp;quot;lat0&amp;quot;, &amp;quot;lon1&amp;quot;, &amp;quot;lat1&amp;quot;)
-arcs_globe
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;obtain-great-circle-arc-path-sequences&#34;&gt;Obtain great circle arc path sequences&lt;/h2&gt;
-
-&lt;p&gt;Finally, &lt;code&gt;gc_paths&lt;/code&gt; is used to further expand the great circle arcs data frame into one that contains sequences of ordered segments along each arc. The segments can vary in length between distinct arcs and can overlap one another within an arc. The &lt;code&gt;group&lt;/code&gt; argument is required to identify distinct arcs in the input data frame. &lt;code&gt;size&lt;/code&gt; is required to set an upper limit on the number of points constituting an arc segment; the actual length of the segments is chosen randomly and uniformly between 2 and &lt;code&gt;size&lt;/code&gt;. Other arguments are optional.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;paths_flat &amp;lt;- gc_paths(arcs_flat, &amp;quot;group&amp;quot;, size = 5)
-paths_globe &amp;lt;- gc_paths(arcs_globe, &amp;quot;group&amp;quot;, size = 5)
-paths_globe
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;flat-map-network-animation&#34;&gt;Flat map network animation&lt;/h1&gt;
-
-&lt;p&gt;The direction of arc traversal can also be controlled by the &lt;code&gt;direction&lt;/code&gt; argument if desired. This is useful for simulations if the input data are not yet randomized or if the directions simply need to be reversed. First some setup:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;n &amp;lt;- max(paths_flat$id)
-png.args &amp;lt;- list(width = 600, height = 300, bg = &amp;quot;black&amp;quot;)
-clrs &amp;lt;- c(&amp;quot;#1E90FF50&amp;quot;, &amp;quot;#FFFFFF50&amp;quot;, &amp;quot;#FFFFFF&amp;quot;, &amp;quot;#1E90FF75&amp;quot;)
-ylm &amp;lt;- range(paths_flat$lat)  # trimming empty southern map region
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Typically, I would leave the default arguments &lt;code&gt;save.plot=TRUE&lt;/code&gt; and &lt;code&gt;return.plot=FALSE&lt;/code&gt;, but here they are reversed for the purposes of the example. This returns a list of &lt;code&gt;ggplot&lt;/code&gt; objects rather than saving png files. Note that I still included the &lt;code&gt;png.args&lt;/code&gt; argument even though &lt;code&gt;width&lt;/code&gt; and &lt;code&gt;height&lt;/code&gt; will be discarded because &lt;code&gt;save_map&lt;/code&gt; will take the background color specified by &lt;code&gt;bg&lt;/code&gt; intended for png files and use it in the &lt;code&gt;ggplot2&lt;/code&gt; theme applied to the returned plots.&lt;/p&gt;
-
-&lt;p&gt;The default background is transparent so I need to include this here since I have changed it to black. I have changed it to black in this example because I am making a reproducible gif for simplicity rather than doing any layering of separate image sequences in a video editor. Below, &lt;code&gt;saveGIF&lt;/code&gt; from the &lt;code&gt;animation&lt;/code&gt; package is used to make a simple gif from the plot sequence produced by &lt;code&gt;save_map&lt;/code&gt; by looping over the list of returned plots.&lt;/p&gt;
-
-&lt;p&gt;In summary, this is all a somewhat convoluted scenario to show you a short animated gif representing plots made by &lt;code&gt;save_map&lt;/code&gt;. The intended use case for &lt;code&gt;save_map&lt;/code&gt; is to simply export the sequence of png files and the user can do whatever they wish with those files subsequently. If literally all you want to do is make a short, simple animated gif of custom plots using a small amount of data, &lt;em&gt;just use the animation package&lt;/em&gt;. You do not need &lt;code&gt;mapmate&lt;/code&gt; for that. Also, if you are using &lt;code&gt;animation&lt;/code&gt; in general, as with the code below, it is dependent on &lt;code&gt;ImageMagick&lt;/code&gt;, which you will also have to install.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gglist &amp;lt;- save_seq(paths_flat, id = &amp;quot;id&amp;quot;, n.frames = n, ortho = FALSE, type = &amp;quot;network&amp;quot;, 
-    ylim = ylm, suffix = &amp;quot;2D&amp;quot;, png.args = png.args, save.plot = FALSE, return.plot = TRUE)
-
-library(animation)
-# you may need to specify a different path on your Windows machine you may
-# also need to ensure convert.exe is part of your particular installation
-ani.options(convert = &amp;quot;C:/Program Files/ImageMagick-7.0.3-Q16/convert.exe&amp;quot;)
-saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network2D.gif&amp;quot;, interval = 1/20, 
-    ani.width = 600, ani.height = 300)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;./img/post/network2d.gif&#34;&gt;&lt;img src=&#34;./img/post/network2d.gif?w=774&#34; alt=&#34;network2d&#34; width=&#34;774&#34; height=&#34;387&#34; class=&#34;aligncenter size-large&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This &lt;code&gt;animation&lt;/code&gt;-dependent example and the animated gif are not meant to be distractions from the purpose of this package. Despite the example gif, any code here related to &lt;code&gt;animation&lt;/code&gt; is beyond the scope of this tutorial. If you have trouble running it, see the &lt;code&gt;animation&lt;/code&gt; documentation and just do the following example instead, which is the way &lt;code&gt;mapmate&lt;/code&gt; is meant to be used:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;save_seq(paths_flat, id = &amp;quot;id&amp;quot;, n.frames = n, ortho = FALSE, type = &amp;quot;network&amp;quot;, 
-    suffix = &amp;quot;2D&amp;quot;, png.args = png.args)
-# Next, do whatever you want with the files, such as import them to a video
-# editing program
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;globe-network-animation&#34;&gt;Globe network animation&lt;/h1&gt;
-
-&lt;p&gt;Here is an example plotting network paths along great circle arcs on the globe. Remember that we use the other data set, which was generated with the default &lt;code&gt;breakAtDateline=FALSE&lt;/code&gt; in &lt;code&gt;gc_arcs&lt;/code&gt;. As a side note, if you redo the above example for flat maps using the unbroken data, &lt;code&gt;paths_globe&lt;/code&gt;, you will see why the arc segments are handled differently when preparing data for flat maps vs. for globes.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;n &amp;lt;- max(paths_flat$id)
-png.args &amp;lt;- list(width = 600, height = 600, bg = &amp;quot;black&amp;quot;)
-clrs &amp;lt;- c(&amp;quot;#FFFFFF&amp;quot;, &amp;quot;#FF450050&amp;quot;, &amp;quot;#FF4500&amp;quot;, &amp;quot;#FFFFFF50&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;gglist &amp;lt;- save_seq(paths_globe, id = &amp;quot;id&amp;quot;, n.frames = n, col = clrs, type = &amp;quot;network&amp;quot;, 
-    pt.size = c(1, 1, 3, 2), suffix = &amp;quot;3D&amp;quot;, png.args = png.args, save.plot = FALSE, 
-    return.plot = TRUE)
-
-library(animation)
-ani.options(convert = &amp;quot;C:/Program Files/ImageMagick-7.0.3-Q16/convert.exe&amp;quot;)
-saveGIF(for (i in seq_along(gglist)) print(gglist[[i]]), &amp;quot;network3D.gif&amp;quot;, interval = 1/20, 
-    ani.width = 600, ani.height = 600)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;./img/post/network3d.gif&#34;&gt;&lt;img src=&#34;./img/post/network3d.gif&#34; alt=&#34;network3d&#34; width=&#34;600&#34; height=&#34;600&#34; class=&#34;aligncenter size-full&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Again, normal usage is to just do the following and then use the saved still image sequence with full user control for whatever you like:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;save_seq(paths_globe, id = &amp;quot;id&amp;quot;, n.frames = n, col = clrs, type = &amp;quot;network&amp;quot;, 
-    pt.size = c(1, 1, 3, 2), suffix = &amp;quot;3D&amp;quot;, png.args = png.args)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Here are a few more advanced animations based on still image sequences of great circle arc network maps produced using &lt;code&gt;mapmate&lt;/code&gt; code:&lt;/p&gt;
-
-&lt;h3 id=&#34;historical-and-projected-global-temperature-anomalies&#34;&gt;Historical and projected global temperature anomalies&lt;/h3&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/xhqEkyJDBho?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&#34;global-uaf-snap-shiny-apps-web-traffic&#34;&gt;Global UAF/SNAP Shiny Apps web traffic&lt;/h3&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/uQYR91qixgo?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; frameborder=&#34;0&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&#34;flat-map-great-circle-animation-example&#34;&gt;Flat map great circle animation example&lt;/h3&gt;
-
-&lt;div style=&#34;text-align:center;&#34;&gt;
-&lt;iframe src=&#34;https://www.youtube.com/embed/yoyIUMvIP3Q?ecver=2&#34; width=&#34;640&#34; height=&#34;360&#34; allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&#34;mapmate-0-2-0-release-date-2016-11-15&#34;&gt;mapmate 0.2.0 (Release date: 2016-11-15)&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Added functions to assist with network maps: &lt;code&gt;gc_endpoints&lt;/code&gt;, &lt;code&gt;gc_arcs&lt;/code&gt;, and &lt;code&gt;gc_paths&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Added help documentation and runnable examples of the network-related functions.&lt;/li&gt;
-&lt;li&gt;Added &lt;code&gt;network&lt;/code&gt; data set to package.&lt;/li&gt;
-&lt;li&gt;Added unit tests for network-related functions.&lt;/li&gt;
-&lt;li&gt;Added tutorial/examples for network maps to the package Github pages.&lt;/li&gt;
-&lt;li&gt;Included simple animated gif examples in above page, piggybacked on &lt;code&gt;animation&lt;/code&gt; package.&lt;/li&gt;
-&lt;li&gt;Bug fixes.&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
