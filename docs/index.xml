@@ -11,6 +11,62 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>tabr 0.3.0 on CRAN</title>
+      <link>/post/tabr-0-3-0-on-cran/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tabr-0-3-0-on-cran/</guid>
+      <description>
+
+&lt;p style=&#34;text-align:center;&#34;&gt;
+&lt;a href=&#34;https://github.com/leonawicz/tabr&#34;&gt;&lt;img src=&#34;https://github.com/leonawicz/tabr/blob/master/data-raw/tabr.png?raw=true&#34; width=&#34;40%&#34;&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/leonawicz/tabr&#34; target=&#34;_blank&#34;&gt;tabr&lt;/a&gt; package for creating guitar tablature (&amp;ldquo;tabs&amp;rdquo;) from R code is now available on CRAN. &lt;code&gt;tabr&lt;/code&gt; provides programmatic music notation and a wrapper around &lt;a href=&#34;http://lilypond.org/&#34; target=&#34;_blank&#34;&gt;LilyPond&lt;/a&gt; for creating quality guitar tablature.&lt;/p&gt;
+
+&lt;p&gt;This post is just a quick update to mention that v0.3.0 has now been released on CRAN. And since I don&amp;rsquo;t have much time for blogging, I&amp;rsquo;m basically just pasting the release notes here below.&lt;/p&gt;
+
+&lt;p&gt;But the key changes are these:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make &lt;a href=&#34;https://leonawicz.github.io/tabr/articles/tabr-fretboard.html&#34; target=&#34;_blank&#34;&gt;fretbaord plots&lt;/a&gt; with ggplot.&lt;/li&gt;
+&lt;li&gt;Much more robust note/phrase/chord &lt;a href=&#34;https://leonawicz.github.io/tabr/articles/tabr-prog-nw.html&#34; target=&#34;_blank&#34;&gt;syntax validation&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;A collection of music programming functions have been added for more easily transforming among scales, modes, keys, chords, notes, etc.&lt;/li&gt;
+&lt;li&gt;Custom print methods that use a splash of color.&lt;/li&gt;
+&lt;li&gt;A table containing thousands of guitar chords and &lt;a href=&#34;https://leonawicz.github.io/tabr/reference/chord-mapping.html&#34; target=&#34;_blank&#34;&gt;associated functions&lt;/a&gt; for mapping chords.&lt;/li&gt;
+&lt;li&gt;A bunch more vignettes! Yay, happy vignettes!&lt;/li&gt;
+&lt;li&gt;Bug fixes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;tabr-0-3-0-release-notes&#34;&gt;tabr 0.3.0 release notes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Added &lt;code&gt;fretboard_plot&lt;/code&gt; for making fretboard diagrams outside of the LilyPond tablature pipeline. This necessitates importing &lt;code&gt;ggplot2&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Added functions for phrase validation, coercion and decomposition back to original character string inputs.&lt;/li&gt;
+&lt;li&gt;Added functions for note, pitch, chord and octave equivalence checks.&lt;/li&gt;
+&lt;li&gt;Added a collection of functions for constructing and working with common chords. The chord constructors are among the &lt;code&gt;chord_*&lt;/code&gt;-named functions and also have shorter &lt;code&gt;x*&lt;/code&gt;-named aliases. These are &amp;ldquo;piano chords,&amp;rdquo; i.e., based on the condensed, defining intervals.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;guitarChords&lt;/code&gt; dataset containing several thousand formations of guitar chord voicings.&lt;/li&gt;
+&lt;li&gt;Added helper functions that use &lt;code&gt;guitarChords&lt;/code&gt; for obtaining guitar chord information and mapping between different defining properties of a chord, most notably the addition of &lt;code&gt;gc_notes&lt;/code&gt; and &lt;code&gt;gc_fretboard&lt;/code&gt; for mapping chord names to noteworthy strings and fretboard diagram syntax.&lt;/li&gt;
+&lt;li&gt;Added helper functions for working with basic note/pitch strings.&lt;/li&gt;
+&lt;li&gt;Added helper functions for working with musical scales and modes.&lt;/li&gt;
+&lt;li&gt;Added helper functions for working with musical intervals.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;noteworthy&lt;/code&gt; class, used internally, optional for users (includes custom print and summary methods).&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;mainIntervals&lt;/code&gt; dataset.&lt;/li&gt;
+&lt;li&gt;Added more internal checks of note and chord syntax validity across functions that work with string representations (pre-&lt;code&gt;phrase&lt;/code&gt; object construction).&lt;/li&gt;
+&lt;li&gt;Update older functions to utilize the new, more robust and stricter validation checks and offer more consistent &lt;code&gt;noteworthy&lt;/code&gt; class output.&lt;/li&gt;
+&lt;li&gt;updated &lt;code&gt;transpose&lt;/code&gt; to handle additional edge cases, including a new style option, &lt;code&gt;strip&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Updated and added new unit tests.&lt;/li&gt;
+&lt;li&gt;Bug fix for case where &lt;code&gt;NA&lt;/code&gt;-valued no-chord rests (&lt;code&gt;s&lt;/code&gt; or &lt;code&gt;r&lt;/code&gt;) were unnamed in output of &lt;code&gt;chord_set&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fixed entry in &lt;code&gt;tabrSyntax&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Fix class assignment bug and updated &lt;code&gt;as_phrase&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Added a new column of relative interval size to internal &lt;code&gt;.keydata&lt;/code&gt; helper table.&lt;/li&gt;
+&lt;li&gt;Added new vignettes focusing on the programming aspect of &lt;code&gt;tabr&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Updated documentation.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>epubr 0.6.0 CRAN release</title>
       <link>/post/epubr-0-6-0-cran-release/</link>
       <pubDate>Fri, 11 Jan 2019 00:00:00 +0000</pubDate>
@@ -1280,26 +1336,6 @@ The primary change is a switch to &lt;code&gt;ggplot2&lt;/code&gt; from base gra
 &lt;p&gt;Most of the apps are newer. But one nice thing about this collection is that it shows a diversity of approaches to coding different features and behavior into apps depending on their purposes and how for me that has changed over time. For example, some apps are heavy on maps. Prior to the robust availability of Leaflet in Shiny, I would tend to have a Shiny app display maps using static (but reactive) plots made with Lattice or ggplot2. There are many ways to do the same thing, and the way that is best in one case is not always the best way.&lt;/p&gt;
 &lt;p&gt;Across these apps there are many other examples of different ways to implement the same general task, depending on how I want that to be presented to the user in a specific app. In other cases, some approaches have proven more powerful and outright superior to others and have won out and it is equally useful to see these examples of what once was considered to be “good enough” is no longer.&lt;/p&gt;
 &lt;p&gt;Lastly, if you do happen to stumble upon something that is actually broken, I am unaware of it, so please let me know.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Custom images for Shiny dashboard valueBox icons</title>
-      <link>/post/custom-images-for-shiny-dashboard-valuebox-icons/</link>
-      <pubDate>Wed, 11 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/custom-images-for-shiny-dashboard-valuebox-icons/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;shinydashboard&lt;/code&gt; package provides functions like &lt;code&gt;valueBox&lt;/code&gt; that conveniently display basic information like summary statistics. In addition to presenting a value and subtitle on a colored background, an icon may be included as well. However, the icon must come from either the Font Awesome or Glyphicon icon libraries and cannot be image files.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve &lt;a href=&#34;https://gist.github.com/leonawicz/0fab3796b02a62b7f3bd0c02a171f0b7&#34;&gt;provided a gist&lt;/a&gt; that shows how to achieve the use of custom icons with local image files stored in an app&amp;rsquo;s &lt;code&gt;www/&lt;/code&gt; directory. It involves overriding a couple functions in &lt;code&gt;shiny&lt;/code&gt; and &lt;code&gt;shinydashboard&lt;/code&gt; and adding a small bit of custom CSS. Ideally, functionality could be included in future versions of these two packages to allow this in a more robust and complete fashion. But for now, here is a way to do it yourself for value boxes.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;./img/post/valueboxes1.png&#34;&gt;&lt;img src=&#34;./img/post/valueboxes1.png&#34; alt=&#34;valueboxes1&#34; width=&#34;599&#34; height=&#34;351&#34; class=&#34;aligncenter size-full&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The gist above includes the &lt;code&gt;app.R&lt;/code&gt; file to run the &lt;a href=&#34;https://uasnap.shinyapps.io/customiconsdemo/&#34;&gt;Custom Icons Shiny app demo&lt;/a&gt; and the &lt;code&gt;override.R&lt;/code&gt; file which I have it &lt;code&gt;source&lt;/code&gt; separately. The gist also includes an &lt;code&gt;icons.R&lt;/code&gt; script to generate some statistics and probability themed icons from R. This is interesting and fun on its own. This is not needed to run the app, but the icons are of course needed. If you build the app locally you will have to run this script to generate the images and place them in your &lt;code&gt;www/&lt;/code&gt; folder. The live app demo contains them already.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve included both light and dark examples using icons that can be used to generally represent a distribution, mean, standard deviation, minimum, maximum, median or interquartile range. Note that &lt;code&gt;app.R&lt;/code&gt; adds some custom CSS; it is not sufficient to override the definitions of &lt;code&gt;icon&lt;/code&gt; and &lt;code&gt;valueBox&lt;/code&gt; alone. I placed it inline for to reduce the number of required files, but it could alternatively be loaded from a file using &lt;code&gt;includeCSS&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;This overriding functionality is only for &lt;code&gt;valueBox&lt;/code&gt; widgets and the way in which a local image file is passed to &lt;code&gt;icon&lt;/code&gt; is with a named list where the available names are &lt;code&gt;src&lt;/code&gt; (required, image file name) and &lt;code&gt;width&lt;/code&gt; (optional, defaults to &lt;code&gt;&#39;100%&#39;&lt;/code&gt;). It is restrictive but demonstrates potential to use image files in place of icon library options without too much code refactoring.&lt;/p&gt;
 </description>
     </item>
     

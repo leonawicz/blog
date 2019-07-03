@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; Matthew Leonawicz</copyright>
-    <lastBuildDate>Fri, 11 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>tabr 0.3.0 on CRAN</title>
+      <link>/post/tabr-0-3-0-on-cran/</link>
+      <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tabr-0-3-0-on-cran/</guid>
+      <description>The tabr package for creating guitar tablature (&amp;ldquo;tabs&amp;rdquo;) from R code is now available on CRAN. tabr provides programmatic music notation and a wrapper around LilyPond for creating quality guitar tablature.
+This post is just a quick update to mention that v0.3.0 has now been released on CRAN. And since I don&amp;rsquo;t have much time for blogging, I&amp;rsquo;m basically just pasting the release notes here below.
+But the key changes are these:</description>
+    </item>
     
     <item>
       <title>epubr 0.6.0 CRAN release</title>

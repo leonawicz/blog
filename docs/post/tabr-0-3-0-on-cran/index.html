@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.51" />
+  <meta name="author" content="Matthew Leonawicz">
+  <meta name="description" content="R Developer | Data Scientist | Statistician">
+
+  
+  
+  
+    
+  
+  
+    
+    
+    <link rel="stylesheet" href="../../css/highlight.min.css">
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather%7CRoboto+Mono">
+  <link rel="stylesheet" href="../../css/hugo-academic.css">
+  
+  <link rel="stylesheet" href="../../css/styles.css">
+  
+
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-46129458-3', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+
+  <link rel="alternate" href="../../index.xml" type="application/rss+xml" title="Matthew Leonawicz | Blog: I think, therefore I R">
+  <link rel="feed" href="../../index.xml" type="application/rss+xml" title="Matthew Leonawicz | Blog: I think, therefore I R">
+
+  <link rel="icon" type="image/png" href="../../img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="../../img/apple-touch-icon.png">
+
+  <link rel="canonical" href="../../post/tabr-0-3-0-on-cran/">
+
+  
+
+  <title>tabr 0.3.0 on CRAN | Matthew Leonawicz | Blog: I think, therefore I R</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#navbar-main" data-offset="71">
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../">Matthew Leonawicz | Blog: I think, therefore I R</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        <li class="nav-item">
+          <a href="https://leonawicz.github.io/">
+            
+            <span>Home</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="https://leonawicz.github.io/showcase/">
+            
+            <span>Showcase</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#about">
+            
+            <span>About</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#posts">
+            
+            <span>Posts</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        <li class="nav-item">
+          <a href="../../#contact">
+            
+            <span>Contact</span>
+          </a>
+        </li>
+
+        
+        
+
+        
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  <div class="article-container">
+    <h1 itemprop="name">tabr 0.3.0 on CRAN</h1>
+    
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2019-07-03 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Jul 3, 2019
+    </time>
+  </span>
+
+  
+  
+  
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="../../categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+  
+  <span class="article-tags">
+    <i class="fa fa-tags"></i>
+    
+    <a href="../../tags/r-package">R package</a
+    >, 
+    
+    <a href="../../tags/tabr">tabr</a
+    >, 
+    
+    <a href="../../tags/sheet-music">sheet music</a
+    >, 
+    
+    <a href="../../tags/guitar">guitar</a
+    >, 
+    
+    <a href="../../tags/tablature">tablature</a
+    >, 
+    
+    <a href="../../tags/tabs">tabs</a
+    >, 
+    
+    <a href="../../tags/music-notation">music notation</a
+    >, 
+    
+    <a href="../../tags/music-transcription">music transcription</a
+    >, 
+    
+    <a href="../../tags/lilypond">LilyPond</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2ftabr-0-3-0-on-cran%2f"
+         target="_blank">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=tabr%200.3.0%20on%20CRAN&amp;url=%2fpost%2ftabr-0-3-0-on-cran%2f"
+         target="_blank">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2ftabr-0-3-0-on-cran%2f&amp;title=tabr%200.3.0%20on%20CRAN"
+         target="_blank">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2ftabr-0-3-0-on-cran%2f&amp;title=tabr%200.3.0%20on%20CRAN"
+         target="_blank">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=tabr%200.3.0%20on%20CRAN&amp;body=%2fpost%2ftabr-0-3-0-on-cran%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    <div class="article-style" itemprop="articleBody">
+      
+
+<p style="text-align:center;">
+<a href="https://github.com/leonawicz/tabr"><img src="https://github.com/leonawicz/tabr/blob/master/data-raw/tabr.png?raw=true" width="40%"></a>
+</p>
+
+<p>The <a href="https://github.com/leonawicz/tabr" target="_blank">tabr</a> package for creating guitar tablature (&ldquo;tabs&rdquo;) from R code is now available on CRAN. <code>tabr</code> provides programmatic music notation and a wrapper around <a href="http://lilypond.org/" target="_blank">LilyPond</a> for creating quality guitar tablature.</p>
+
+<p>This post is just a quick update to mention that v0.3.0 has now been released on CRAN. And since I don&rsquo;t have much time for blogging, I&rsquo;m basically just pasting the release notes here below.</p>
+
+<p>But the key changes are these:</p>
+
+<ul>
+<li>Make <a href="https://leonawicz.github.io/tabr/articles/tabr-fretboard.html" target="_blank">fretbaord plots</a> with ggplot.</li>
+<li>Much more robust note/phrase/chord <a href="https://leonawicz.github.io/tabr/articles/tabr-prog-nw.html" target="_blank">syntax validation</a>.</li>
+<li>A collection of music programming functions have been added for more easily transforming among scales, modes, keys, chords, notes, etc.</li>
+<li>Custom print methods that use a splash of color.</li>
+<li>A table containing thousands of guitar chords and <a href="https://leonawicz.github.io/tabr/reference/chord-mapping.html" target="_blank">associated functions</a> for mapping chords.</li>
+<li>A bunch more vignettes! Yay, happy vignettes!</li>
+<li>Bug fixes</li>
+</ul>
+
+<h2 id="tabr-0-3-0-release-notes">tabr 0.3.0 release notes</h2>
+
+<ul>
+<li>Added <code>fretboard_plot</code> for making fretboard diagrams outside of the LilyPond tablature pipeline. This necessitates importing <code>ggplot2</code>.</li>
+<li>Added functions for phrase validation, coercion and decomposition back to original character string inputs.</li>
+<li>Added functions for note, pitch, chord and octave equivalence checks.</li>
+<li>Added a collection of functions for constructing and working with common chords. The chord constructors are among the <code>chord_*</code>-named functions and also have shorter <code>x*</code>-named aliases. These are &ldquo;piano chords,&rdquo; i.e., based on the condensed, defining intervals.</li>
+<li>Added <code>guitarChords</code> dataset containing several thousand formations of guitar chord voicings.</li>
+<li>Added helper functions that use <code>guitarChords</code> for obtaining guitar chord information and mapping between different defining properties of a chord, most notably the addition of <code>gc_notes</code> and <code>gc_fretboard</code> for mapping chord names to noteworthy strings and fretboard diagram syntax.</li>
+<li>Added helper functions for working with basic note/pitch strings.</li>
+<li>Added helper functions for working with musical scales and modes.</li>
+<li>Added helper functions for working with musical intervals.</li>
+<li>Added <code>noteworthy</code> class, used internally, optional for users (includes custom print and summary methods).</li>
+<li>Added <code>mainIntervals</code> dataset.</li>
+<li>Added more internal checks of note and chord syntax validity across functions that work with string representations (pre-<code>phrase</code> object construction).</li>
+<li>Update older functions to utilize the new, more robust and stricter validation checks and offer more consistent <code>noteworthy</code> class output.</li>
+<li>updated <code>transpose</code> to handle additional edge cases, including a new style option, <code>strip</code>.</li>
+<li>Updated and added new unit tests.</li>
+<li>Bug fix for case where <code>NA</code>-valued no-chord rests (<code>s</code> or <code>r</code>) were unnamed in output of <code>chord_set</code>.</li>
+<li>Fixed entry in <code>tabrSyntax</code>.</li>
+<li>Fix class assignment bug and updated <code>as_phrase</code>.</li>
+<li>Added a new column of relative interval size to internal <code>.keydata</code> helper table.</li>
+<li>Added new vignettes focusing on the programming aspect of <code>tabr</code>.</li>
+<li>Updated documentation.</li>
+</ul>
+
+    </div>
+  </div>
+
+</article>
+
+
+
+<div class="article-container">
+  <h3>Related</h3>
+  <ul>
+    
+    <li><a href="../../post/tabr-package-for-guitar-tablature-now-on-cran/">tabr package for guitar tablature now on CRAN</a></li>
+    
+    <li><a href="../../post/introducing-tabr-guitar-tabs-with-r/">Introducing tabr: guitar tabs with R</a></li>
+    
+    <li><a href="../../post/my-2018-rstats-year-in-review/">My 2018 #rstats year in review</a></li>
+    
+    <li><a href="../../post/tiler-0-2-0-cran-release-create-map-tiles-from-r/">tiler 0.2.0 CRAN release: Create map tiles from R</a></li>
+    
+    <li><a href="../../post/trekfont-star-trek-themed-fonts-package/">trekfont: Star Trek-themed fonts package</a></li>
+    
+  </ul>
+</div>
+
+
+<div class="container">
+  <nav>
+  <ul class="pager">
+    
+    <li class="previous"><a href="../../post/epubr-0-6-0-cran-release/"><span
+      aria-hidden="true">&larr;</span> epubr 0.6.0 CRAN release</a></li>
+    
+
+    
+  </ul>
+</nav>
+
+</div>
+
+<div class="article-container">
+  
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; Matthew Leonawicz &middot; 
+
+      Powered by the <a href="https://github.com/gcushen/hugo-academic" target="_blank">Academic
+      theme</a> for <a href="http://gohugo.io" target="_blank">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha512-jGsMH83oKe9asCpkOVkBnUrDDTp8wl+adkB2D+//JtlxO4SrLoJdhbOysIFQJloQFD+C4Fl1rMsQZF76JjV0eQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.2/imagesloaded.pkgd.min.js" integrity="sha512-iHzEu7GbSc705hE2skyH6/AlTpOfBmkx7nUqTLGzPYR+C1tRaItbRlJ7hT/D3YQ9SV0fqLKzp4XY9wKulTBGTw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" integrity="sha512-Z5heTz36xTemt1TbtbfXtTq5lMfYnOkXM2/eWcTTiLU01+Sw4ku1i7vScDc8fWhrP2abz9GQzgKH5NGBLoYlAw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/plugins/ScrollToPlugin.min.js" integrity="sha512-CDeU7pRtkPX6XJtF/gcFWlEwyaX7mcAp5sO3VIu/ylsdR74wEw4wmBpD5yYTrmMAiAboi9thyBUr1vXRPA7t0Q==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    
+    <script src="../../js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+
