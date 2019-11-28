@@ -1,7 +1,7 @@
 +++
 # About/Biography widget.
 
-date = "2017-09-14"
+date = "2019-11-27"
 draft = false
 
 widget = "about"
@@ -12,14 +12,14 @@ weight = 1
 # List your academic interests.
 [interests]
   interests = [
-    "R programming",
+    "R development",
     "App development",
     "Data visualization",
     "Probability and statistics",
     "Nonparametric regression/machine learning",
     "Sociology of science and medicine",
     "Astronomy and cosmology",
-    "Playing guitar, vegan cooking, taking walks and reading Star Trek novels"
+    "Playing guitar, programming, cooking, taking walks and reading Star Trek novels"
   ]
 
 # List your qualifications (such as academic degrees).
@@ -27,11 +27,6 @@ weight = 1
   course = "MS in Statistics"
   institution = "University of Alaska Fairbanks"
   year = 2011
-
-[[education.courses]]
-  course = "Android Basics Nanodegree by Google"
-  institution = "Udacity"
-  year = 2016
   
 [[education.courses]]
   course = "AAS in Paramedicine"
@@ -49,11 +44,12 @@ weight = 1
 
 +++
 
-# Bio
+# About
 
-I am a software developer and data scientist with E Source.
-I especially love programming in R, including high performance statistical computing, web application development, data visualization, and dynamic reporting.
-I enjoy developing R Shiny apps and creating informative, beautiful graphics.
+I'm a software developer and data scientist. I'm also a member of [ROpenSci](https://ropensci.org/). I've published several peer-reviewed R packages to CRAN as well as three with ROpenSci focusing on textual manipulation, energy data retrieval, and geospatial map tile generation.
 
-I also enjoy networking with other R developers, data analysts, researchers, and useRs around the globe.
-While I don't have a lot of time to [blog](https://leonawicz.github.io/blog/), I post more frequent updates on [Twitter](https://twitter.com/leonawicz). Some of my R code is available on [Github](https://github.com/leonawicz).
+My work over the years has focused on high performance statistical computing, climate science research, web application development, data visualization, and dynamic reporting. I enjoy developing R Shiny apps and creating informative, beautiful graphics.
+
+I also enjoy networking with other R developers, data analysts, researchers, and useRs around the globe. Some of my R code is available on [Github](https://github.com/leonawicz). I post updates on [Twitter](https://twitter.com/leonawicz) occasionally. I'm most interested in development of tools that enhance the R ecosystem for data science, improve workflows and productivity, and assist with reproducible research.
+
+I don't blog much, as you can see from this blog.

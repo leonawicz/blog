@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; Matthew Leonawicz</copyright>
-    <lastBuildDate>Thu, 14 Sep 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/home/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,11 +15,11 @@
     <item>
       <title></title>
       <link>/home/about/</link>
-      <pubDate>Thu, 14 Sep 2017 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 27 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>/home/about/</guid>
-      <description>Bio I am a software developer and data scientist with E Source. I especially love programming in R, including high performance statistical computing, web application development, data visualization, and dynamic reporting. I enjoy developing R Shiny apps and creating informative, beautiful graphics.
-I also enjoy networking with other R developers, data analysts, researchers, and useRs around the globe. While I don&amp;rsquo;t have a lot of time to blog, I post more frequent updates on Twitter.</description>
+      <description>About I&amp;rsquo;m a software developer and data scientist. I&amp;rsquo;m also a member of ROpenSci. I&amp;rsquo;ve published several peer-reviewed R packages to CRAN as well as three with ROpenSci focusing on textual manipulation, energy data retrieval, and geospatial map tile generation.
+My work over the years has focused on high performance statistical computing, climate science research, web application development, data visualization, and dynamic reporting. I enjoy developing R Shiny apps and creating informative, beautiful graphics.</description>
     </item>
     
     <item>

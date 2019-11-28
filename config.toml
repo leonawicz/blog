@@ -24,12 +24,12 @@ defaultContentLanguageInSubdir = false
 
 [params]
   name = "Matthew Leonawicz"
-  role = "R Developer | Data Scientist | Statistician"
+  role = "R Developer | Data Scientist"
   organization = "E Source"
   organization_url = "https://www.esource.com/about-e-source"
   gravatar = true  # Get your avatar from Gravatar.com? (true/false)
   avatar = ""  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
-  email = "matt.rstat@gmail.com"
+  email = "matt_leonawicz@esource.com"
   address = "Boulder, Colorado, USA"
   office_hours = ""
   phone = ""
@@ -148,17 +148,7 @@ defaultContentLanguageInSubdir = false
     icon = "youtube"
     icon_pack = "fa"
     link = "https://www.youtube.com/user/StatisticsWithR"
-    
-  [[params.social]]
-    icon = "google-plus"
-    icon_pack = "fa"
-    link = "https://plus.google.com/+StatisticsWithR/posts"
-    
-  [[params.social]]
-    icon = "google-scholar"
-    icon_pack = "ai"
-    link = "https://scholar.google.com/citations?user=3aWO-NoAAAAJ"
-    
+
   [[params.social]]
     icon = "rss"
     icon_pack = "fa"
@@ -177,11 +167,6 @@ defaultContentLanguageInSubdir = false
 [[menu.main]]
   name = "Home"
   url = "https://leonawicz.github.io/"
-  weight = 1
-
-[[menu.main]]
-  name = "Showcase"
-  url = "https://leonawicz.github.io/showcase/"
   weight = 1
   
 [[menu.main]]
