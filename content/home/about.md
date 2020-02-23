@@ -46,10 +46,8 @@ weight = 1
 
 # About
 
-I'm a software developer and data scientist. I'm also a member of [ROpenSci](https://ropensci.org/). I've published several peer-reviewed R packages to CRAN as well as three with ROpenSci focusing on textual manipulation, energy data retrieval, and geospatial map tile generation.
+I'm an R developer with E Source. I'm also a member of [ROpenSci](https://ropensci.org/). I've published several peer-reviewed R packages to CRAN as well as three with ROpenSci focusing on textual manipulation, energy data retrieval, and geospatial map tile generation.
 
-My work over the years has focused on high performance statistical computing, climate science research, web application development, data visualization, and dynamic reporting. I enjoy developing R Shiny apps and creating informative, beautiful graphics.
+I'm most interested in package development and development of tools that enhance the R ecosystem, improve workflows and productivity, and assist with reproducible research. My work over the years has focused on high performance statistical computing, climate science research, web application development, data visualization, interactive documents, and dynamic reporting. I enjoy developing R Shiny apps and creating informative, beautiful graphics.
 
-I also enjoy networking with other R developers, data analysts, researchers, and useRs around the globe. Some of my R code is available on [Github](https://github.com/leonawicz). I post updates on [Twitter](https://twitter.com/leonawicz) occasionally. I'm most interested in development of tools that enhance the R ecosystem for data science, improve workflows and productivity, and assist with reproducible research.
-
-I don't blog much, as you can see from this blog.
+I also enjoy networking with other R developers, data analysts, researchers, and useRs around the globe. Some of my R code is available on [Github](https://github.com/leonawicz). I post updates on [Twitter](https://twitter.com/leonawicz) occasionally. I don't blog much, as you can see from this blog.
