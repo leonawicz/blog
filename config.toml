@@ -5,7 +5,7 @@ theme = "hugo-academic"
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"
 
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 publishDir = "docs"
 relativeURLs = true
 
@@ -13,18 +13,23 @@ relativeURLs = true
 # disqusShortname = ""
 
 # Enable analytics by entering your Google Analytics tracking ID
-googleAnalytics = "UA-46129458-3"
+googleAnalytics = ""
 
 # Default language to use (if you setup multilingual support)
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+      
 [blackfriday]
   hrefTargetBlank = true
 
 [params]
   name = "Matthew Leonawicz"
-  role = "R Developer | Data Scientist"
+  role = "R Developer"
   organization = "E Source"
   organization_url = "https://www.esource.com/about-e-source"
   gravatar = true  # Get your avatar from Gravatar.com? (true/false)
@@ -135,29 +140,9 @@ defaultContentLanguageInSubdir = false
     link  = "https://github.com/leonawicz"
     
   [[params.social]]
-    icon = "twitter"
-    icon_pack = "fa"
-    link = "https://twitter.com/leonawicz"
-    
-  [[params.social]]
     icon = "linkedin"
     icon_pack = "fa"
     link = "https://www.linkedin.com/in/leonawicz"
-  
-  [[params.social]]
-    icon = "youtube"
-    icon_pack = "fa"
-    link = "https://www.youtube.com/user/StatisticsWithR"
-
-  [[params.social]]
-    icon = "rss"
-    icon_pack = "fa"
-    link  = "index.xml"
-    
-  [[params.social]]
-    icon = "envelope"
-    icon_pack = "fa"
-    link = "mailto:matt_leonawicz@esource.com"
 
 # Navigation Links
 #   To link a homepage widget, specify the URL as a hash `#` followed by the filename of the

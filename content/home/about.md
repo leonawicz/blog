@@ -1,7 +1,7 @@
 +++
 # About/Biography widget.
 
-date = "2019-11-27"
+date = "2020-11-05"
 draft = false
 
 widget = "about"
@@ -13,13 +13,11 @@ weight = 1
 [interests]
   interests = [
     "R development",
-    "App development",
+    "Shiny development",
     "Data visualization",
-    "Probability and statistics",
-    "Nonparametric regression/machine learning",
-    "Sociology of science and medicine",
+    "Sociology of medicine",
     "Astronomy and cosmology",
-    "Playing guitar, programming, cooking, taking walks and reading Star Trek novels"
+    "Cooking, programming, guitar"
   ]
 
 # List your qualifications (such as academic degrees).
@@ -48,6 +46,4 @@ weight = 1
 
 I'm an R developer with E Source. I'm also a member of [ROpenSci](https://ropensci.org/). I've published several peer-reviewed R packages to CRAN as well as three with ROpenSci focusing on textual manipulation, energy data retrieval, and geospatial map tile generation.
 
-I'm most interested in package development and development of tools that enhance the R ecosystem, improve workflows and productivity, and assist with reproducible research. My work over the years has focused on high performance statistical computing, climate science research, web application development, data visualization, interactive documents, and dynamic reporting. I enjoy developing R Shiny apps and creating informative, beautiful graphics.
-
-I also enjoy networking with other R developers, data analysts, researchers, and useRs around the globe. Some of my R code is available on [Github](https://github.com/leonawicz). I post updates on [Twitter](https://twitter.com/leonawicz) occasionally. I don't blog much, as you can see from this blog.
+I enjoy R package development, Shiny development, data visualization, and dynamic reporting. I also enjoy networking with other R developers and useRs. I'm most interested in development of tools that enhance the R ecosystem, improve workflows and productivity, and assist with reproducible research.
